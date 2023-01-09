@@ -46,6 +46,10 @@ const appRoutes: Routes = [
     loadChildren: () => import('./main/pages/pages.module').then(m => m.PagesModule)
   },
   {
+    path: 'masterdata',
+    loadChildren: () => import('./masterdata/masterdata.module').then(m => m.MasterdataModule)
+  },
+  {
     path: 'ui',
     loadChildren: () => import('./main/ui/ui.module').then(m => m.UIModule),
     canActivate: [AuthGuard]
