@@ -30,16 +30,9 @@
             <div class="profile-header-nav">
               <!-- navbar -->
               <nav class="navbar navbar-expand-md navbar-light justify-content-end justify-content-md-between w-100">
-                <button
-                  class="btn btn-icon navbar-toggler"
-                  type="button"
-                  data-target="#navbarSupportedContent"
-                  aria-controls="navbarSupportedContent"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-                  (click)="toggleMenu = !toggleMenu"
-                  rippleEffect
-                >
+                <button class="btn btn-icon navbar-toggler" type="button" data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                  (click)="toggleMenu = !toggleMenu" rippleEffect>
                   <i data-feather="align-justify" class="font-medium-5"></i>
                 </button>
 
@@ -47,14 +40,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="toggleMenu">
                   <div class="profile-tabs d-flex justify-content-between flex-wrap mt-1 mt-md-0">
                     <ul class="nav nav-pills mb-0">
-                      <li class="nav-item">
+                      <!-- <li class="nav-item">
                         <a class="nav-link font-weight-bold active" href="javascript:void(0)">
                           <span class="d-none d-md-block">Feed</span>
                           <i data-feather="rss" class="d-block d-md-none"></i>
                         </a>
-                      </li>
+                      </li> -->
                       <li class="nav-item">
-                        <a class="nav-link font-weight-bold" href="javascript:void(0)">
+                        <a class="nav-link font-weight-bold active" href="javascript:void(0)">
                           <span class="d-none d-md-block">About</span>
                           <i data-feather="info" class="d-block d-md-none"></i>
                         </a>
@@ -65,12 +58,12 @@
                           <i data-feather="image" class="d-block d-md-none"></i>
                         </a>
                       </li>
-                      <li class="nav-item">
+                      <!-- <li class="nav-item">
                         <a class="nav-link font-weight-bold" href="javascript:void(0)">
                           <span class="d-none d-md-block">Friends</span>
                           <i data-feather="users" class="d-block d-md-none"></i>
                         </a>
-                      </li>
+                      </li> -->
                     </ul>
                     <!-- edit button -->
                     <button class="btn btn-primary" rippleEffect>
@@ -121,123 +114,140 @@
             <!--/ about -->
 
             <!-- suggestion pages -->
-           
+
             <!--/ suggestion pages -->
 
             <!-- twitter feed card -->
-          
+
             <!--/ twitter feed card -->
           </div>
           <!--/ left profile info section -->
 
           <!-- center profile info section -->
-          <div class="col-lg-6 col-12 order-1 order-lg-2">
+          <div class="col-lg-9  order-1 order-lg-2">
             <div class="card" style="height: 518px;">
               <div class="card-body">
-                <div class="d-flex justify-content-start align-items-center mb-1">
+                <div class=" align-items-center mb-1">
                   <!-- avatar -->
+
+
                   <form class="form form-vertical">
-                    <div class="row d-flex justify-content-center">
-                      <h2 class="">Profile</h2>
+                    <div>
+                      <div>
+                        <h2 class="">Profile</h2>
+                      </div>
+                      <div class=" float-right">
+                        <span class="editbtn" [data-feather]="'edit'"></span>
+                      </div>
                     </div>
-                    <div class="row">
-                      <div class="col-lg-12">
+                    <div class="row mt-5">
+
+                      <div class="col-lg-6">
                         <div class="form-group">
-                          <label for="first-name-icon">First Name</label>
+                          <label for="first-name-icon"> Name:</label>
                           <div class="input-group input-group-merge">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text"><span [data-feather]="'user'"></span></span>
-                            </div>
-                            <input
-                              type="text"
-                              id="first-name-icon"
-                              class="form-control"
-                              name="fname-icon"
-                              placeholder="First Name"
-                            />
+                            <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                              placeholder="First Name" value="Kirupa " />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="first-name-icon">Weight:</label>
+                          <div class="input-group input-group-merge">
+                            <select class="form-control" id="basicSelect">
+                              <option>50-60 kg</option>
+                              <option>60-70 kg</option>
+                              <option>70-80 kg</option>
+                              <option>80-90 kg</option>
+                              <option>90-100 kg</option>
+                              <option>>100 kg</option>
+                            </select>
+
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="first-name-icon">Marital Status:</label>
+                          <div class="input-group input-group-merge">
+                            <select class="form-control" id="basicSelect">
+                              <option>Single</option>
+                              <option>Married</option>
+                              <option>Diworce</option>
+                              <option>Awaiting Diworce</option>
+                            </select>
+
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="first-name-icon">Body Type:</label>
+                          <div class="input-group input-group-merge">
+                            <select class="form-control" id="basicSelect">
+                              <option>Slim</option>
+                              <option>Normal</option>
+                              <option>Fat</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="first-name-icon">Drinking Habit:</label>
+                          <div class="input-group input-group-merge">
+                            <select class="form-control" id="basicSelect">
+                              <option>Never Drinking</option>
+                              <option>Partially Drinking </option>
+                              <option>Regularly Drinking </option>
+                            </select>
                           </div>
                         </div>
                       </div>
-                      <div class="col-lg-12">
+                      <div class="col-lg-6">
                         <div class="form-group">
-                          <label for="first-name-icon">Last Name</label>
+                          <label for="first-name-icon">Age:</label>
                           <div class="input-group input-group-merge">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text"><span [data-feather]="'user'"></span></span>
-                            </div>
-                            <input
-                              type="text"
-                              id="first-name-icon"
-                              class="form-control"
-                              name="fname-icon"
-                              placeholder="Last Name"
-                            />
+                            <input type="number" id="first-name-icon" class="form-control" name="fname-icon"
+                              placeholder="Age" value="31" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="first-name-icon">Height:</label>
+                          <div class="input-group input-group-merge">
+                            <select class="form-control" id="basicSelect">
+                              <option>4-5 ft</option>
+                              <option>5-6 ft</option>
+                              <option>6-7 ft</option>
+                              <option>>7 ft</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="first-name-icon"> Mother Tongue:</label>
+                          <div class="input-group input-group-merge">
+                            <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                              placeholder="First Name" value="Tamil " />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="first-name-icon">Eating Habit:</label>
+                          <div class="input-group input-group-merge">
+                            <select class="form-control" id="basicSelect">
+                              <option>Vegeterian</option>
+                              <option>Non-vegeterian</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="first-name-icon">Smoking Habit:</label>
+                          <div class="input-group input-group-merge">
+                            <select class="form-control" id="basicSelect">
+                              <option>Never Smoking</option>
+                              <option>Partially Smoking </option>
+                              <option>Regularly Smoking </option>
+                            </select>
                           </div>
                         </div>
                       </div>
-                      <div class="col-lg-12">
-                        <div class="form-group">
-                          <label for="first-name-icon">Date of Birth</label>
-                          <div class="input-group input-group-merge">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text">
-                              </span>
-                            </div>
-                            <input
-                              type="date"
-                              id="first-name-icon"
-                              class="form-control"
-                              name="fname-icon"
-                              placeholder="Last Name"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-12">
-                        <div class="form-group">
-                          <label for="first-name-icon">Marital Status</label>
-                          <div class="input-group input-group-merge">
-                              <select class="form-control" id="basicSelect">
-                                <option>Select status</option>
-                                <option>Single</option>
-                                <option>Married</option>
-                                <option>Diworce</option>
-                                <option>Awaiting Diworce</option>
-                              </select>
-                          
-                          </div>
-                        </div>
-                      </div>
-                     
-                      <div class="col-lg-12">
-                        <div class="form-group">
-                          <label for="first-name-icon">I am Looking For</label>
-                          <div class="input-group input-group-merge">
-                          
-                            <div class="form-check form-check-inline">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="inlineRadioOptions"
-                                id="inlineRadio1"
-                                value="option1"/>
-                              <label class="form-check-label" for="inlineRadio1">Bride</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="inlineRadioOptions"
-                                id="inlineRadio1"
-                                value="option1"/>
-                              <label class="form-check-label" for="inlineRadio1">Groom</label>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                    
-                      <div class="col-12">
+                    </div>
+
+
+
+                    <!-- <div class="col-12">
                         <div class="form-group">
                           <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="customCheck4" />
@@ -248,19 +258,18 @@
                       <div class="col-12">
                         <button type="submit" rippleEffect class="btn btn-primary mr-1">Submit</button>
                         <button type="reset" rippleEffect class="btn btn-outline-secondary">Reset</button>
-                      </div>
-                    </div>
+                      </div> -->
+
                   </form>
+
+
                 </div>
-                
               </div>
             </div>
-          </div>
-          <!--/ center profile info section -->
+            <!--/ center profile info section -->
 
-          <!-- right profile info section -->
-          <div class="col-lg-3 col-12 order-3">
-            <!-- latest profile pictures -->
+            <!-- right profile info section -->
+            <!-- <div class="col-lg-3 col-12 order-3">
             <div class="card" style="height: 518px;">
               <div class="card-body">
                 <h5 class="mb-0">Latest Photos</h5>
@@ -275,41 +284,441 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
             <!--/ latest profile pictures -->
 
             <!-- suggestion -->
-        
+
             <!--/ suggestion -->
 
             <!-- polls card -->
-            
+
             <!--/ polls card -->
+            <!-- </div> -->
+            <!--/ right profile info section -->
           </div>
+
+          <!-- reload button -->
+          <!-- <div class="row">
+            <div class="col-12 text-center">
+              <button type="button" class="btn btn-sm btn-primary block-element border-0 mb-1" rippleEffect
+                (click)="loadMore()">
+                <span role="status" aria-hidden="true" [class.spinner-border]="loadMoreRef"
+                  class="spinner-border-sm"></span>
+                Load More
+              </button>
+            </div>
+          </div> -->
+        </div>
+        <!--/ reload button -->
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card">
+              <form>
+                <div>
+                  <div class="mt-2">
+                    <h2 class="mx-2">Religious Info:</h2>
+                  </div>
+                  <div>
+                    <span class="editbtn" [data-feather]="'edit'"></span>
+                  </div>
+                </div>
+                <div class="col-lg-12 mt-5">
+                  <div class="form-group">
+                    <label for="first-name-icon">Religion:</label>
+                    <div class="input-group input-group-merge">
+                      <select class="form-control" id="basicSelect">
+                        <option>Hindu</option>
+                        <option>Christian </option>
+                        <option>Muslim</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="first-name-icon"> Caste:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="Nadar " />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="first-name-icon"> Sub-caste:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="Don't Know " />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="first-name-icon"> Gothram:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="Siva " />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="first-name-icon"> Star:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="Avittam " />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="first-name-icon"> Rasi:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="Maharam" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="first-name-icon"> Dosham:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="No" />
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card">
+              <form>
+                <div class="mt-2">
+                  <h2 class="mx-2">Eductional Info:</h2>
+                </div>
+                <div>
+                  <span class="editbtn" [data-feather]="'edit'"></span>
+                </div>
+                <div class="col-lg-12 mt-5">
+                  <div class="form-group">
+                    <label for="first-name-icon"> Education Category:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="B.E" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="first-name-icon"> College:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="SRM Easwari Engineering College" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="first-name-icon"> Occupation:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="Software Proffessional" />
+                    </div>
+                  </div>
+                  <!-- <div class="form-group">
+                  <label for="first-name-icon"> Occupation in Detial:</label>
+                  <div class="input-group input-group-merge">
+                    <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                      placeholder="First Name" value="Development" />
+                  </div>
+                </div> -->
+                  <div class="form-group">
+                    <label for="first-name-icon"> Organization:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="Concert Care" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="first-name-icon"> Employed In:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="Private" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="first-name-icon"> Annual Income:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="B.E" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="first-name-icon">Annual Income:</label>
+                    <div class="input-group input-group-merge">
+                      <select class="form-control" id="basicSelect">
+                        <option>0-5 LPA</option>
+                        <option>5-10 LPA </option>
+                        <option>10-15 LPA</option>
+                        <option>>15 LPA</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card">
+              <form>
+                <div class="mt-2">
+                  <h2 class="mx-2">Location:</h2>
+                </div>
+                <div>
+                  <span class="editbtn" [data-feather]="'edit'"></span>
+                </div>
+                <div class="col-lg-12 mt-5">
+                  <div class="form-group">
+                    <label for="first-name-icon">Country:</label>
+                    <div class="input-group input-group-merge">
+                      <select class="form-control" id="basicSelect">
+                        <option>India</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="first-name-icon">State:</label>
+                    <div class="input-group input-group-merge">
+                      <select class="form-control" id="basicSelect">
+                        <option>Tanilnadu</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="first-name-icon">City:</label>
+                    <div class="input-group input-group-merge">
+                      <select class="form-control" id="basicSelect">
+                        <option>Thanjavur</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="first-name-icon"> Citizenship:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="India" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="first-name-icon"> Ancestral origin:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="Thanjavur" />
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card">
+              <form>
+                <div class="mt-2">
+                  <h2 class="mx-2">Hobbies</h2>
+                </div>
+                <div>
+                  <span class="editbtn" [data-feather]="'edit'"></span>
+                </div>
+                <div class="col-lg-12 mt-5">
+                  <div class="form-group">
+                    <label for="first-name-icon"> Hobbies and Interest:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="Social media,Travel" />
+                    </div>
+                  </div>
+                  <!-- <div class="form-group">
+                    <label for="first-name-icon"> Music:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="Rap" />
+                    </div>
+                  </div> -->
+                  <div class="form-group">
+                    <label for="first-name-icon"> Movies and TV shows:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="Comedy,Action,Horror" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="first-name-icon"> Sports:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="Badmiton,Cricket" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="first-name-icon"> Food :</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="South Indian" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="first-name-icon"> Spoken Lanuages :</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="Tamil,English">
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="mt-2">
+              <h2 class="mx-2">About Our Family</h2>
+            </div>
+            <div>
+              <span class="editbtn" [data-feather]="'edit'"></span>
+            </div>
+            <div>
+              <h5 class="mx-3">My Father is mason,Mother is home maker,Elder brother is working in a IT sector,Younger
+                sister completed M.E.,</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 ">
+          <div class="card">
+            <div class="card-body">
+              <div class=" align-items-center mb-1">
+                <form class="form form-vertical">
+                  <div>
+                    <div>
+                      <h2 class="">Family Detial</h2>
+                    </div>
+                    <div class=" float-right">
+                      <span class="editbtn" [data-feather]="'edit'"></span>
+                    </div>
+                  </div>
+                  <div class="row mt-5">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="first-name-icon">Family Type:</label>
+                        <div class="input-group input-group-merge">
+                          <select class="form-control" id="basicSelect">
+                            <option>Nuclear</option>
+                            <option>Joint</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="first-name-icon"> Father Occupation:</label>
+                        <div class="input-group input-group-merge">
+                          <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                            placeholder="First Name" value="Employer " />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="first-name-icon"> Brothers:</label>
+                        <div class="input-group input-group-merge">
+                          <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                            placeholder="First Name" value="1" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="first-name-icon"> Sisters:</label>
+                        <div class="input-group input-group-merge">
+                          <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                            placeholder="First Name" value="1" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="first-name-icon">Family Status:</label>
+                        <div class="input-group input-group-merge">
+                          <select class="form-control" id="basicSelect">
+                            <option>Lower Class</option>
+                            <option>Middle Class</option>
+                            <option>High Class</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="first-name-icon"> Mother's Occupation:</label>
+                        <div class="input-group input-group-merge">
+                          <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                            placeholder="First Name" value="Home Maker " />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="first-name-icon"> Brother(s) Married:</label>
+                        <div class="input-group input-group-merge">
+                          <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                            placeholder="First Name" value="none" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="first-name-icon"> Sister(s) Married:</label>
+                        <div class="input-group input-group-merge">
+                          <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                            placeholder="First Name" value="none" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <!-- <div class="col-12">
+                      <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="customCheck4" />
+                          <label class="custom-control-label" for="customCheck4">Remember me</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" rippleEffect class="btn btn-primary mr-1">Submit</button>
+                      <button type="reset" rippleEffect class="btn btn-outline-secondary">Reset</button>
+                    </div> -->
+
+                </form>
+
+
+              </div>
+            </div>
+          </div>
+          <!--/ center profile info section -->
+
+          <!-- right profile info section -->
+          <!-- <div class="col-lg-3 col-12 order-3">
+          <div class="card" style="height: 518px;">
+            <div class="card-body">
+              <h5 class="mb-0">Latest Photos</h5>
+              <div class="row">
+                <div
+                  class="col-md-4 col-6 profile-latest-img"
+                  *ngFor="let latestPhotosRef of data.profileData.latestPhotos"
+                >
+                  <a href="javascript:void(0)">
+                    <img [src]="latestPhotosRef.img" class="img-fluid rounded" alt="avatar img" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <!--/ latest profile pictures -->
+
+          <!-- suggestion -->
+
+          <!--/ suggestion -->
+
+          <!-- polls card -->
+
+          <!--/ polls card -->
+          <!-- </div> -->
           <!--/ right profile info section -->
         </div>
 
-        <!-- reload button -->
-        <div class="row">
-          <div class="col-12 text-center">
-            <button
-              type="button"
-              class="btn btn-sm btn-primary block-element border-0 mb-1"
-              rippleEffect
-              (click)="loadMore()"
-            >
-              <span
-                role="status"
-                aria-hidden="true"
-                [class.spinner-border]="loadMoreRef"
-                class="spinner-border-sm"
-              ></span>
-              Load More
-            </button>
-          </div>
-        </div>
-        <!--/ reload button -->
+
       </section>
+      
       <!--/ profile info section -->
     </div>
   </div>

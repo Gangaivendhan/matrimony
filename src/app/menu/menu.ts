@@ -4,18 +4,19 @@ import { CoreMenu } from '@core/types';
 
 export const menu: CoreMenu[] = [
   // Dashboard
-  // {
-  //   id: 'dashboard',
-  //   title: 'Dashboard',
-  //   translate: 'MENU.DASHBOARD.COLLAPSIBLE',
-  //   type: 'collapsible',
-  //   // role: ['Admin'], //? To hide collapsible based on user role
-  //   icon: 'home',
-  //   badge: {
-  //     title: '2',
-  //     translate: 'MENU.DASHBOARD.BADGE',
-  //     classes: 'badge-light-warning badge-pill'
-  //   },
+  {
+    id: 'dashboard',
+    title: 'Dashboard',
+    translate: 'MENU.DASHBOARD.COLLAPSIBLE',
+    type: 'collapsible',
+    // role: ['Admin'], //? To hide collapsible based on user role
+    icon: 'home',
+    // badge: {
+    //   title: '2',
+    //   translate: 'MENU.DASHBOARD.BADGE',
+    //   classes: 'badge-light-warning badge-pill'
+    // },
+  }
   //   children: [
   //     {
   //       id: 'analytics',
@@ -38,13 +39,13 @@ export const menu: CoreMenu[] = [
   //   ]
   // },
   // Apps & Pages
-  {
-    id: 'apps',
-    type: 'section',
-    title: 'Apps & Pages',
-    translate: 'MENU.APPS.SECTION',
-    icon: 'package',
-    children: [
+  // {
+  //   id: 'apps',
+  //   type: 'section',
+  //   title: 'Apps & Pages',
+  //   translate: 'MENU.APPS.SECTION',
+  //   icon: 'package',
+  //   children: [
       // {
       //   id: 'email',
       //   title: 'Email',
@@ -77,13 +78,13 @@ export const menu: CoreMenu[] = [
       //   icon: 'calendar',
       //   url: 'apps/calendar'
       // },
-      {
-        id: 'pages',
-        title: 'Pages',
-        translate: 'MENU.PAGES.SECTION',
-        type: 'collapsible',
-        icon: 'file-text',
-        children: [
+      // {
+      //   id: 'pages',
+      //   title: 'Pages',
+      //   translate: 'MENU.PAGES.SECTION',
+      //   type: 'collapsible',
+      //   icon: 'file-text',
+      //   children: [
           // {
           //   id: 'authentication',
           //   title: 'Authentication',
@@ -165,15 +166,15 @@ export const menu: CoreMenu[] = [
           //   icon: 'circle',
           //   url: 'pages/account-settings'
           // },
-          {
-            id: 'profile',
-            title: 'Profile',
-            translate: 'MENU.PAGES.PROFILE',
-            type: 'item',
-            icon: 'circle',
-            url: 'pages/profile'
-            // collapsed: true
-          },
+          // {
+          //   id: 'profile',
+          //   title: 'Profile',
+          //   translate: 'MENU.PAGES.PROFILE',
+          //   type: 'item',
+          //   icon: 'circle',
+          //   url: 'pages/profile'
+          //   // collapsed: true
+          // },
           // {
           //   id: 'faq',
           //   title: 'FAQ',
@@ -337,7 +338,7 @@ export const menu: CoreMenu[] = [
           //   ]
           // }
         ]
-      },
+      // },
       // {
       //   id: 'invoice',
       //   title: 'Invoice',
@@ -453,8 +454,8 @@ export const menu: CoreMenu[] = [
       //     }
       //   ]
       // }
-    ]
-  },
+  //   ]
+  // },
   // User Interface
   // {
   //   id: 'user-interface',
@@ -1196,4 +1197,4 @@ export const menu: CoreMenu[] = [
   //     }
   //   ]
   // }
-];
+// ];
