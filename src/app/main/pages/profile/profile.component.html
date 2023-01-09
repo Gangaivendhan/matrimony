@@ -90,11 +90,11 @@
 
       <!-- profile info section -->
       <section id="profile-info">
-        <div class="row">
+        <div class="row" style="height: auto;">
           <!-- left profile info section -->
           <div class="col-lg-3 col-12 order-2 order-lg-1">
             <!-- about -->
-            <div class="card">
+            <div class="card" style="height: 518px;">
               <div class="card-body">
                 <h5 class="mb-75">About</h5>
                 <p class="card-text">
@@ -125,197 +125,143 @@
             <!--/ suggestion pages -->
 
             <!-- twitter feed card -->
-            
+          
             <!--/ twitter feed card -->
           </div>
           <!--/ left profile info section -->
 
           <!-- center profile info section -->
-          <!-- <div class="col-lg-6 col-12 order-1 order-lg-2">
-            <div class="card">
-                <div class="col-md-6 col-lg-12">
-                    <h4 class="card-title mt-5">Register</h4>
-                    <div class="card-body">
-                      <form class="form form-vertical">
-                        <div class="row">
-                          <div class="col-lg-12">
-                            <div class="form-group">
-                              <label for="first-name-icon">First Name</label>
-                              <div class="input-group input-group-merge">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"><span [data-feather]="'user'"></span></span>
-                                </div>
-                                <input
-                                  type="text"
-                                  id="first-name-icon"
-                                  class="form-control"
-                                  name="fname-icon"
-                                  placeholder="First Name"
-                                />
-                              </div>
+          <div class="col-lg-6 col-12 order-1 order-lg-2">
+            <div class="card" style="height: 518px;">
+              <div class="card-body">
+                <div class="d-flex justify-content-start align-items-center mb-1">
+                  <!-- avatar -->
+                  <form class="form form-vertical">
+                    <div class="row d-flex justify-content-center">
+                      <h2 class="">Profile</h2>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                          <label for="first-name-icon">First Name</label>
+                          <div class="input-group input-group-merge">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><span [data-feather]="'user'"></span></span>
                             </div>
-                          </div>
-                          <div class="col-lg-12">
-                            <div class="form-group">
-                              <label for="first-name-icon">Last Name</label>
-                              <div class="input-group input-group-merge">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"><span [data-feather]="'user'"></span></span>
-                                </div>
-                                <input
-                                  type="text"
-                                  id="first-name-icon"
-                                  class="form-control"
-                                  name="fname-icon"
-                                  placeholder="Last Name"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-lg-12">
-                            <div class="form-group">
-                              <label for="first-name-icon">Date of Birth</label>
-                              <div class="input-group input-group-merge">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text">
-                                  </span>
-                                </div>
-                                <input
-                                  type="date"
-                                  id="first-name-icon"
-                                  class="form-control"
-                                  name="fname-icon"
-                                  placeholder="Last Name"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-lg-12">
-                            <div class="form-group">
-                              <label for="first-name-icon">Marital Status</label>
-                              <div class="input-group input-group-merge">
-                                  <select class="form-control" id="basicSelect">
-                                    <option>Select status</option>
-                                    <option>Single</option>
-                                    <option>Married</option>
-                                    <option>Diworce</option>
-                                    <option>Awaiting Diworce</option>
-                                  </select>
-                              
-                              </div>
-                            </div>
-                          </div>
-                         
-                          <div class="col-lg-12">
-                            <div class="form-group">
-                              <label for="first-name-icon">I am Looking For</label>
-                              <div class="input-group input-group-merge">
-                              
-                                <div class="form-check form-check-inline">
-                                  <input
-                                    class="form-check-input"
-                                    type="radio"
-                                    name="inlineRadioOptions"
-                                    id="inlineRadio1"
-                                    value="option1"/>
-                                  <label class="form-check-label" for="inlineRadio1">Bride</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                  <input
-                                    class="form-check-input"
-                                    type="radio"
-                                    name="inlineRadioOptions"
-                                    id="inlineRadio1"
-                                    value="option1"/>
-                                  <label class="form-check-label" for="inlineRadio1">Groom</label>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-12">
-                            <div class="form-group">
-                              <label for="contact-info-icon">Mobile</label>
-                              <div class="input-group input-group-merge">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"><span [data-feather]="'smartphone'"></span></span>
-                                </div>
-                                <input
-                                  type="number"
-                                  id="contact-info-icon"
-                                  class="form-control"
-                                  name="contact-icon"
-                                  placeholder="Mobile"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-lg-12">
-                            <div class="form-group">
-                              <label for="email-id-icon">Email</label>
-                              <div class="input-group input-group-merge">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"><span [data-feather]="'mail'"></span></span>
-                                </div>
-                                <input
-                                  type="email"
-                                  id="email-id-icon"
-                                  class="form-control"
-                                  name="email-id-icon"
-                                  placeholder="Email"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                         
-                          <div class="col-12">
-                            <div class="form-group">
-                              <label for="password-icon">Password</label>
-                              <div class="input-group input-group-merge">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"><span [data-feather]="'lock'"></span></span>
-                                </div>
-                                <input
-                                  type="password"
-                                  id="password-icon"
-                                  class="form-control"
-                                  name="contact-icon"
-                                  placeholder="Password"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-12">
-                            <div class="form-group">
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck4" />
-                                <label class="custom-control-label" for="customCheck4">Remember me</label>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-12">
-                            <button type="submit" rippleEffect class="btn btn-primary mr-1">Submit</button>
-                            <button type="reset" rippleEffect class="btn btn-outline-secondary">Reset</button>
+                            <input
+                              type="text"
+                              id="first-name-icon"
+                              class="form-control"
+                              name="fname-icon"
+                              placeholder="First Name"
+                            />
                           </div>
                         </div>
-                      </form>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                          <label for="first-name-icon">Last Name</label>
+                          <div class="input-group input-group-merge">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><span [data-feather]="'user'"></span></span>
+                            </div>
+                            <input
+                              type="text"
+                              id="first-name-icon"
+                              class="form-control"
+                              name="fname-icon"
+                              placeholder="Last Name"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                          <label for="first-name-icon">Date of Birth</label>
+                          <div class="input-group input-group-merge">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">
+                              </span>
+                            </div>
+                            <input
+                              type="date"
+                              id="first-name-icon"
+                              class="form-control"
+                              name="fname-icon"
+                              placeholder="Last Name"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                          <label for="first-name-icon">Marital Status</label>
+                          <div class="input-group input-group-merge">
+                              <select class="form-control" id="basicSelect">
+                                <option>Select status</option>
+                                <option>Single</option>
+                                <option>Married</option>
+                                <option>Diworce</option>
+                                <option>Awaiting Diworce</option>
+                              </select>
+                          
+                          </div>
+                        </div>
+                      </div>
+                     
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                          <label for="first-name-icon">I am Looking For</label>
+                          <div class="input-group input-group-merge">
+                          
+                            <div class="form-check form-check-inline">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="inlineRadioOptions"
+                                id="inlineRadio1"
+                                value="option1"/>
+                              <label class="form-check-label" for="inlineRadio1">Bride</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="inlineRadioOptions"
+                                id="inlineRadio1"
+                                value="option1"/>
+                              <label class="form-check-label" for="inlineRadio1">Groom</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    
+                      <div class="col-12">
+                        <div class="form-group">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck4" />
+                            <label class="custom-control-label" for="customCheck4">Remember me</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <button type="submit" rippleEffect class="btn btn-primary mr-1">Submit</button>
+                        <button type="reset" rippleEffect class="btn btn-outline-secondary">Reset</button>
+                      </div>
                     </div>
+                  </form>
                 </div>
-              </div> -->
                 
-
-                <!--/ comments -->
-
-                <!-- comment box -->
-              
-                <!--/ comment box -->
-              
-          <!-- </div> -->
+              </div>
+            </div>
+          </div>
           <!--/ center profile info section -->
 
           <!-- right profile info section -->
           <div class="col-lg-3 col-12 order-3">
             <!-- latest profile pictures -->
-            <div class="card">
+            <div class="card" style="height: 518px;">
               <div class="card-body">
                 <h5 class="mb-0">Latest Photos</h5>
                 <div class="row">
@@ -333,18 +279,18 @@
             <!--/ latest profile pictures -->
 
             <!-- suggestion -->
-            
+        
             <!--/ suggestion -->
 
             <!-- polls card -->
-         
+            
             <!--/ polls card -->
           </div>
           <!--/ right profile info section -->
         </div>
 
         <!-- reload button -->
-        <!-- <div class="row">
+        <div class="row">
           <div class="col-12 text-center">
             <button
               type="button"
@@ -361,7 +307,7 @@
               Load More
             </button>
           </div>
-        </div> -->
+        </div>
         <!--/ reload button -->
       </section>
       <!--/ profile info section -->
