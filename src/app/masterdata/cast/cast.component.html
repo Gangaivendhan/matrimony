@@ -1,0 +1,187 @@
+<div class="container-fluid px-2  mt-0 pt-0 mb-5 ">
+    <div class="card mx-lg-3 mx-md-3 mx-xl-3 mt-2 headercard shadow">
+        <div class="row  p-3 ">
+            <div class="col-lg-7 col-md-6 mx-0">
+                <h4 class="my-auto headtextcolor"> <b>ADD USER</b></h4>
+            </div>
+            <div class="col-lg-5 col-md-6 my-auto text-lg-end text-md-end text-sm-left ">
+                <a class="mx-2 headerlink " href="#">
+                    <small>Dashboard</small></a>|
+                <a class="headerlink mx-2" href="#"><small>AddUser</small></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 text-sm-start text-md-end text-lg-end text-xl-end mt-4 mb-3 mx-3 text-end ">
+        <a class="btn btn-primary fs-6 text-white mx-1 me-5 mt-2" (click)="open(subject)"> Add Category
+        </a>
+    </div>
+    <form class="table-responsive" [formGroup]="userfilterform">
+        <table class="table-responsive  mt-3 bg-white mat-elevation-z8 data-table">
+            <div class="row d-flex mx-2">
+                <div class="col-lg-4 mt-3 col-xl-5 col-md-4 tableselect">
+                    <div class="group">
+                        <select class="inputMaterial" formControlName="categoryName" [(ngModel)]="obj.categoryName"
+                            required>
+                            <option [value]=""></option>
+                            <option *ngFor="let list of array" [value]="list.categoryName">
+                                {{list.categoryName}}
+                            </option>
+                        </select>
+                        <label class="inputlabel">CategoryName</label>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-xl-5 mt-3 col-md-4 tableselect">
+                    <div class="group">
+                        <select class="inputMaterial" formControlName="status" [(ngModel)]="obj.status" required>
+                            <option [value]="">
+                            </option>
+                            <option *ngFor="let list of status" [value]="list.status">
+                                {{list.status}}
+                            </option>
+                        </select>
+                        <label class="inputlabel">Status</label>
+                    </div>
+                </div>
+                <div class="mt-3 col-xl-2 col-md-4 col-lg-4 search-div text-sm-start text-lg-end text-md-end">
+                    <button type="button" class="btn btn-success px-4 mt-2 mx-2">Search</button>
+                </div>
+            </div>
+            <table class="mt-3 table-responsive" mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="index">
+                    <th mat-header-cell *matHeaderCellDef> S.No. </th>
+                    <td mat-cell *matCellDef="let element ; let i= index;"> {{i+1}} </td>
+                </ng-container>
+                <ng-container matColumnDef="categoryName">
+                    <th mat-header-cell *matHeaderCellDef>CategoryName</th>
+                    <td mat-cell *matCellDef="let element"> {{element.categoryName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="category">
+                    <th mat-header-cell *matHeaderCellDef>Category </th>
+                    <td mat-cell *matCellDef="let element"> {{element.selectCategory}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef>Actions</th>
+                    <td mat-cell *matCellDef="let  element">
+                        <div class="mdi:delete-circle"></div>
+                        <button class="butt" mat-button [matMenuTriggerFor]="menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu" style="height: 10px;overflow-x: hidden;">
+                            <div class="d-flex">
+                                <a class="btn p-1 "><mat-icon class="table-view-icon">visibility</mat-icon></a>
+                                <span class="pt-2">View</span>
+                            </div>
+                            <div class="d-flex">
+                                <a class="btn p-1" (click)="editBranch(element,subject)" data-toggle="modal"> <mat-icon
+                                        class="table-edit-icon">edit_vert</mat-icon></a>
+                                <span class="pt-2">Edit</span>
+                            </div>
+                            <div class="d-flex">
+                                <a class="btn p-1"> <mat-icon class="table-delete-icon"
+                                        color="warn">delete_vert</mat-icon></a>
+                                <span class="pt-2">Delete</span>
+                            </div>
+                        </mat-menu>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </table>
+    </form>
+</div>
+
+<ng-template #subject let-modal>
+
+    <div class="card-title">
+        <h4 class=" headtextcolor card-title mt-4 text-center"><b>MANAGE CATEGORY</b></h4>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+    </div>
+    <div class="row ">
+        <div class="col-md-6 col-lg-12">
+            <core-card-snippet>
+                <div class="card-body">
+                    <form class="form form-horizontal" formControlName="name" [(ngModel)]="obj.name">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label">
+                                        <label><b>Name</b></label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="name" class="form-control" name="name"
+                                            placeholder=" Name"
+                                            [ngClass]="{'border-danger && is-invalid': Submitted && f['name'].errors || f['name'].touched&& f['name'].errors }"
+                                            required>
+                                            <label class="inputlabel"
+                                            [ngClass]="{'text-danger && is-invalid': Submitted && f['name'].errors || f['name'].touched&& f['name'].errors }">
+                                           </label>
+                                        <span class="error"
+                                            *ngIf="Submitted && f['name'].errors|| f['name'].touched&& f['name'].errors">
+                                            Please Enter Your Name</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label">
+                                        <label><b>Description</b></label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="email" id="email-id" class="form-control" name="email-id"
+                                            placeholder="Email" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label">
+                                        <label><b>Status</b></label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" formControlName="status" [(ngModel)]="obj.status"
+                                            [ngClass]="{ 'border-danger && is-invalid': Submitted &&
+                                        f['status'].errors || f['status'].touched&& f['status'].errors }" required>
+                                            <option>Select Your Status</option>
+                                            <option *ngFor="let status of status" [value]="status.name">
+                                                {{status.name}}
+                                            </option>
+                                        </select>
+                                        <label
+                                            [ngClass]="{'text-danger && is-invalid': Submitted && f['status'].errors || f['status'].touched&& f['status'].errors}">
+                                                </label>
+                                        <span class="error"
+                                            *ngIf="Submitted && f['status'].errors|| f['status'].touched&& f['status'].errors">
+                                            Please Select Your Status</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-sm-9 offset-sm-3">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1" />
+                                        <label class="custom-control-label" for="customCheck1">Remember me</label>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="col-sm-9 offset-sm-3">
+                                <button type="submit" rippleEffect class="btn btn-primary mr-1">Submit</button>
+                                <button type="reset" rippleEffect class="btn btn-outline-secondary">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </core-card-snippet>
+        </div>
+    </div>
+</ng-template>
