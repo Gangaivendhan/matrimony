@@ -1,150 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
-@import 'ngx-toastr/toastr';
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import '../../../@core/scss/angular/libs/datatables.component.scss';
 
-
-.material-icons {
-  font-family: 'Material Icons' !important;
+.datatable-scroll {
+  width: auto !important;
 }
-
-* {
-  font-family: 'Poppins', sans-serif;
-}
-
-.btn-primary,
-.btn-primary:active,
-.btn-primary:visited {
-  background-color: rgb(51, 20, 95) !important;
-}
-
-.headerlink {
-  text-decoration: none;
-  color: rgb(0, 0, 139);
-}
-
-.headercard {
-  border: none;
-  border-radius: 10px;
-}
-
-.headtextcolor {
-  color: rgb(87, 42, 159);
-}
-
-.group {
-  position: relative;
-  margin-bottom: 35px;
-}
-
-.inputMaterial {
-  padding: 10px 10px 10px 5px;
+.example-form mat-slide-toggle {
+  margin: 8px 0;
   display: block;
-  width: 100%;
-  border: none;
-  border-bottom: 1px solid rgb(87, 42, 159);
 }
-
-.inputMaterial:focus {
-  outline: none;
-  border-bottom: 1px solid blue;
-}
-
-.inputlabel {
-  font-size: 14px;
-  font-weight: normal;
-  position: absolute;
-  pointer-events: none;
-  left: 7px;
-  top: 20px;
-  transition: 0.2s ease all;
-  -moz-transition: 0.2s ease all;
-  -webkit-transition: 0.2s ease all;
-  color: rgb(87, 42, 159);
-}
-
-.inputMaterial:focus~label,
-.inputMaterial:valid~label {
-  top: -10px;
-  font-size: 10px;
-  color: rgb(87, 42, 159);
-}
-
-.error {
-  color: red;
-  font-size: x-small;
-}
-
-.star {
-  color: red;
-
-}
-
-.ng-touched.ng-invalid-required {
-  border-color: red;
-}
-
-.data-table {
-  width: 97%;
-  margin: 20px auto;
-}
-:host {
-  ::ng-deep {
-    .mdc-data-table__header-cell {
-      text-align: center;
-    }
-
-    .mdc-data-table__cell {
-      text-align: center;
-    }
-  }
-}
-.data-table {
-    width: 97%;
-    margin: 20px auto;
-  }
-.btnsave{
-  background-color: rgb(51, 20, 95);
-}
-
-:host{
-  ::ng-deep{
-    .mdc-data-table__header-cell {
-      text-align: center;
-  }
-  .mdc-data-table__cell {
-    text-align: center;
-}
-  }
-}
-.custom-file-button input[type=file] {
-  margin-left: -2px !important;
- 
-  border-radius:8px;
-}
-
-.custom-file-button input[type=file]::-webkit-file-upload-button {
-  display: none;
-  
-}
-
-.custom-file-button input[type=file]::file-selector-button {
-  display: none;
- 
-}
-
-.custom-file-button:hover label {
-  background-color: #1029a2;
-  cursor: pointer;
-  color: aliceblue;
- 
-  border-radius: 20px;
-}
-.custom-file-button {
- 
-  background-image: linear-gradient(rgb(175, 39, 202),rgb(180, 62, 198));
-
-  border-radius: 20px;
-}
-
-
-
+// .ngx-datatable.bootstrap.core-bootstrap .datatable-header .datatable-header-cell-template-wrap {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   letter-spacing: 1px;
+// }
+// .ngx-datatable.fixed-row .datatable-scroll .datatable-body-row .datatable-body-cell, .ngx-datatable.fixed-row .datatable-scroll .datatable-body-row .datatable-body-group-cell {
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+//   justify-content: center;
+// }
+// .btn-toggle {
+//   top: 50%;
+//   transform: translateY(-50%);
+// }

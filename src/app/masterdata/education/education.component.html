@@ -1,7 +1,7 @@
 <ng-template #modalVC let-modal>
-    <form (ngSubmit)="onSubmit()" [formGroup]="starForm">
+    <form (ngSubmit)="onSubmit()" [formGroup]="educationForm">
         <div class="modal-header justify-content-center">
-            <h4 class="modal-title"><b>Star</b> </h4>
+            <h4 class="modal-title"><b>Education</b> </h4>
             <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -13,7 +13,7 @@
                     <span class="input-group-text"><span [data-feather]="'user'"></span></span>
                 </div>
                 <input type="text" class="form-control" formControlName="name"
-                    placeholder="Name" />
+                    placeholder="First Name" />
             </div>
             <label class="mb-1">Description</label>
             <div class="input-group input-group-merge mb-2">
@@ -24,14 +24,9 @@
                     placeholder="Description" />
             </div>
             <label class="mb-1">Status</label>
-            <div >
-                <mat-slide-toggle formControlName="status" ></mat-slide-toggle>
-                <!-- <select class="form-control" formControlName="status">
-                    <option value=""></option>
-                    <option *ngFor="let status of Status" [value]="status.name">
-                        {{status.name}}
-                    </option>
-                </select> -->
+            <div>
+                <mat-slide-toggle formControlName="status"></mat-slide-toggle>
+
             </div>
             <div class="d-flex justify-content-end mb-3 mt-3">
            
@@ -55,12 +50,12 @@
 </ng-template>
 <section id="ngx-datatable-kitchen-sink">
     <div class="card">
-        <h4 class="card-title mx-1 mt-2"><b>Manage Star</b></h4>
+        <h4 class="card-title mx-1 mt-2"><b>Manage Education</b></h4>
         <div class="row">
           <div class="col-12 mb-50">
             <button class="btn btn-primary ml-1" (click)="modalOpenVC(modalVC)" rippleEffect>
               <i data-feather="plus" class="mr-0 mr-sm-1"></i
-              ><span class="d-none d-sm-inline-block" >Add Star</span>
+              ><span class="d-none d-sm-inline-block" >Add Education</span>
             </button>
 
             <a csvLink [data]="exportCSVData" class="btn btn-outline-secondary float-right mr-1" rippleEffect

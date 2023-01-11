@@ -1,187 +1,108 @@
-<div class="container-fluid px-2  mt-0 pt-0 mb-5 ">
-    <div class="card mx-lg-3 mx-md-3 mx-xl-3 mt-2 headercard shadow">
-        <div class="row  p-3 ">
-            <div class="col-lg-7 col-md-6 mx-0">
-                <h4 class="my-auto headtextcolor"> <b>ADD USER</b></h4>
+<ng-template #modalVC let-modal>
+    <form (ngSubmit)="onSubmit()" [formGroup]="castForm">
+        <div class="modal-header justify-content-center">
+            <h5 class="modal-title"><b>Cast</b></h5>
+            <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body mt-2" tabindex="0" ngbAutofocus>
+            <label class="mb-1">Name</label>
+            <div class="input-group input-group-merge mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><span [data-feather]="'user'"></span></span>
+                </div>
+                <input type="text" class="form-control" formControlName="name" placeholder="Name" />
             </div>
-            <div class="col-lg-5 col-md-6 my-auto text-lg-end text-md-end text-sm-left ">
-                <a class="mx-2 headerlink " href="#">
-                    <small>Dashboard</small></a>|
-                <a class="headerlink mx-2" href="#"><small>AddUser</small></a>
+            <label class="mb-1"> Description </label>
+            <div class="input-group input-group-merge mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><span [data-feather]="'file-text'"></span></span>
+                </div>
+                <input type="text" class="form-control" formControlName="description" placeholder="Description" />
+            </div>
+            <label class="mb-1"> Status </label>
+            <div>
+                <mat-slide-toggle formControlName="status" ></mat-slide-toggle>
+            </div>
+            <div class="d-flex justify-content-end mb-3 mt-3">
+
+                <button type="submit" class="btn btn-primary mx-2" rippleEffect>
+                    Submit
+                </button>
+                <button type="button" class="btn btn-danger " (click)="modal.dismiss('Cross click')" rippleEffect>
+                    Cancel
+                </button>
             </div>
         </div>
-    </div>
-
-    <div class="col-12 text-sm-start text-md-end text-lg-end text-xl-end mt-4 mb-3 mx-3 text-end ">
-        <a class="btn btn-primary fs-6 text-white mx-1 me-5 mt-2" (click)="open(subject)"> Add Category
-        </a>
-    </div>
-    <form class="table-responsive" [formGroup]="userfilterform">
-        <table class="table-responsive  mt-3 bg-white mat-elevation-z8 data-table">
-            <div class="row d-flex mx-2">
-                <div class="col-lg-4 mt-3 col-xl-5 col-md-4 tableselect">
-                    <div class="group">
-                        <select class="inputMaterial" formControlName="categoryName" [(ngModel)]="obj.categoryName"
-                            required>
-                            <option [value]=""></option>
-                            <option *ngFor="let list of array" [value]="list.categoryName">
-                                {{list.categoryName}}
-                            </option>
-                        </select>
-                        <label class="inputlabel">CategoryName</label>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xl-5 mt-3 col-md-4 tableselect">
-                    <div class="group">
-                        <select class="inputMaterial" formControlName="status" [(ngModel)]="obj.status" required>
-                            <option [value]="">
-                            </option>
-                            <option *ngFor="let list of status" [value]="list.status">
-                                {{list.status}}
-                            </option>
-                        </select>
-                        <label class="inputlabel">Status</label>
-                    </div>
-                </div>
-                <div class="mt-3 col-xl-2 col-md-4 col-lg-4 search-div text-sm-start text-lg-end text-md-end">
-                    <button type="button" class="btn btn-success px-4 mt-2 mx-2">Search</button>
-                </div>
-            </div>
-            <table class="mt-3 table-responsive" mat-table [dataSource]="dataSource">
-                <ng-container matColumnDef="index">
-                    <th mat-header-cell *matHeaderCellDef> S.No. </th>
-                    <td mat-cell *matCellDef="let element ; let i= index;"> {{i+1}} </td>
-                </ng-container>
-                <ng-container matColumnDef="categoryName">
-                    <th mat-header-cell *matHeaderCellDef>CategoryName</th>
-                    <td mat-cell *matCellDef="let element"> {{element.categoryName}} </td>
-                </ng-container>
-                <ng-container matColumnDef="category">
-                    <th mat-header-cell *matHeaderCellDef>Category </th>
-                    <td mat-cell *matCellDef="let element"> {{element.selectCategory}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="status">
-                    <th mat-header-cell *matHeaderCellDef> Status </th>
-                    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="action">
-                    <th mat-header-cell *matHeaderCellDef>Actions</th>
-                    <td mat-cell *matCellDef="let  element">
-                        <div class="mdi:delete-circle"></div>
-                        <button class="butt" mat-button [matMenuTriggerFor]="menu">
-                            <mat-icon>more_vert</mat-icon>
-                        </button>
-                        <mat-menu #menu="matMenu" style="height: 10px;overflow-x: hidden;">
-                            <div class="d-flex">
-                                <a class="btn p-1 "><mat-icon class="table-view-icon">visibility</mat-icon></a>
-                                <span class="pt-2">View</span>
-                            </div>
-                            <div class="d-flex">
-                                <a class="btn p-1" (click)="editBranch(element,subject)" data-toggle="modal"> <mat-icon
-                                        class="table-edit-icon">edit_vert</mat-icon></a>
-                                <span class="pt-2">Edit</span>
-                            </div>
-                            <div class="d-flex">
-                                <a class="btn p-1"> <mat-icon class="table-delete-icon"
-                                        color="warn">delete_vert</mat-icon></a>
-                                <span class="pt-2">Delete</span>
-                            </div>
-                        </mat-menu>
-                    </td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-                aria-label="Select page of periodic elements">
-            </mat-paginator>
-        </table>
+        <!-- <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" rippleEffect>
+                Submit
+            </button>
+            <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')" rippleEffect>
+                Cancel
+            </button>
+        </div> -->
     </form>
-</div>
-
-<ng-template #subject let-modal>
-
-    <div class="card-title">
-        <h4 class=" headtextcolor card-title mt-4 text-center"><b>MANAGE CATEGORY</b></h4>
-        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-    </div>
-    <div class="row ">
-        <div class="col-md-6 col-lg-12">
-            <core-card-snippet>
-                <div class="card-body">
-                    <form class="form form-horizontal" formControlName="name" [(ngModel)]="obj.name">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group row">
-                                    <div class="col-sm-3 col-form-label">
-                                        <label><b>Name</b></label>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <input type="text" id="name" class="form-control" name="name"
-                                            placeholder=" Name"
-                                            [ngClass]="{'border-danger && is-invalid': Submitted && f['name'].errors || f['name'].touched&& f['name'].errors }"
-                                            required>
-                                            <label class="inputlabel"
-                                            [ngClass]="{'text-danger && is-invalid': Submitted && f['name'].errors || f['name'].touched&& f['name'].errors }">
-                                           </label>
-                                        <span class="error"
-                                            *ngIf="Submitted && f['name'].errors|| f['name'].touched&& f['name'].errors">
-                                            Please Enter Your Name</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group row">
-                                    <div class="col-sm-3 col-form-label">
-                                        <label><b>Description</b></label>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <input type="email" id="email-id" class="form-control" name="email-id"
-                                            placeholder="Email" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group row">
-                                    <div class="col-sm-3 col-form-label">
-                                        <label><b>Status</b></label>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <select class="form-control" formControlName="status" [(ngModel)]="obj.status"
-                                            [ngClass]="{ 'border-danger && is-invalid': Submitted &&
-                                        f['status'].errors || f['status'].touched&& f['status'].errors }" required>
-                                            <option>Select Your Status</option>
-                                            <option *ngFor="let status of status" [value]="status.name">
-                                                {{status.name}}
-                                            </option>
-                                        </select>
-                                        <label
-                                            [ngClass]="{'text-danger && is-invalid': Submitted && f['status'].errors || f['status'].touched&& f['status'].errors}">
-                                                </label>
-                                        <span class="error"
-                                            *ngIf="Submitted && f['status'].errors|| f['status'].touched&& f['status'].errors">
-                                            Please Select Your Status</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- <div class="col-sm-9 offset-sm-3">
-                                <div class="form-group">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1" />
-                                        <label class="custom-control-label" for="customCheck1">Remember me</label>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <div class="col-sm-9 offset-sm-3">
-                                <button type="submit" rippleEffect class="btn btn-primary mr-1">Submit</button>
-                                <button type="reset" rippleEffect class="btn btn-outline-secondary">Reset</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </core-card-snippet>
-        </div>
-    </div>
 </ng-template>
+<section id="ngx-datatable-kitchen-sink">
+    <div class="card">
+        <h4 class="card-title mx-1 mt-2"><b>Manage Cast</b></h4>
+        <div class="row">
+            <div class="col-12 mb-50">
+                <button class="btn btn-primary ml-1" (click)="modalOpenVC(modalVC)" rippleEffect>
+                    <i data-feather="plus" class="mr-0 mr-sm-1"></i><span class="d-none d-sm-inline-block">Add New
+                        Cast</span>
+                </button>
+
+                <a csvLink [data]="exportCSVData" class="btn btn-outline-secondary float-right mr-1" rippleEffect>Export
+                    CSV</a>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="d-flex justify-content-between align-items-center m-1">
+                    <label class="d-flex align-items-center">Show
+                        <select class="form-control mx-25" [(ngModel)]="basicSelectedOption">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        entries</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-12 d-flex justify-content-md-end">
+                <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pl-1 pl-md-0 pb-md-0">
+                    <label class="d-flex align-items-center"><input type="search" placeholder="Search"
+                            class="form-control ml-25" (keyup)="filterUpdate($event)" /></label>
+
+                </div>
+            </div>
+        </div>
+        <ngx-datatable [rows]="datalist" [rowHeight]="58" class="bootstrap core-bootstrap text-dark" [limit]="10"
+            [columnMode]="ColumnMode.force" [headerHeight]="40" [footerHeight]="50" [scrollbarH]="true"
+            [columns]="columns" [selectionType]="SelectionType.checkbox" [limit]="basicSelectedOption">
+            <ngx-datatable-column name="Name" prop="name" [width]="250"></ngx-datatable-column>
+            <ngx-datatable-column name="Status" prop="status" [width]="120"></ngx-datatable-column>
+            <ngx-datatable-column name="description" prop="description" [width]="120"></ngx-datatable-column>
+            <ngx-datatable-column name="Actions" [width]="120" [sortable]="false">
+                <ng-template ngx-datatable-cell-template>
+                    <div class="d-flex align-items-center">
+                        <div ngbDropdown container="body">
+                            <a ngbDropdownToggle href="javascript:void(0);" class="hide-arrow" id="dropdownBrowserState"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+
+                            <div ngbDropdownMenu class="dropdown-menu-right d-flex"
+                                aria-labelledby="dropdownBrowserState">
+                                <a href="" ngbDropdownItem class="d-flex align-items-center "><i data-feather="edit"
+                                        class="mr-50"></i> </a>
+                                <a href="" ngbDropdownItem class="d-flex align-items-center mx-1"><i
+                                        data-feather="trash-2" class="mr-50"></i> </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
+</section>

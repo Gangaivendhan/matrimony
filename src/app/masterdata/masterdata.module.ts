@@ -21,12 +21,23 @@ import { ContentHeaderModule } from 'app/layout/components/content-header/conten
 import { DatatablesComponent } from 'app/main/tables/datatables/datatables.component';
 import { DatatablesService } from 'app/main/tables/datatables/datatables.service';
 import { CoreCardModule } from "../../@core/components/core-card/core-card.module";
+import { MotherTongueComponent } from './mother-tongue/mother-tongue.component';
+import { CurrencyComponent } from './currency/currency.component';
+import { AnnualIncomeComponent } from './annual-income/annual-income.component';
+import { EducationComponent } from './education/education.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { BrokerComponent } from './broker/broker.component';
 
 
 @NgModule({
     declarations: [
         StarComponent,
-        CastComponent
+        CastComponent,
+        MotherTongueComponent,
+        CurrencyComponent,
+        AnnualIncomeComponent,
+        EducationComponent,
+        BrokerComponent
       
 
     ],
@@ -36,6 +47,7 @@ import { CoreCardModule } from "../../@core/components/core-card/core-card.modul
         ReactiveFormsModule,
         FormsModule,
         MatPaginatorModule,
+        MatSlideToggleModule,
         MatTableModule,
         TranslateModule,
         CoreCommonModule,
