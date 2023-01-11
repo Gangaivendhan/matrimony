@@ -1,24 +1,22 @@
-
-  import { Component, OnInit, ViewEncapsulation} from '@angular/core';
-  import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
-  import { MatPaginator } from '@angular/material/paginator';
-  import { MatTableDataSource } from '@angular/material/table';
-  import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-  import { Router, ActivatedRoute, Route } from '@angular/router';
-  import { Inject } from '@angular/core';
-  import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-  import { Subject } from 'rxjs';
-  import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
-  import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
-  @Component({
-  selector: 'app-star',
-  templateUrl: './star.component.html',
-  styleUrls: ['./star.component.scss'],
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Router, ActivatedRoute, Route } from '@angular/router';
+import { Inject } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
+import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
+@Component({
+  selector: 'app-mother-tongue',
+  templateUrl: './mother-tongue.component.html',
+  styleUrls: ['./mother-tongue.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-
-export class StarComponent implements OnInit {
-  starForm!: FormGroup;
+export class MotherTongueComponent {
+  mothertongueForm!: FormGroup;
   public Submitted = false;
   Status = [
     { id: 1, name: 'ACTIVE' },
@@ -42,7 +40,7 @@ export class StarComponent implements OnInit {
     private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.starForm = this.fb.group({
+    this.mothertongueForm = this.fb.group({
       id: [''],
       name: [''],
       description: [''],
@@ -78,7 +76,7 @@ export class StarComponent implements OnInit {
     this.exportCSVData = this.datalist
   }
   get f(): { [key: string]: AbstractControl } {
-    return this.starForm.controls;
+    return this.mothertongueForm.controls;
   }
 
   modalOpenVC(modalVC) {
@@ -89,11 +87,11 @@ export class StarComponent implements OnInit {
 
   onSubmit() {
     this.Submitted = true;
-    if (this.starForm.value.status === true) {
-      this.starForm.value.status = 'Active'
+    if (this.mothertongueForm.value.status === true) {
+      this.mothertongueForm.value.status = 'Active'
     } else {
-      this.starForm.value.status = 'Inactive'
-    }    console.log(this.starForm.value);
+      this.mothertongueForm.value.status = 'Inactive'
+    }    console.log(this.mothertongueForm.value);
   }
 
   filterUpdate(event) {
@@ -109,7 +107,5 @@ export class StarComponent implements OnInit {
     }
   }
 }
-
-
 
 

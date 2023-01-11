@@ -1,30 +1,32 @@
-
-  import { Component, OnInit, ViewEncapsulation} from '@angular/core';
-  import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
-  import { MatPaginator } from '@angular/material/paginator';
-  import { MatTableDataSource } from '@angular/material/table';
-  import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-  import { Router, ActivatedRoute, Route } from '@angular/router';
-  import { Inject } from '@angular/core';
-  import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-  import { Subject } from 'rxjs';
-  import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
-  import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
-  @Component({
-  selector: 'app-star',
-  templateUrl: './star.component.html',
-  styleUrls: ['./star.component.scss'],
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Router, ActivatedRoute, Route } from '@angular/router';
+import { Inject } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
+import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
+@Component({
+  selector: 'app-education',
+  templateUrl: './education.component.html',
+  styleUrls: ['./education.component.scss'],
   encapsulation: ViewEncapsulation.None
-})
 
-export class StarComponent implements OnInit {
-  starForm!: FormGroup;
+})
+export class EducationComponent {
+  educationForm!: FormGroup;
   public Submitted = false;
   Status = [
     { id: 1, name: 'ACTIVE' },
     { id: 2, name: 'INACTIVE' },
 
   ];
+
+
+  
   public rows: any;
   public selected = [];
   public basicSelectedOption: number = 10;
@@ -42,10 +44,10 @@ export class StarComponent implements OnInit {
     private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.starForm = this.fb.group({
+    this.educationForm = this.fb.group({
       id: [''],
       name: [''],
-      description: [''],
+      Description: [''],
       status:['']
     })
    
@@ -69,6 +71,8 @@ export class StarComponent implements OnInit {
       { name: 'Dany',description: 'good', status: 'Inactive' },
       { name: 'Molly',description: 'Bad', status: 'Active' },
     ];
+    this.exportCSVData = this.datalist
+
     this.columns = [
       { prop: 'name' },
       { name: 'description' },
@@ -76,9 +80,10 @@ export class StarComponent implements OnInit {
       { name: 'Action' }
     ];
     this.exportCSVData = this.datalist
-  }
+
+    }
   get f(): { [key: string]: AbstractControl } {
-    return this.starForm.controls;
+    return this.educationForm.controls;
   }
 
   modalOpenVC(modalVC) {
@@ -89,11 +94,11 @@ export class StarComponent implements OnInit {
 
   onSubmit() {
     this.Submitted = true;
-    if (this.starForm.value.status === true) {
-      this.starForm.value.status = 'Active'
+    if (this.educationForm.value.status === true) {
+      this.educationForm.value.status = 'Active'
     } else {
-      this.starForm.value.status = 'Inactive'
-    }    console.log(this.starForm.value);
+      this.educationForm.value.status = 'Inactive'
+    }    console.log(this.educationForm.value);
   }
 
   filterUpdate(event) {
@@ -109,7 +114,4 @@ export class StarComponent implements OnInit {
     }
   }
 }
-
-
-
 

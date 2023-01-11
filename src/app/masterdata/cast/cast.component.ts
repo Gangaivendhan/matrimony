@@ -1,30 +1,33 @@
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Router, ActivatedRoute, Route } from '@angular/router';
+import { Inject } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
+import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
 
-  import { Component, OnInit, ViewEncapsulation} from '@angular/core';
-  import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
-  import { MatPaginator } from '@angular/material/paginator';
-  import { MatTableDataSource } from '@angular/material/table';
-  import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-  import { Router, ActivatedRoute, Route } from '@angular/router';
-  import { Inject } from '@angular/core';
-  import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-  import { Subject } from 'rxjs';
-  import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
-  import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
-  @Component({
-  selector: 'app-star',
-  templateUrl: './star.component.html',
-  styleUrls: ['./star.component.scss'],
+
+
+@Component({
+  selector: 'app-cast',
+  templateUrl: './cast.component.html',
+  styleUrls: ['./cast.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-
-export class StarComponent implements OnInit {
-  starForm!: FormGroup;
+export class CastComponent {
+  castForm!: FormGroup;
   public Submitted = false;
   Status = [
     { id: 1, name: 'ACTIVE' },
     { id: 2, name: 'INACTIVE' },
 
   ];
+
+  
   public rows: any;
   public selected = [];
   public basicSelectedOption: number = 10;
@@ -34,7 +37,7 @@ export class StarComponent implements OnInit {
   datalist:any
   columns:any
   // columns: ({ prop: string; name?: undefined; } | { name: string; prop?: undefined; })[];
-  // datalist: { name: string; gender: string; company: string; }[];
+  // datalist: { name: string; description: sgoodg; company: string; }[];
 
  
 
@@ -42,7 +45,7 @@ export class StarComponent implements OnInit {
     private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.starForm = this.fb.group({
+    this.castForm = this.fb.group({
       id: [''],
       name: [''],
       description: [''],
@@ -69,16 +72,17 @@ export class StarComponent implements OnInit {
       { name: 'Dany',description: 'good', status: 'Inactive' },
       { name: 'Molly',description: 'Bad', status: 'Active' },
     ];
+    this.exportCSVData = this.datalist
     this.columns = [
       { prop: 'name' },
       { name: 'description' },
       { name: 'status' },
       { name: 'Action' }
     ];
-    this.exportCSVData = this.datalist
+
   }
   get f(): { [key: string]: AbstractControl } {
-    return this.starForm.controls;
+    return this.castForm.controls;
   }
 
   modalOpenVC(modalVC) {
@@ -89,11 +93,11 @@ export class StarComponent implements OnInit {
 
   onSubmit() {
     this.Submitted = true;
-    if (this.starForm.value.status === true) {
-      this.starForm.value.status = 'Active'
+    if (this.castForm.value.status === true) {
+      this.castForm.value.status = 'Active'
     } else {
-      this.starForm.value.status = 'Inactive'
-    }    console.log(this.starForm.value);
+      this.castForm.value.status = 'Inactive'
+    }    console.log(this.castForm.value);
   }
 
   filterUpdate(event) {
@@ -109,7 +113,3 @@ export class StarComponent implements OnInit {
     }
   }
 }
-
-
-
-
