@@ -75,13 +75,12 @@
               >
             </div>
           </div>
-            <div class="col-md-6 col-12 d-flex justify-content-md-end">
-                <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pl-1 pl-md-0 pb-md-0">
-                    <label class="d-flex align-items-center"><input type="search" placeholder="Search"
-                            class="form-control ml-25" (keyup)="filterUpdate($event)" /></label>
-
-                </div>
+          <div class="col-md-6 col-12 d-flex justify-content-md-end">
+            <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pl-1 pl-md-0 pb-md-0 ">
+                <input type="search" placeholder="Search" class="form-control ml-25"
+                    (keyup)="filterUpdate($event)" />
             </div>
+        </div>
         </div>
         <ngx-datatable [rows]="datalist" [rowHeight]="58" class="bootstrap core-bootstrap text-dark" [limit]="10"
         [columnMode]="ColumnMode.force" [headerHeight]="40" [footerHeight]="50" [scrollbarH]="true"
