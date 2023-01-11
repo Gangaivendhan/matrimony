@@ -13,7 +13,7 @@
                     <span class="input-group-text"><span [data-feather]="'user'"></span></span>
                 </div>
                 <input type="text" class="form-control" formControlName="name"
-                    placeholder="First Name" />
+                    placeholder="Name" />
             </div>
             <label class="mb-1">Description</label>
             <div class="input-group input-group-merge mb-2">
@@ -85,30 +85,41 @@
             </div>
         </div>
         <ngx-datatable [rows]="datalist" [rowHeight]="58" class="bootstrap core-bootstrap text-dark" [limit]="10"
-            [columnMode]="ColumnMode.force" [headerHeight]="40" [footerHeight]="50" [scrollbarH]="true"
-            [columns]="columns" [selectionType]="SelectionType.checkbox" [limit]="basicSelectedOption">
-            <ngx-datatable-column name="Name" prop="name" [width]="250"></ngx-datatable-column>
-            <ngx-datatable-column name="Status" prop="status" [width]="120"></ngx-datatable-column>
-            <ngx-datatable-column name="description" prop="description" [width]="120"></ngx-datatable-column>
-            <ngx-datatable-column name="Actions" [width]="120" [sortable]="false">
-                <ng-template ngx-datatable-cell-template>
-                    <div class="d-flex align-items-center">
-                        <div ngbDropdown container="body">
-                            <a ngbDropdownToggle href="javascript:void(0);" class="hide-arrow" id="dropdownBrowserState"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+        [columnMode]="ColumnMode.force" [headerHeight]="40" [footerHeight]="50" [scrollbarH]="true"
+        [columns]="columns" [selectionType]="SelectionType.checkbox" [limit]="basicSelectedOption">
+        <ngx-datatable-column name="Name" prop="name" [width]="250"></ngx-datatable-column>
+        <ngx-datatable-column name="Status" prop="status" [width]="120"></ngx-datatable-column>
+        <ngx-datatable-column name="description" prop="description" [width]="120"></ngx-datatable-column>
 
-                            <div ngbDropdownMenu class="dropdown-menu-right d-flex"
-                                aria-labelledby="dropdownBrowserState">
-                                <a href="" ngbDropdownItem class="d-flex align-items-center "><i data-feather="edit"
-                                        class="mr-50"></i> </a>
-                                <a href="" ngbDropdownItem class="d-flex align-items-center mx-1"><i
-                                        data-feather="trash-2" class="mr-50"></i> </a>
-                            </div>
+        <ngx-datatable-column name="Actions" [width]="120" [sortable]="false">
+            <ng-template ngx-datatable-cell-template>
+                <!-- <div class="d-flex align-items-center">
+                    <div ngbDropdown container="body">
+                        <a ngbDropdownToggle href="javascript:void(0);" class="hide-arrow" id="dropdownBrowserState"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a> -->
+                        <!-- <i data-feather="more-vertical" class="text-primary cursor-pointer mr-50"></i> -->
 
-                        </div>
-                    </div>
-                </ng-template>
-            </ngx-datatable-column>
-        </ngx-datatable>
+                        <!-- <div ngbDropdownMenu class="dropdown-menu-right d-flex" aria-labelledby="dropdownBrowserState">
+                    <a href="" ngbDropdownItem class="d-flex align-items-center"
+                      ><i data-feather="file-text" class="mr-50"></i> </a
+                    >
+                    <a href="" ngbDropdownItem class="d-flex align-items-center"
+                      ><i data-feather="trash-2" class="mr-50"></i> </a
+                    > -->
+                        <!-- <a href="javascript:void(0)" ngbDropdownItem class="d-flex align-items-center"
+                      ><i data-feather="trash-2" class="mr-50"></i> Delete</a
+                    > -->
+
+                    <!-- </div>
+
+                </div> -->
+                <div class="d-flex">
+                    <a href="" class="d-flex align-items-center"><i data-feather="trash-2" class="mr-50"></i>
+                    </a>
+                    <i data-feather="edit" class="text-primary cursor-pointer d-flex align-items-center"></i>
+                </div>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
     </div>
 </section>
