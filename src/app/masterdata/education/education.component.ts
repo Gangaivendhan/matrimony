@@ -113,7 +113,7 @@ this.get();
       centered: true
     });
   }
-  
+
 
   onSubmit(modal:any) {
     this.Submitted = true;
@@ -130,7 +130,8 @@ this.get();
           (res) => {
             modal.dismiss('cross click');
             console.log(res)
-              // this.get();
+              this.get();
+              this.educationForm.reset();
             }
         )
     }else{
@@ -140,6 +141,8 @@ this.get();
       // this.toastr.success(res.message, ' Posted Successfully!');
       // this.route.navigate(['/masterdata/currency']);
       modal.dismiss('cross click')
+      this.educationForm.reset();
+      this.get();
     })
 
   }

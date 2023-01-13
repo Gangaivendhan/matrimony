@@ -138,6 +138,8 @@ export class StarComponent implements OnInit {
       // this.toastr.success(res.message, ' Posted Successfully!');
       // this.route.navigate(['/masterdata/currency']);
       modal.dismiss('cross click')
+      this.starForm.reset();
+      this.get();
     })
 
   }
@@ -150,7 +152,9 @@ export class StarComponent implements OnInit {
         // this.dataSource = new MatTableDataSource<any>(this.array);
         // this.dataSource.paginator = this.paginator;
         // this.toastr.success(res.message, 'Uom get Successfully!');
-        this.exportCSVData = this.datalist
+        this.exportCSVData = this.datalist;
+        this.starForm.reset();
+        this.get();
       })
   }
 

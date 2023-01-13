@@ -127,6 +127,8 @@ this.get();
             modal.dismiss('cross click');
             console.log(res)
               this.get();
+              this.annualincomeForm.reset();
+
             }
         )
     }else{
@@ -136,6 +138,8 @@ this.get();
       // this.toastr.success(res.message, ' Posted Successfully!');
       // this.route.navigate(['/masterdata/currency']);
       modal.dismiss('cross click')
+      this.annualincomeForm.reset();
+      this.get();
     })
 
   }
@@ -149,6 +153,8 @@ this.get();
         // this.dataSource.paginator = this.paginator;
         // this.toastr.success(res.message, 'get Successfully!');
         this.exportCSVData = this.datalist
+        this.annualincomeForm.reset();
+        this.get();
       })
   }
   // getIds(id: any) {

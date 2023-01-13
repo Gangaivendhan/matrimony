@@ -133,6 +133,7 @@ onSubmit(modal:any) {
           modal.dismiss('cross click');
           console.log(res)
             this.get();
+            this.brokerForm.reset();
           }
       )
   }else{
@@ -142,6 +143,8 @@ onSubmit(modal:any) {
     // this.toastr.success(res.message, 'Posted Successfully!');
     // this.route.navigate(['/masterdata/currency']);
     modal.dismiss('cross click')
+    this.brokerForm.reset();
+    this.get();
   })
 
 }

@@ -133,7 +133,9 @@ export class MotherTongueComponent {
       console.log(res)
       // this.toastr.success(res.message, ' Posted Successfully!');
       // this.route.navigate(['/masterdata/currency']);
-      modal.dismiss('cross click')
+      modal.dismiss('cross click');
+      this.mothertongueForm.reset();
+      this.get();
     })
 
   }
@@ -146,7 +148,9 @@ export class MotherTongueComponent {
         // this.dataSource = new MatTableDataSource<any>(this.array);
         // this.dataSource.paginator = this.paginator;
         // this.toastr.success(res.message, 'Uom get Successfully!');
-        this.exportCSVData = this.datalist
+        this.exportCSVData = this.datalist;
+        this.mothertongueForm.reset();
+        this.get();
       })
   }
 

@@ -140,7 +140,9 @@ export class CastComponent {
       console.log(res)
       // this.toastr.success(res.message, ' Posted Successfully!');
       // this.route.navigate(['/masterdata/currency']);
-      modal.dismiss('cross click')
+      modal.dismiss('cross click');
+      this.castForm.reset();
+      this.get();
     })
 
   }

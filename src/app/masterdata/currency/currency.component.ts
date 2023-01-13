@@ -129,6 +129,7 @@ export class CurrencyComponent {
             modal.dismiss('cross click');
             console.log(res)
               this.get();
+              this.currencyForm.reset();
             }
         )
     }else{
@@ -138,6 +139,8 @@ export class CurrencyComponent {
       // this.toastr.success(res.message, ' Posted Successfully!');
       // this.route.navigate(['/masterdata/currency']);
       modal.dismiss('cross click')
+      this.currencyForm.reset();
+      this.get();
     })
 
   }
