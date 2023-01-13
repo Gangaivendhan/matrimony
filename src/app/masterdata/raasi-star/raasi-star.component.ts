@@ -2,6 +2,8 @@ import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validator, Validators, AbstractControl } from '@angular/forms';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
+import { ActivatedRoute } from '@angular/router';
+import { RasiStarService } from './rasi-star.service';
 @Component({
   selector: 'app-raasi-star',
   templateUrl: './raasi-star.component.html',
@@ -29,9 +31,12 @@ export class RaasiStarComponent implements OnInit {
     { id: 3, starname: 'Mrigashira' },
     { id: 4, starname: 'Purva Ashadha' },
   ];
+  raasiobj: any;
+  paramId: any;
 
   constructor(private modalService: NgbModal,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private raasiservice:RasiStarService) { }
 
   ngOnInit(): void {
     this.raasiFrom = this.fb.group({
@@ -42,26 +47,7 @@ export class RaasiStarComponent implements OnInit {
       status:[''],
       
     })
-    this.datalist = [
-      { name: 'Austin',description: 'Good', status: 'Active' },
-      { name: 'Dany',description: 'Good', status: 'Inactive' },
-      { name: 'Molly',description: 'Bad', status: 'Active' },
-      { name: 'Austin',description: 'Good', status: 'Active' },
-      { name: 'Dany',description: 'Good', status: 'Inactive' },
-      { name: 'Molly',description: 'Bad', status: 'Active' },
-      { name: 'Austin',description: 'Good', status: 'Active' },
-      { name: 'Dany',description: 'Good', status: 'Inactive' },
-      { name: 'Molly',description: 'Bad', status: 'Active' },
-      { name: 'Austin',description: 'Good', status: 'Active' },
-      { name: 'Dany',description: 'Good', status: 'Inactive' },
-      { name: 'Molly',description: 'Bad', status: 'Active' },
-      { name: 'Austin',description: 'Good', status: 'Active' },
-      { name: 'Dany',description: 'Good', status: 'Inactive' },
-      { name: 'Molly',description: 'Bad', status: 'Active' },
-      { name: 'Austin',description: 'Good', status: 'Active' },
-      { name: 'Dany',description: 'Good', status: 'Inactive' },
-      { name: 'Molly',description: 'Bad', status: 'Active' },
-    ];
+    
     this.columns = [
       { prop: 'name' },
       { name: 'description' },
@@ -69,7 +55,7 @@ export class RaasiStarComponent implements OnInit {
       { name: 'Action' }
     ];
 
-    this.exportCSVData = this.datalist
+    this.get();
   }
 
   get f(): { [key: string]: AbstractControl } {
@@ -82,14 +68,35 @@ export class RaasiStarComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(modal:any) {
     this.Submitted = true;
     if (this.raasiFrom.value.status === true) {
       this.raasiFrom.value.status = 'Active'
     } else {
       this.raasiFrom.value.status = 'Inactive'
     }
+   
     console.log(this.raasiFrom.value);
+    if (this.raasiobj.id) {
+      console.log(this.raasiobj.id);
+      this.raasiservice.updateraasi(this.raasiFrom.value).subscribe((res) => {
+        console.log(res);
+        // this.toaster.success(res.data);
+        this.get();
+        modal.dismiss('cross click')
+        this.raasiFrom.reset();
+      });
+      modal.dismiss('cross click')
+    } else {
+      this.raasiservice.postraasi(this.raasiFrom.value).subscribe(
+        res => {
+          console.log(res);
+          // this.toaster.success(res.data)
+          this.get();
+          modal.dismiss('cross click')
+          this.raasiFrom.reset();
+        });
+    }
   }
 
   filterUpdate(event) {
@@ -104,5 +111,35 @@ export class RaasiStarComponent implements OnInit {
       this.datalist = this.datalist;
     }
   }
+  get() {
+    this.raasiservice.getraasi().subscribe(
+      res => {
+        console.log(res)
+        this.datalist = res.data
+        this.exportCSVData = this.datalist
+        // this.toaster.success(res.message)
+      })
+  }
 
+  reject(id: any) {
+    this.raasiservice.deleteData(id).subscribe((res) => {
+      console.log(res);
+      // console.log(res.data);
+      // console.log(res.data.data);
+      this.get();
+      // this.toaster.success(res.data)
+    })
+  }
+
+  editBranch(id: any, content: any) {
+    console.log(id);
+    this.raasiservice.editraasi(id).subscribe(res => {
+      console.log(res);
+      this.raasiobj = res.data
+      console.log(this.raasiobj);
+      let editvalue = this.raasiobj
+      this.raasiFrom.patchValue(editvalue)
+    })
+    this.modalService.open(content, { size: 'm' });
+  }
 }
