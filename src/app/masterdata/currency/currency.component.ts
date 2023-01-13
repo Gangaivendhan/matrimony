@@ -9,8 +9,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
-
-
+import { CurrencyserviceService } from './currencyservice.service';
 @Component({
   selector: 'app-currency',
   templateUrl: './currency.component.html',
@@ -21,7 +20,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dia
 export class CurrencyComponent {
   currencyForm!: FormGroup;
   public Submitted = false;
-  Status = [
+  status = [
     { id: 1, name: 'ACTIVE' },
     { id: 2, name: 'INACTIVE' },
 
@@ -35,56 +34,78 @@ export class CurrencyComponent {
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
   public exportCSVData;
-  datalist:any
-  columns:any
+  datalist: any
+  columns: any;
+  paramId :any;
+  obj:any={};
   // columns: ({ prop: string; name?: undefined; } | { name: string; prop?: undefined; })[];
   // datalist: { name: string; gender: string; company: string; }[];
 
  
 
   constructor(private modalService: NgbModal,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private service: CurrencyserviceService,
+    private route: Router,
+    private router: ActivatedRoute,
+) { }
 
   ngOnInit() {
     this.currencyForm = this.fb.group({
-      id: [''],
+      // id: [''],
       name: [''],
       description: [''],
       status:['']
     })
    
-    this.datalist = [
-      { name: 'Austin',description: 'good', status: 'Active' },
-      { name: 'Dany',description: 'nice', status: 'Inactive' },
-      { name: 'Molly',description: 'good', status: 'Active' },
-      { name: 'Austin',description: 'Bad', status: 'Active' },
-      { name: 'Dany',description: 'good', status: 'Inactive' },
-      { name: 'Molly',description: 'Bad', status: 'Active' },
-      { name: 'Austin',description: 'good', status: 'Active' },
-      { name: 'Dany',description: 'good', status: 'Inactive' },
-      { name: 'Molly',description: 'Bad', status: 'Active' },
-      { name: 'Austin',description: 'good', status: 'Active' },
-      { name: 'Dany',description: 'good', status: 'Inactive' },
-      { name: 'Molly',description: 'Bad', status: 'Active' },
-      { name: 'Austin',description: 'good', status: 'Active' },
-      { name: 'Dany',description: 'good', status: 'Inactive' },
-      { name: 'Molly',description: 'Bad', status: 'Active' },
-      { name: 'Austin',description: 'good', status: 'Active' },
-      { name: 'Dany',description: 'good', status: 'Inactive' },
-      { name: 'Molly',description: 'Bad', status: 'Active' },
-    ];
+    // this.datalist = [
+    //   { name: 'Austin',description: 'good', status: 'Active' },
+    //   { name: 'Dany',description: 'nice', status: 'Inactive' },
+    //   { name: 'Molly',description: 'good', status: 'Active' },
+    //   { name: 'Austin',description: 'Bad', status: 'Active' },
+    //   { name: 'Dany',description: 'good', status: 'Inactive' },
+    //   { name: 'Molly',description: 'Bad', status: 'Active' },
+    //   { name: 'Austin',description: 'good', status: 'Active' },
+    //   { name: 'Dany',description: 'good', status: 'Inactive' },
+    //   { name: 'Molly',description: 'Bad', status: 'Active' },
+    //   { name: 'Austin',description: 'good', status: 'Active' },
+    //   { name: 'Dany',description: 'good', status: 'Inactive' },
+    //   { name: 'Molly',description: 'Bad', status: 'Active' },
+    //   { name: 'Austin',description: 'good', status: 'Active' },
+    //   { name: 'Dany',description: 'good', status: 'Inactive' },
+    //   { name: 'Molly',description: 'Bad', status: 'Active' },
+    //   { name: 'Austin',description: 'good', status: 'Active' },
+    //   { name: 'Dany',description: 'good', status: 'Inactive' },
+    //   { name: 'Molly',description: 'Bad', status: 'Active' },
+    // ];
     this.columns = [
       { prop: 'name' },
       { name: 'description' },
       { name: 'status' },
       { name: 'Action' }
     ];
-    this.exportCSVData = this.datalist
+    this.get();
 
   }
   get f(): { [key: string]: AbstractControl } {
     return this.currencyForm.controls;
   }
+  editBranch(id: any, content: any) {
+    console.log(id)
+      // for (let i = 0; i < element.length; i++) {
+      //   var id = element[i].id;
+      //   console.log(id);
+        
+      // }
+    this.service.getId(id).subscribe(res => {
+      console.log(res)
+      this.obj = res.data
+      console.log(this.obj)
+      
+    })
+    this.modalService.open(content, { size: 'm' });
+  }
+
 
   modalOpenVC(modalVC) {
     this.modalService.open(modalVC, {
@@ -92,14 +113,35 @@ export class CurrencyComponent {
     });
   }
 
-  onSubmit() {
+  onSubmit(modal:any) {
     this.Submitted = true;
     if (this.currencyForm.value.status === true) {
-      this.currencyForm.value.status = 'Active'
+      this.currencyForm.value.status = 'ACTIVE'
     } else {
-      this.currencyForm.value.status = 'Inactive'
-    }    console.log(this.currencyForm.value);
+      this.currencyForm.value.status = 'INACTIVE'
+    }
+    console.log(this.currencyForm.value);
+    if (this.obj.id) {
+      this.currencyForm.value.id = this.obj.id;
+      this.service.updatedata(this.currencyForm.value)
+        .subscribe(
+          (res) => {
+            modal.dismiss('cross click');
+            console.log(res)
+              this.get();
+            }
+        )
+    }else{
+    
+    this.service.postdata(this.currencyForm.value).subscribe(res => {
+      console.log(res)
+      // this.toastr.success(res.message, ' Posted Successfully!');
+      // this.route.navigate(['/masterdata/currency']);
+      modal.dismiss('cross click')
+    })
+
   }
+}
 
   filterUpdate(event) {
     const val = event.target.value.toLowerCase();
@@ -113,5 +155,29 @@ export class CurrencyComponent {
       this.datalist = this.datalist;
     }
   }
+  get() {
+    this.service.getdata().subscribe(
+      res => {
+        console.log(res)
+        this.datalist = res.data
+        // this.dataSource = new MatTableDataSource<any>(this.array);
+        // this.dataSource.paginator = this.paginator;
+        // this.toastr.success(res.message, 'Uom get Successfully!');
+        this.exportCSVData = this.datalist
+      })
+  }
+
+  rejected(id:any){
+    alert("data is deleted")
+    this.service.deleteData(id).subscribe(
+      res => {
+        this.get()
+        console.log(res)
+      
+      })
+  
+  }
 }
+
+
 

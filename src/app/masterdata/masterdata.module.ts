@@ -27,6 +27,8 @@ import { CurrencyComponent } from './currency/currency.component';
 import { AnnualIncomeComponent } from './annual-income/annual-income.component';
 import { EducationComponent } from './education/education.component';
 import { BrokerComponent } from './broker/broker.component';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     StarComponent,
@@ -44,6 +46,7 @@ import { BrokerComponent } from './broker/broker.component';
     MasterdataRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     TranslateModule,
     CoreCommonModule,
     ContentHeaderModule,
