@@ -86,7 +86,6 @@ export class RaasiStarComponent implements OnInit {
         modal.dismiss('cross click')
         this.raasiFrom.reset();
       });
-      modal.dismiss('cross click')
     } else {
       this.raasiservice.postraasi(this.raasiFrom.value).subscribe(
         res => {
