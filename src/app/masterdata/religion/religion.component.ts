@@ -47,26 +47,7 @@ export class ReligionComponent implements OnInit {
       description: [''],
       status: ['']
     })
-    // this.datalist = [
-    //   { name: 'Austin', description: 'Good', status: 'Active' },
-    //   { name: 'Dany', description: 'Good', status: 'Inactive' },
-    //   { name: 'Molly', description: 'Bad', status: 'Active' },
-    //   { name: 'Austin', description: 'Good', status: 'Active' },
-    //   { name: 'Dany', description: 'Good', status: 'Inactive' },
-    //   { name: 'Molly', description: 'Bad', status: 'Active' },
-    //   { name: 'Austin', description: 'Good', status: 'Active' },
-    //   { name: 'Dany', description: 'Good', status: 'Inactive' },
-    //   { name: 'Molly', description: 'Bad', status: 'Active' },
-    //   { name: 'Austin', description: 'Good', status: 'Active' },
-    //   { name: 'Dany', description: 'Good', status: 'Inactive' },
-    //   { name: 'Molly', description: 'Bad', status: 'Active' },
-    //   { name: 'Austin', description: 'Good', status: 'Active' },
-    //   { name: 'Dany', description: 'Good', status: 'Inactive' },
-    //   { name: 'Molly', description: 'Bad', status: 'Active' },
-    //   { name: 'Austin', description: 'Good', status: 'Active' },
-    //   { name: 'Dany', description: 'Good', status: 'Inactive' },
-    //   { name: 'Molly', description: 'Bad', status: 'Active' },
-    // ];
+
     this.columns = [
       { prop: 'name' },
       { name: 'description' },
@@ -98,15 +79,15 @@ export class ReligionComponent implements OnInit {
       this.religionForm.value.status = 'INACTIVE'
     }
     console.log(this.religionForm.value);
-    if (this.paramId) {
-      // console.log(this.paramId);
-      // this.vendorform.value.id = this.paramId;
-      // this.vendorservice.updatevendor(this.vendorform.value, this.vendorform.value.id).subscribe((res) => {
-      //   console.log(res);
-      //   this.toaster.success(res.data);
+    if (this.religionobj.id) {
+      console.log(this.religionobj.id);
+      this.religionservice.updatereligion(this.religionForm.value).subscribe((res) => {
+        console.log(res);
+        this.get();
+        // this.toaster.success(res.data);
+        this.religionForm.reset();
 
-      //});
-      modal.dismiss('cross click')
+      });
     } else {
       this.religionservice.postreligion(this.religionForm.value).subscribe(
         res => {
@@ -114,6 +95,7 @@ export class ReligionComponent implements OnInit {
           // this.toaster.success(res.data)
           this.get();
           modal.dismiss('cross click')
+          this.religionForm.reset();
         });
     }
   }
@@ -149,8 +131,6 @@ export class ReligionComponent implements OnInit {
   reject(id: any) {
     this.religionservice.deleteData(id).subscribe((res) => {
       console.log(res);
-      // console.log(res.data);
-      // console.log(res.data.data);
       this.get();
       // this.toaster.success(res.data)
     })
