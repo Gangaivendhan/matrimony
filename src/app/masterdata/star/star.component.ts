@@ -153,8 +153,6 @@ export class StarComponent implements OnInit {
         // this.dataSource.paginator = this.paginator;
         // this.toastr.success(res.message, 'Uom get Successfully!');
         this.exportCSVData = this.datalist;
-        this.starForm.reset();
-        this.get();
       })
   }
 

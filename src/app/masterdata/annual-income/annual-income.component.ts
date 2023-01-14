@@ -154,7 +154,6 @@ this.get();
         // this.toastr.success(res.message, 'get Successfully!');
         this.exportCSVData = this.datalist
         this.annualincomeForm.reset();
-        this.get();
       })
   }
   // getIds(id: any) {

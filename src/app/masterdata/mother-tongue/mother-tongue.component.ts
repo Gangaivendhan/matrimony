@@ -149,8 +149,6 @@ export class MotherTongueComponent {
         // this.dataSource.paginator = this.paginator;
         // this.toastr.success(res.message, 'Uom get Successfully!');
         this.exportCSVData = this.datalist;
-        this.mothertongueForm.reset();
-        this.get();
       })
   }
 
