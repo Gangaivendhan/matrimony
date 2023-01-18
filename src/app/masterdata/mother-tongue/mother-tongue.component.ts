@@ -1,25 +1,24 @@
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Router, ActivatedRoute, Route } from '@angular/router';
+import { Inject } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
+import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
+import { MotherTongueserviceService } from './mother-tongueservice.service';
 
-  import { Component, OnInit, ViewEncapsulation} from '@angular/core';
-  import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
-  import { MatPaginator } from '@angular/material/paginator';
-  import { MatTableDataSource } from '@angular/material/table';
-  import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-  import { Router, ActivatedRoute, Route } from '@angular/router';
-  import { Inject } from '@angular/core';
-  import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-  import { Subject } from 'rxjs';
-  import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
-  import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
-  import { StarserviceService } from './starservice.service';
-  @Component({
-  selector: 'app-star',
-  templateUrl: './star.component.html',
-  styleUrls: ['./star.component.scss'],
+@Component({
+  selector: 'app-mother-tongue',
+  templateUrl: './mother-tongue.component.html',
+  styleUrls: ['./mother-tongue.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-
-export class StarComponent implements OnInit {
-  starForm!: FormGroup;
+export class MotherTongueComponent {
+  mothertongueForm!: FormGroup;
   public Submitted = false;
   Status = [
     { id: 1, name: 'ACTIVE' },
@@ -36,7 +35,6 @@ export class StarComponent implements OnInit {
   columns:any
   paramId :any;
   obj:any={};
-
   // columns: ({ prop: string; name?: undefined; } | { name: string; prop?: undefined; })[];
   // datalist: { name: string; gender: string; company: string; }[];
 
@@ -44,41 +42,14 @@ export class StarComponent implements OnInit {
 
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
-    private service: StarserviceService,
+    private service: MotherTongueserviceService,
     private route: Router,
     private router: ActivatedRoute,
-) { }
+    ) { }
 
   ngOnInit() {
-
-    this.datalist = [
-      { name: 'Austin',gender: 'Male', status: 'Active' },
-      { name: 'Dany',gender: 'Male', status: 'Inactive' },
-      { name: 'Molly',gender: 'Female', status: 'Active' },
-      { name: 'Austin',gender: 'Male', status: 'Active' },
-      { name: 'Dany',gender: 'Male', status: 'Inactive' },
-      { name: 'Molly',gender: 'Female', status: 'Active' },
-      { name: 'Austin',gender: 'Male', status: 'Active' },
-      { name: 'Dany',gender: 'Male', status: 'Inactive' },
-      { name: 'Molly',gender: 'Female', status: 'Active' },
-      { name: 'Austin',gender: 'Male', status: 'Active' },
-      { name: 'Dany',gender: 'Male', status: 'Inactive' },
-      { name: 'Molly',gender: 'Female', status: 'Active' },
-      { name: 'Austin',gender: 'Male', status: 'Active' },
-      { name: 'Dany',gender: 'Male', status: 'Inactive' },
-      { name: 'Molly',gender: 'Female', status: 'Active' },
-      { name: 'Austin',gender: 'Male', status: 'Active' },
-      { name: 'Dany',gender: 'Male', status: 'Inactive' },
-      { name: 'Molly',gender: 'Female', status: 'Active' },
-    ];
-    this.columns = [
-      { prop: 'name' },
-      { name: 'description' },
-      { name: 'status' },
-      { name: 'Action' }
-    ],
-    this.starForm = this.fb.group({
-      id: [''],
+    this.mothertongueForm = this.fb.group({
+      // id: [''],
       name: ['',Validators.required],
       description: ['',Validators.required],
       status:['',Validators.required]
@@ -104,11 +75,16 @@ export class StarComponent implements OnInit {
     //   { name: 'Dany',description: 'good', status: 'Inactive' },
     //   { name: 'Molly',description: 'Bad', status: 'Active' },
     // ];
-  
-    this.get()
+    this.columns = [
+      { prop: 'name' },
+      { name: 'description' },
+      { name: 'status' },
+      { name: 'Action' }
+    ];
+    this.get();
   }
   get f(): { [key: string]: AbstractControl } {
-    return this.starForm.controls;
+    return this.mothertongueForm.controls;
   }
   editBranch(id: any, content: any) {
     console.log(id)
@@ -127,8 +103,6 @@ export class StarComponent implements OnInit {
   }
 
 
-
-
   modalOpenVC(modalVC) {
     this.modalService.open(modalVC, {
       centered: true
@@ -137,15 +111,15 @@ export class StarComponent implements OnInit {
 
   onSubmit(modal:any) {
     this.Submitted = true;
-    if (this.starForm.value.status === true) {
-      this.starForm.value.status = 'ACTIVE'
+    if (this.mothertongueForm.value.status === true) {
+      this.mothertongueForm.value.status = 'ACTIVE'
     } else {
-      this.starForm.value.status = 'INACTIVE'
+      this.mothertongueForm.value.status = 'INACTIVE'
     }
-    console.log(this.starForm.value);
+    console.log(this.mothertongueForm.value);
     if (this.obj.id) {
-      this.starForm.value.id = this.obj.id;
-      this.service.updatedata(this.starForm.value)
+      this.mothertongueForm.value.id = this.obj.id;
+      this.service.updatedata(this.mothertongueForm.value)
         .subscribe(
           (res) => {
             modal.dismiss('cross click');
@@ -155,12 +129,12 @@ export class StarComponent implements OnInit {
         )
     }else{
     
-    this.service.postdata(this.starForm.value).subscribe(res => {
+    this.service.postdata(this.mothertongueForm.value).subscribe(res => {
       console.log(res)
       // this.toastr.success(res.message, ' Posted Successfully!');
       // this.route.navigate(['/masterdata/currency']);
-      modal.dismiss('cross click')
-      this.starForm.reset();
+      modal.dismiss('cross click');
+      this.mothertongueForm.reset();
       this.get();
     })
 

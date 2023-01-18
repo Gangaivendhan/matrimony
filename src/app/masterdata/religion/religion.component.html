@@ -1,0 +1,127 @@
+<ng-template #modalVC let-modal>
+    <form (ngSubmit)="onSubmit(modal)" [formGroup]="religionForm">
+        <div class="modal-header justify-content-center">
+            <h5 class="modal-title"> <b>Religion</b> </h5>
+            <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body mt-2" tabindex="0" ngbAutofocus>
+            <label class="mb-1">Name </label>
+            <div class="input-group input-group-merge mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><span [data-feather]="'user'"></span></span>
+                </div>
+                <input type="text" class="form-control" formControlName="name" placeholder="Name" />
+            </div>
+            <label class="mb-1"> Description </label>
+            <div class="input-group input-group-merge mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><span [data-feather]="'file-text'"></span></span>
+                </div>
+                <input type="text" class="form-control" formControlName="description" placeholder="Description" />
+            </div>
+            <label class="mb-1">Status </label>
+            <div>
+                <mat-slide-toggle formControlName="status"></mat-slide-toggle>
+            </div>
+            <!-- <div class="form-group mb-2">
+                <select class="form-control" formControlName="status">
+                    <option value=""></option>
+                    <option *ngFor="let status of Status" [value]="status.name">
+                        {{status.name}}
+                    </option>
+                </select>
+            </div> -->
+            <div class="d-flex justify-content-end mb-3 mt-3">
+                
+                <button type="submit" class="btn btn-primary mx-2" rippleEffect>
+                    Submit
+                </button>
+                <button type="reset" class="btn btn-danger " (click)="modal.dismiss('Cross click')" rippleEffect>
+                    Cancel
+                </button>
+            </div>
+        </div>
+
+
+    </form>
+</ng-template>
+
+<section>
+    <div class="card">
+        <h4 class="card-title mx-1 mt-2">Manage Religion</h4>
+        <div class="row">
+            <div class="col-12 mb-50">
+                <button class="btn btn-primary ml-1" (click)="modalOpenVC(modalVC)" rippleEffect>
+                    <i data-feather="plus" class="mr-0 mr-sm-1"></i><span class="d-none d-sm-inline-block">Add
+                        Religion</span>
+                </button>
+
+                <a csvLink [data]="exportCSVData" class="btn btn-outline-secondary float-right mr-1" rippleEffect>Export
+                    CSV</a>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="d-flex justify-content-between align-items-center m-1">
+                    <label class="d-flex align-items-center">Show
+                        <select class="form-control mx-25" [(ngModel)]="basicSelectedOption">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        entries</label>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-12 d-flex justify-content-md-end">
+                <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pl-1 pl-md-0 pb-md-0 ">
+                    <input type="search" placeholder="Search" class="form-control ml-25"
+                        (keyup)="filterUpdate($event)" />
+
+
+                </div>
+            </div>
+        </div>
+        <ngx-datatable [rows]="datalist" [rowHeight]="58" class="bootstrap core-bootstrap text-dark" [limit]="10"
+            [columnMode]="ColumnMode.force" [headerHeight]="40" [footerHeight]="50" [scrollbarH]="true"
+            [columns]="columns" [selectionType]="SelectionType.checkbox" [limit]="basicSelectedOption">
+            <ngx-datatable-column name="Name" prop="name" [width]="250"></ngx-datatable-column>
+            <ngx-datatable-column name="Status" prop="status" [width]="120"></ngx-datatable-column>
+            <ngx-datatable-column name="description" prop="description" [width]="120"></ngx-datatable-column>
+
+            <ngx-datatable-column name="Actions"  [width]="120" [sortable]="false">
+                <ng-template ngx-datatable-cell-template let-row="datalist" let-value="row.id">
+                    <!-- <div class="d-flex align-items-center">
+                        <div ngbDropdown container="body">
+                            <a ngbDropdownToggle href="javascript:void(0);" class="hide-arrow" id="dropdownBrowserState"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a> -->
+                            <!-- <i data-feather="more-vertical" class="text-primary cursor-pointer mr-50"></i> -->
+
+                            <!-- <div ngbDropdownMenu class="dropdown-menu-right d-flex" aria-labelledby="dropdownBrowserState">
+                        <a href="" ngbDropdownItem class="d-flex align-items-center"
+                          ><i data-feather="file-text" class="mr-50"></i> </a
+                        >
+                        <a href="" ngbDropdownItem class="d-flex align-items-center"
+                          ><i data-feather="trash-2" class="mr-50"></i> </a
+                        > -->
+                            <!-- <a href="javascript:void(0)" ngbDropdownItem class="d-flex align-items-center"
+                          ><i data-feather="trash-2" class="mr-50"></i> Delete</a
+                        > -->
+
+                        <!-- </div>
+
+                    </div> -->
+                    <div class="d-flex">
+                        <a (click)="editBranch(value,modalVC)" class="mx-1">
+                            <i data-feather="edit" class="text-primary cursor-pointer d-flex align-items-center"></i>
+                            </a>
+                        <a class="d-flex align-items-center"   (click)="reject(value)" data-toggle="modal"><i data-feather="trash-2" class="mr-50 text-danger"></i>
+                        </a>
+                       
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
+</section>

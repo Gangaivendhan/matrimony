@@ -1,39 +1,41 @@
-
-  import { Component, OnInit, ViewEncapsulation} from '@angular/core';
-  import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
-  import { MatPaginator } from '@angular/material/paginator';
-  import { MatTableDataSource } from '@angular/material/table';
-  import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-  import { Router, ActivatedRoute, Route } from '@angular/router';
-  import { Inject } from '@angular/core';
-  import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-  import { Subject } from 'rxjs';
-  import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
-  import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
-  import { StarserviceService } from './starservice.service';
-  @Component({
-  selector: 'app-star',
-  templateUrl: './star.component.html',
-  styleUrls: ['./star.component.scss'],
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Router, ActivatedRoute, Route } from '@angular/router';
+import { Inject } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
+import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
+import { EducationserviceService } from './educationservice.service';
+@Component({
+  selector: 'app-education',
+  templateUrl: './education.component.html',
+  styleUrls: ['./education.component.scss'],
   encapsulation: ViewEncapsulation.None
-})
 
-export class StarComponent implements OnInit {
-  starForm!: FormGroup;
+})
+export class EducationComponent {
+  educationForm!: FormGroup;
   public Submitted = false;
   Status = [
     { id: 1, name: 'ACTIVE' },
     { id: 2, name: 'INACTIVE' },
 
   ];
+
+
+  
   public rows: any;
   public selected = [];
   public basicSelectedOption: number = 10;
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
   public exportCSVData;
-  datalist:any
-  columns:any
+  datalist:any;
+  columns:any;
   paramId :any;
   obj:any={};
 
@@ -44,45 +46,18 @@ export class StarComponent implements OnInit {
 
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
-    private service: StarserviceService,
+    private service: EducationserviceService,
     private route: Router,
-    private router: ActivatedRoute,
-) { }
+    private router: ActivatedRoute,) { }
 
   ngOnInit() {
-
-    this.datalist = [
-      { name: 'Austin',gender: 'Male', status: 'Active' },
-      { name: 'Dany',gender: 'Male', status: 'Inactive' },
-      { name: 'Molly',gender: 'Female', status: 'Active' },
-      { name: 'Austin',gender: 'Male', status: 'Active' },
-      { name: 'Dany',gender: 'Male', status: 'Inactive' },
-      { name: 'Molly',gender: 'Female', status: 'Active' },
-      { name: 'Austin',gender: 'Male', status: 'Active' },
-      { name: 'Dany',gender: 'Male', status: 'Inactive' },
-      { name: 'Molly',gender: 'Female', status: 'Active' },
-      { name: 'Austin',gender: 'Male', status: 'Active' },
-      { name: 'Dany',gender: 'Male', status: 'Inactive' },
-      { name: 'Molly',gender: 'Female', status: 'Active' },
-      { name: 'Austin',gender: 'Male', status: 'Active' },
-      { name: 'Dany',gender: 'Male', status: 'Inactive' },
-      { name: 'Molly',gender: 'Female', status: 'Active' },
-      { name: 'Austin',gender: 'Male', status: 'Active' },
-      { name: 'Dany',gender: 'Male', status: 'Inactive' },
-      { name: 'Molly',gender: 'Female', status: 'Active' },
-    ];
-    this.columns = [
-      { prop: 'name' },
-      { name: 'description' },
-      { name: 'status' },
-      { name: 'Action' }
-    ],
-    this.starForm = this.fb.group({
-      id: [''],
+    this.educationForm = this.fb.group({
+      // id: [''],
       name: ['',Validators.required],
       description: ['',Validators.required],
       status:['',Validators.required]
     })
+    this.get();
    
     // this.datalist = [
     //   { name: 'Austin',description: 'good', status: 'Active' },
@@ -104,11 +79,18 @@ export class StarComponent implements OnInit {
     //   { name: 'Dany',description: 'good', status: 'Inactive' },
     //   { name: 'Molly',description: 'Bad', status: 'Active' },
     // ];
-  
-    this.get()
-  }
+    // this.exportCSVData = this.datalist
+
+    this.columns = [
+      { prop: 'name' },
+      { name: 'description' },
+      { name: 'status' },
+      { name: 'Action' }
+    ];
+this.get();
+    }
   get f(): { [key: string]: AbstractControl } {
-    return this.starForm.controls;
+    return this.educationForm.controls;
   }
   editBranch(id: any, content: any) {
     console.log(id)
@@ -126,46 +108,46 @@ export class StarComponent implements OnInit {
     this.modalService.open(content, { size: 'm' });
   }
 
-
-
-
   modalOpenVC(modalVC) {
     this.modalService.open(modalVC, {
       centered: true
     });
   }
 
+
   onSubmit(modal:any) {
     this.Submitted = true;
-    if (this.starForm.value.status === true) {
-      this.starForm.value.status = 'ACTIVE'
+    if (this.educationForm.value.status === true) {
+      this.educationForm.value.status = 'ACTIVE'
     } else {
-      this.starForm.value.status = 'INACTIVE'
+      this.educationForm.value.status = 'INACTIVE'
     }
-    console.log(this.starForm.value);
+    console.log(this.educationForm.value);
     if (this.obj.id) {
-      this.starForm.value.id = this.obj.id;
-      this.service.updatedata(this.starForm.value)
+      this.educationForm.value.id = this.obj.id;
+      this.service.updatedata(this.educationForm.value)
         .subscribe(
           (res) => {
             modal.dismiss('cross click');
             console.log(res)
               this.get();
+              this.educationForm.reset();
             }
         )
     }else{
     
-    this.service.postdata(this.starForm.value).subscribe(res => {
+    this.service.postdata(this.educationForm.value).subscribe(res => {
       console.log(res)
       // this.toastr.success(res.message, ' Posted Successfully!');
       // this.route.navigate(['/masterdata/currency']);
       modal.dismiss('cross click')
-      this.starForm.reset();
+      this.educationForm.reset();
       this.get();
     })
 
   }
 }
+        
   get() {
     this.service.getdata().subscribe(
       res => {
@@ -174,9 +156,16 @@ export class StarComponent implements OnInit {
         // this.dataSource = new MatTableDataSource<any>(this.array);
         // this.dataSource.paginator = this.paginator;
         // this.toastr.success(res.message, 'Uom get Successfully!');
-        this.exportCSVData = this.datalist;
+        this.exportCSVData = this.datalist
       })
   }
+  // getIds(id: any) {
+  //   console.log(id);
+  //   this.service.getId(id).subscribe((res) => {
+  //     console.log(res);
+  //   });
+  // }
+
 
   filterUpdate(event) {
     const val = event.target.value.toLowerCase();
@@ -200,7 +189,4 @@ export class StarComponent implements OnInit {
       })
   
   }
-
 }
-
-

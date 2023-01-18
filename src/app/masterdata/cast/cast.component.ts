@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
@@ -8,118 +9,183 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
-
-
+import { CasteserviceService } from './casteservice.service';
 
 @Component({
   selector: 'app-cast',
   templateUrl: './cast.component.html',
-  styleUrls: ['./cast.component.scss']
+  styleUrls: ['./cast.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CastComponent {
-  userfilterform!: FormGroup;
-  public submitted = false;
-  array: any
-  loopstatus: any
-  loopname: any;
-  obj: any = {}
-  result: any = [{}]
-  productlist: any;
-  productolelist: any;
-  productcategoryForm!: FormGroup;
+  castForm!: FormGroup;
   public Submitted = false;
-  prodObj: any
-  paramId: any;
-
-  selectCategory: any = [
-    { id: 1, name: 'convenience goods' },
-    { id: 2, name: 'shopping goods' },
-    { id: 2, name: 'specialty products' },]
-  status = [
-    { id: 1, status: 'Active' },
-    { id: 1, status: 'Inactive' }
-  ]
-
   Status = [
     { id: 1, name: 'ACTIVE' },
     { id: 2, name: 'INACTIVE' },
 
   ];
 
-  dataSource = new MatTableDataSource<any>();
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  constructor(private fb: FormBuilder,
-    private MatDialog:MatDialog,
+  public rows: any;
+  public selected = [];
+  public basicSelectedOption: number = 10;
+  public ColumnMode = ColumnMode;
+  public SelectionType = SelectionType;
+  public exportCSVData;
+  datalist: any
+  columns: any;
+  paramId :any;
+  obj:any={};
+  // columns: ({ prop: string; name?: undefined; } | { name: string; prop?: undefined; })[];
+  // datalist: { name: string; description: sgoodg; company: string; }[];
+
+
+
+  constructor(private modalService: NgbModal,
+    private fb: FormBuilder,
+    private service: CasteserviceService,
     private route: Router,
     private router: ActivatedRoute,
-    private modalService: NgbModal) { } 
-    displayedColumns: string[] = ['index', 'categoryName', 'category', 'status', 'action'];
-    ngOnInit(): void {
-      this.productcategoryForm = this.fb.group({
-        categoryName: ['', Validators.required],
-        selectCategory: ['', Validators.required],
-        status: ['', Validators.required],
-        description: ['']
-      })
-      this.userfilterform = this.fb.group({
-        status: [''],
-        categoryName: ['']
+  ) { }
+
+
+  ngOnInit() {
+    this.castForm = this.fb.group({
+      // id: [''],
+      casteName: ['', Validators.required],
+      description: ['', Validators.required],
+      status: ['', Validators.required]
+    })
+    // this.datalist = [
+    //   { name: 'Austin', description: 'good', status: 'Active' },
+    //   { name: 'Dany', description: 'nice', status: 'Inactive' },
+    //   { name: 'Molly', description: 'good', status: 'Active' },
+    //   { name: 'Austin', description: 'Bad', status: 'Active' },
+    //   { name: 'Dany', description: 'good', status: 'Inactive' },
+    //   { name: 'Molly', description: 'Bad', status: 'Active' },
+    //   { name: 'Austin', description: 'good', status: 'Active' },
+    //   { name: 'Dany', description: 'good', status: 'Inactive' },
+    //   { name: 'Molly', description: 'Bad', status: 'Active' },
+    //   { name: 'Austin', description: 'good', status: 'Active' },
+    //   { name: 'Dany', description: 'good', status: 'Inactive' },
+    //   { name: 'Molly', description: 'Bad', status: 'Active' },
+    //   { name: 'Austin', description: 'good', status: 'Active' },
+    //   { name: 'Dany', description: 'good', status: 'Inactive' },
+    //   { name: 'Molly', description: 'Bad', status: 'Active' },
+    //   { name: 'Austin', description: 'good', status: 'Active' },
+    //   { name: 'Dany', description: 'good', status: 'Inactive' },
+    //   { name: 'Molly', description: 'Bad', status: 'Active' },
+    // ];
   
-      });
-      this.obj.categoryName = ""
-      this.obj.status = ""
-      this.array = this.dataSource.filteredData;
-      console.log(this.array);
-}
-open(Subject:any) {
-  this.modalService.open(Subject, { size: 'sm' });
-}
-ngAfterViewInit(): void {
-  this.dataSource.paginator = this.paginator;
-}
+    this.columns = [
+      { prop: 'casteName' },
+      { name: 'description' },
+      { name: 'status' },
+      { name: 'Action' }
+    ];
+  
+    this.get();
+   
+  }
+  get f(): { [key: string]: AbstractControl } {
+    return this.castForm.controls;
+  }
+  // open(Subject:any) {
+  //   this.modalService.open(Subject, { size: 'm' });
+  // }
+  editBranch(id: any, content: any) {
+      // for (let i = 0; i < element.length; i++) {
+      //   var id = element[i].id;
+      //   console.log(id);
+        
+      // }
+    this.service.getId(id).subscribe(res => {
+      console.log(res)
+      this.obj = res.data
+      console.log(this.obj)
+      
+    })
+    this.modalService.open(content, { size: 'm' });
+  }
 
-applyFilter(event: any) {
-  const dataArray = this.array.filter((res: any) => {
-    console.log(res)
-    return res.categoryName === event
-  })
-  this.dataSource = new MatTableDataSource<any>(dataArray);
-  console.log(this.dataSource)
 
-}
-applyFilterstatus(event: any) {
-  console.log(event);
-  const dataArray = this.array.filter((res: any) => {
-    return res.status === event
-  })
-  this.dataSource = new MatTableDataSource<any>(dataArray);
+  modalOpenVC(modalVC) {
+    this.modalService.open(modalVC, {
+      centered: true
+    });
+  }
 
-}
-totalFilter(data: any, event: any) {
-  console.log(data, event);
-  const dataArray = this.array.filter((res: any) => {
-    console.log(res)
-    return res.status === data && res.categoryName === event
-  })
-  this.dataSource = new MatTableDataSource<any>(dataArray);
+  onSubmit(modal:any) {
+    this.Submitted = true;
+    if (this.castForm.value.status === true) {
+      this.castForm.value.status = 'ACTIVE'
+    } else {
+      this.castForm.value.status = 'INACTIVE'
+    }
+    console.log(this.castForm.value);
+    if (this.obj.id) {
+      this.castForm.value.id = this.obj.id;
+      this.service.updatedata(this.castForm.value)
+        .subscribe(
+          (res) => {
+            modal.dismiss('cross click');
+            console.log(res)
+              this.get();
+            }
+        )
+    }else{
+    
+    this.service.postdata(this.castForm.value).subscribe(res => {
+      console.log(res)
+      // this.toastr.success(res.message, ' Posted Successfully!');
+      // this.route.navigate(['/masterdata/currency']);
+      modal.dismiss('cross click');
+      this.castForm.reset();
+      this.get();
+    })
 
-}
-search() {
-  console.log(this.userfilterform.value)
-  console.log(this.userfilterform.value.status);
-
-  if (this.userfilterform.value.status != '' && this.userfilterform.value.categoryName == '') {
-    this.applyFilterstatus(this.userfilterform.value.status);
-  } else if (this.userfilterform.value.categoryName != '' && this.userfilterform.value.status == '') {
-    this.applyFilter(this.userfilterform.value.categoryName);
-  } else if (this.userfilterform.value.categoryName != ''
-    && this.userfilterform.value.status != '') {
-    this.totalFilter(this.userfilterform.value.status, this.userfilterform.value.categoryName);
-  } else {
-    this.dataSource
   }
 }
+  get() {
+    this.service.getdata().subscribe(
+      res => {
+        console.log(res)
+        this.datalist = res.data
+        // this.dataSource = new MatTableDataSource<any>(this.array);
+        // this.dataSource.paginator = this.paginator;
+        // this.toastr.success(res.message, 'Uom get Successfully!');
+        this.exportCSVData = this.datalist
+      })
+  }
+  // getIds(id: any) {
+  //   console.log(id);
+  //   this.service.getId(id).subscribe((res) => {
+  //     console.log(res);
+  //   });
+  // }
 
+
+  filterUpdate(event) {
+    const val = event.target.value.toLowerCase();
+    console.log(val);
+    if (val != '') {
+      const temp = this.datalist.filter(function (d) {
+        return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+      });
+      this.datalist = temp;
+    } else {
+      this.datalist = this.datalist;
+    }
+  }
+  rejected(id:any){
+    alert("data is deleted")
+    this.service.deleteData(id).subscribe(
+      res => {
+        this.get()
+        console.log(res)
+      
+      })
+  
+  }
 }
-

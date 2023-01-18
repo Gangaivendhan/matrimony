@@ -77,6 +77,106 @@ export const menu: CoreMenu[] = [
       //   icon: 'calendar',
       //   url: 'apps/calendar'
       // },
+     
+      {
+        id: 'Masterdata',
+        title: 'Masterdata',
+        translate: 'MENU.PAGES.SECTION',
+        type: 'collapsible',
+        icon: 'file-text',
+        children: [
+          {
+            id: 'religion',
+            title: 'Religion',
+            translate: 'MENU.PAGES.PROFILE',
+            type: 'item',
+            icon: 'circle',
+            url: 'masterdata/religion'
+            // collapsed: true
+          },
+          {
+            id: 'cast',
+            title: 'Cast',
+            translate: 'MENU.PAGES.PROFILE',
+            type: 'item',
+            icon: 'circle',
+            url: 'masterdata/cast'
+            // collapsed: true
+          },
+          {
+            id: 'Star',
+            title: 'Star',
+            translate: 'MENU.PAGES.PROFILE',
+            type: 'item',
+            icon: 'circle',
+            url: 'masterdata/star'
+            // collapsed: true
+          },
+          {
+            id: 'Raasi Star',
+            title: 'Raasi Star',
+            translate: 'MENU.PAGES.PROFILE',
+            type: 'item',
+            icon: 'circle',
+            url: 'masterdata/raasi-star'
+            // collapsed: true
+          },
+          {
+            id: 'mother-tongue',
+            title: 'Mother Tongue',
+            translate: 'MENU.PAGES.PROFILE',
+            type: 'item',
+            icon: 'circle',
+            url: 'masterdata/mother-tongue'
+            // collapsed: true
+          },
+          {
+            id: 'currency',
+            title: 'Currency',
+            translate: 'MENU.PAGES.PROFILE',
+            type: 'item',
+            icon: 'circle',
+            url: 'masterdata/currency'
+            // collapsed: true
+          },
+          {
+            id: 'annual-income',
+            title: 'Annual Income',
+            translate: 'MENU.PAGES.PROFILE',
+            type: 'item',
+            icon: 'circle',
+            url: 'masterdata/annual-income'
+            // collapsed: true
+          },
+          {
+            id: 'education',
+            title: 'Education',
+            translate: 'MENU.PAGES.PROFILE',
+            type: 'item',
+            icon: 'circle',
+            url: 'masterdata/education'
+            // collapsed: true
+          },
+          {
+            id: 'broker',
+            title: 'Broker',
+            translate: 'MENU.PAGES.PROFILE',
+            type: 'item',
+            icon: 'circle',
+            url: 'masterdata/broker'
+            // collapsed: true
+          },
+      //     {
+      //       id: 'profile',
+      //       title: 'Profile',
+      //       translate: 'MENU.PAGES.PROFILE',
+      //       type: 'item',
+      //       icon: 'circle',
+      //       url: 'pages/profile'
+      //       // collapsed: true
+      //     },
+        ],
+      },
       {
         id: 'pages',
         title: 'Pages',
