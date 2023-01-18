@@ -47,8 +47,21 @@ const appRoutes: Routes = [
     loadChildren: () => import('./main/pages/pages.module').then(m => m.PagesModule)
   },
   {
+    path: 'components',
+    loadChildren: () => import('./main/components/components.module').then(m => m.ComponentsModule)
+  },
+  
+  {
+    path: 'forms',
+    loadChildren: () => import('./main/forms/forms.module').then(m => m.FormsModule)
+  },
+  {
     path: 'masterdata',
     loadChildren: () => import('./masterdata/masterdata.module').then(m => m.MasterdataModule)
+  },
+  {
+    path: 'horizontal',
+    loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule)
   },
   {
     path: 'ui',
