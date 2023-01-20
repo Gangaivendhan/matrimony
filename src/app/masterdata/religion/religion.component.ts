@@ -42,7 +42,7 @@ export class ReligionComponent implements OnInit {
 
   ngOnInit(): void {
     this.religionForm = this.fb.group({
-      // id: [''],
+      id:[''],
       name: [''],
       description: [''],
       status: ['']
@@ -70,6 +70,18 @@ export class ReligionComponent implements OnInit {
     });
   }
 
+  editBranch(id: any, content: any) {
+    console.log(id);
+    this.religionservice.editreligion(id).subscribe(res => {
+      console.log(res);
+      this.religionobj = res.data
+      console.log(this.religionobj);
+      let editvalue = this.religionobj
+      this.religionForm.patchValue(editvalue)
+    })
+    this.modalService.open(content, { size: 'm' });
+  }
+
   onSubmit(modal: any) {
     this.Submitted = true;
     console.log(this.religionForm.value.status)
@@ -79,7 +91,7 @@ export class ReligionComponent implements OnInit {
       this.religionForm.value.status = 'INACTIVE'
     }
     console.log(this.religionForm.value);
-    if (this.religionobj.id) {
+    if (this.religionForm.value.id != "") {
       console.log(this.religionobj.id);
       this.religionservice.updatereligion(this.religionForm.value).subscribe((res) => {
         console.log(res);
@@ -136,17 +148,7 @@ export class ReligionComponent implements OnInit {
     })
   }
 
-  editBranch(id: any, content: any) {
-    console.log(id);
-    this.religionservice.editreligion(id).subscribe(res => {
-      console.log(res);
-      this.religionobj = res.data
-      console.log(this.religionobj);
-      let editvalue = this.religionobj
-      this.religionForm.patchValue(editvalue)
-    })
-    this.modalService.open(content, { size: 'm' });
-  }
+ 
 }
 
 

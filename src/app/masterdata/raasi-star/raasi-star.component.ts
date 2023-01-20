@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validator, Validators, AbstractControl } from '@angular/forms';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
@@ -22,8 +22,8 @@ export class RaasiStarComponent implements OnInit {
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
   public exportCSVData;
-  datalist:any
-  columns:any
+  datalist: any
+  columns: any
 
   Star = [
     { id: 1, starname: 'Bharani' },
@@ -32,22 +32,21 @@ export class RaasiStarComponent implements OnInit {
     { id: 4, starname: 'Purva Ashadha' },
   ];
   raasiobj: any;
-  paramId: any;
 
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
-    private raasiservice:RasiStarService) { }
+    private raasiservice: RasiStarService) { }
 
   ngOnInit(): void {
     this.raasiFrom = this.fb.group({
       id: [''],
-      star:[''],
+      star: [''],
       name: [''],
       description: [''],
-      status:[''],
-      
+      status: [''],
+
     })
-    
+
     this.columns = [
       { prop: 'name' },
       { name: 'description' },
@@ -68,16 +67,16 @@ export class RaasiStarComponent implements OnInit {
     });
   }
 
-  onSubmit(modal:any) {
+  onSubmit(modal: any) {
     this.Submitted = true;
     if (this.raasiFrom.value.status === true) {
       this.raasiFrom.value.status = 'Active'
     } else {
       this.raasiFrom.value.status = 'Inactive'
     }
-   
+
     console.log(this.raasiFrom.value);
-    if (this.raasiobj.id) {
+    if (this.raasiFrom.value.id != '') {
       console.log(this.raasiobj.id);
       this.raasiservice.updateraasi(this.raasiFrom.value).subscribe((res) => {
         console.log(res);
@@ -86,7 +85,8 @@ export class RaasiStarComponent implements OnInit {
         modal.dismiss('cross click')
         this.raasiFrom.reset();
       });
-    } else {
+    }
+    else {
       this.raasiservice.postraasi(this.raasiFrom.value).subscribe(
         res => {
           console.log(res);
@@ -110,6 +110,7 @@ export class RaasiStarComponent implements OnInit {
       this.datalist = this.datalist;
     }
   }
+  
   get() {
     this.raasiservice.getraasi().subscribe(
       res => {
