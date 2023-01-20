@@ -9,8 +9,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
-
-
+import { AnnualIncomeService } from './annual-income.service';
 @Component({
   selector: 'app-annual-income',
   templateUrl: './annual-income.component.html',
@@ -35,56 +34,76 @@ export class AnnualIncomeComponent {
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
   public exportCSVData;
-  datalist:any
-  columns:any
+  datalist:any;
+  columns:any;
+  paramId :any;
+  obj:any={};
+
   // columns: ({ prop: string; name?: undefined; } | { name: string; prop?: undefined; })[];
   // datalist: { name: string; gender: string; company: string; }[];
 
  
 
   constructor(private modalService: NgbModal,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private service: AnnualIncomeService,
+    private route: Router,
+    private router: ActivatedRoute,
+    ) { }
 
   ngOnInit() {
     this.annualincomeForm = this.fb.group({
       id: [''],
-      name: [''],
-      description: [''],
-      status:['']
+      name: ['',Validators.required],
+      description: ['',Validators.required],
+      status:['',Validators.required]
     })
    
-    this.datalist = [
-      { name: 'Austin',description: 'good', status: 'Active' },
-      { name: 'Dany',description: 'nice', status: 'Inactive' },
-      { name: 'Molly',description: 'good', status: 'Active' },
-      { name: 'Austin',description: 'Bad', status: 'Active' },
-      { name: 'Dany',description: 'good', status: 'Inactive' },
-      { name: 'Molly',description: 'Bad', status: 'Active' },
-      { name: 'Austin',description: 'good', status: 'Active' },
-      { name: 'Dany',description: 'good', status: 'Inactive' },
-      { name: 'Molly',description: 'Bad', status: 'Active' },
-      { name: 'Austin',description: 'good', status: 'Active' },
-      { name: 'Dany',description: 'good', status: 'Inactive' },
-      { name: 'Molly',description: 'Bad', status: 'Active' },
-      { name: 'Austin',description: 'good', status: 'Active' },
-      { name: 'Dany',description: 'good', status: 'Inactive' },
-      { name: 'Molly',description: 'Bad', status: 'Active' },
-      { name: 'Austin',description: 'good', status: 'Active' },
-      { name: 'Dany',description: 'good', status: 'Inactive' },
-      { name: 'Molly',description: 'Bad', status: 'Active' },
-    ];
+    // this.datalist = [
+    //   { name: 'Austin',description: 'good', status: 'Active' },
+    //   { name: 'Dany',description: 'nice', status: 'Inactive' },
+    //   { name: 'Molly',description: 'good', status: 'Active' },
+    //   { name: 'Austin',description: 'Bad', status: 'Active' },
+    //   { name: 'Dany',description: 'good', status: 'Inactive' },
+    //   { name: 'Molly',description: 'Bad', status: 'Active' },
+    //   { name: 'Austin',description: 'good', status: 'Active' },
+    //   { name: 'Dany',description: 'good', status: 'Inactive' },
+    //   { name: 'Molly',description: 'Bad', status: 'Active' },
+    //   { name: 'Austin',description: 'good', status: 'Active' },
+    //   { name: 'Dany',description: 'good', status: 'Inactive' },
+    //   { name: 'Molly',description: 'Bad', status: 'Active' },
+    //   { name: 'Austin',description: 'good', status: 'Active' },
+    //   { name: 'Dany',description: 'good', status: 'Inactive' },
+    //   { name: 'Molly',description: 'Bad', status: 'Active' },
+    //   { name: 'Austin',description: 'good', status: 'Active' },
+    //   { name: 'Dany',description: 'good', status: 'Inactive' },
+    //   { name: 'Molly',description: 'Bad', status: 'Active' },
+    // ];
     this.columns = [
       { prop: 'name' },
       { name: 'description' },
       { name: 'status' },
       { name: 'Action' }
     ];
-    this.exportCSVData = this.datalist
-
+this.get();
   }
   get f(): { [key: string]: AbstractControl } {
     return this.annualincomeForm.controls;
   }
+  editBranch(id: any, content: any) {
+    // for (let i = 0; i < element.length; i++) {
+    //   var id = element[i].id;
+    //   console.log(id);
+      
+    // }
+  this.service.getId(id).subscribe(res => {
+    console.log(res)
+    this.obj = res.data
+    console.log(this.obj)
+  })
+  this.modalService.open(content, { size: 'm' });
+}
+
 
   modalOpenVC(modalVC) {
     this.modalService.open(modalVC, {
@@ -92,14 +111,58 @@ export class AnnualIncomeComponent {
     });
   }
 
-  onSubmit() {
+  onSubmit(modal:any) {
     this.Submitted = true;
     if (this.annualincomeForm.value.status === true) {
-      this.annualincomeForm.value.status = 'Active'
+      this.annualincomeForm.value.status = 'ACTIVE'
     } else {
-      this.annualincomeForm.value.status = 'Inactive'
-    }    console.log(this.annualincomeForm.value);
+      this.annualincomeForm.value.status = 'INACTIVE'
+    }
+    console.log(this.annualincomeForm.value);
+    if (this.obj.id) {
+      this.annualincomeForm.value.id = this.obj.id;
+      this.service.updatedata(this.annualincomeForm.value)
+        .subscribe(
+          (res) => {
+            modal.dismiss('cross click');
+            console.log(res)
+              this.get();
+              this.annualincomeForm.reset();
+
+            }
+        )
+    }else{
+    
+    this.service.postdata(this.annualincomeForm.value).subscribe(res => {
+      console.log(res)
+      // this.toastr.success(res.message, ' Posted Successfully!');
+      // this.route.navigate(['/masterdata/currency']);
+      modal.dismiss('cross click')
+      this.annualincomeForm.reset();
+      this.get();
+    })
+
   }
+}
+  get() {
+    this.service.getdata().subscribe(
+      res => {
+        console.log(res)
+        this.datalist = res.data
+        // this.dataSource = new MatTableDataSource<any>(this.array);
+        // this.dataSource.paginator = this.paginator;
+        // this.toastr.success(res.message, 'get Successfully!');
+        this.exportCSVData = this.datalist
+        this.annualincomeForm.reset();
+      })
+  }
+  // getIds(id: any) {
+  //   console.log(id);
+  //   this.service.getId(id).subscribe((res) => {
+  //     console.log(res);
+  //   });
+  // }
+
 
   filterUpdate(event) {
     const val = event.target.value.toLowerCase();
@@ -113,5 +176,14 @@ export class AnnualIncomeComponent {
       this.datalist = this.datalist;
     }
   }
+  rejected(id:any){
+    alert("data is deleted")
+    this.service.deleteData(id).subscribe(
+      res => {
+        this.get()
+        console.log(res)
+      
+      })
+  
+  }
 }
-

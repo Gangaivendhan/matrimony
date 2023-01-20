@@ -1,5 +1,5 @@
 <ng-template #modalVC let-modal>
-    <form (ngSubmit)="onSubmit()" [formGroup]="mothertongueForm">
+    <form (ngSubmit)="onSubmit(modal)" [formGroup]="mothertongueForm">
         <div class="modal-header justify-content-center">
             <h4 class="modal-title"><b>Mother Tongue</b> </h4>
             <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
@@ -12,18 +12,18 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><span [data-feather]="'user'"></span></span>
                 </div>
-                <input type="text" class="form-control" formControlName="name" placeholder="Name" />
+                <input type="text" class="form-control" formControlName="name" placeholder="Name"  [(ngModel)]="obj.name" />
             </div>
             <label class="mb-1">Description</label>
             <div class="input-group input-group-merge mb-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><span [data-feather]="'file-text'"></span></span>
                 </div>
-                <input type="text" class="form-control" formControlName="description" placeholder="Description" />
+                <input type="text" class="form-control" formControlName="description" placeholder="Description"  [(ngModel)]="obj.description"  />
             </div>
             <label class="mb-1">Status</label>
             <div>
-                <mat-slide-toggle formControlName="status"></mat-slide-toggle>
+                <mat-slide-toggle formControlName="status" [(ngModel)]="obj.status" ></mat-slide-toggle>
                 <!-- <select class="form-control" formControlName="status">
                     <option value=""></option>
                     <option *ngFor="let status of Status" [value]="status.name">
@@ -36,7 +36,7 @@
                 <button type="submit" class="btn btn-primary mx-2" rippleEffect>
                     Submit
                 </button>
-                <button type="button" class="btn btn-danger " (click)="modal.dismiss('Cross click')" rippleEffect>
+                <button type="reset" class="btn btn-danger " (click)="modal.dismiss('Cross click')" rippleEffect>
                     Cancel
                 </button>
             </div>
@@ -86,12 +86,12 @@
         <ngx-datatable [rows]="datalist" [rowHeight]="58" class="bootstrap core-bootstrap text-dark" [limit]="10"
             [columnMode]="ColumnMode.force" [headerHeight]="40" [footerHeight]="50" [scrollbarH]="true"
             [columns]="columns" [selectionType]="SelectionType.checkbox" [limit]="basicSelectedOption">
-            <ngx-datatable-column name="Name" prop="name" [width]="250"></ngx-datatable-column>
-            <ngx-datatable-column name="Status" prop="status" [width]="120"></ngx-datatable-column>
+            <ngx-datatable-column name="name" prop="name" [width]="250"></ngx-datatable-column>
+            <ngx-datatable-column name="status" prop="status" [width]="120"></ngx-datatable-column>
             <ngx-datatable-column name="description" prop="description" [width]="120"></ngx-datatable-column>
 
             <ngx-datatable-column name="Actions" [width]="120" [sortable]="false">
-                <ng-template ngx-datatable-cell-template>
+                <ng-template ngx-datatable-cell-template let-row="datalist" let-value="row.id">
                     <!-- <div class="d-flex align-items-center">
                     <div ngbDropdown container="body">
                         <a ngbDropdownToggle href="javascript:void(0);" class="hide-arrow" id="dropdownBrowserState"
@@ -113,9 +113,10 @@
 
                 </div> -->
                     <div class="d-flex">
-                        <a href="" class="d-flex align-items-center"><i data-feather="trash-2" class="mr-50"></i>
+                        <a  (click)="editBranch(value,modalVC)">
+                        <i data-feather="edit" class="text-primary mx-1 cursor-pointer d-flex align-items-center"></i></a>
+                        <a (click)="rejected(value)" class="text-danger d-flex align-items-center"><i data-feather="trash-2" class="mr-50"></i>
                         </a>
-                        <i data-feather="edit" class="text-primary cursor-pointer d-flex align-items-center"></i>
                     </div>
                 </ng-template>
             </ngx-datatable-column>

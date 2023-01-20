@@ -1,5 +1,5 @@
 <ng-template #modalVC let-modal>
-    <form (ngSubmit)="onSubmit()" [formGroup]="brokerForm">
+    <form (ngSubmit)="onSubmit(modal)" [formGroup]="brokerForm">
         <div class="modal-header justify-content-center">
             <h4 class="modal-title"><b>Broker</b> </h4>
             <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
@@ -13,70 +13,70 @@
                 <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="first-name-column">First Name</label>
-                        <input type="text" id="first-name-column"  formControlName="firstName" class="form-control" placeholder="First Name"
+                        <input type="text" id="first-name-column"  formControlName="firstName" [(ngModel)]="obj.firstName" class="form-control" placeholder="First Name"
                             name="fname-column" />
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="last-name-column">Last Name</label>
-                        <input type="text" id="last-name-column"  formControlName="lastNmae" class="form-control" placeholder="Last Name"
+                        <input type="text" id="last-name-column"  formControlName="lastName" [(ngModel)]="obj.lastName" class="form-control" placeholder="Last Name"
                             name="lname-column" />
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="first-name-column">Mobile Number</label>
-                        <input type="text" id="first-name-column"  formControlName="mobileNumber" class="form-control" placeholder="Mobile Number"
+                        <input type="text" id="first-name-column"  formControlName="mobileNumber"  [(ngModel)]="obj.mobileNumber" class="form-control" placeholder="Mobile Number"
                             name="fname-column" />
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="last-name-column">Email</label>
-                        <input type="text" id="last-name-column"  formControlName="email" class="form-control" placeholder="Email"
+                        <input type="text" id="last-name-column"  [(ngModel)]="obj.email" formControlName="email" class="form-control" placeholder="Email"
                             name="lname-column" />
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="company-column">AddressLine 1</label>
-                        <input type="text" id="company-column"  formControlName="address" class="form-control" name="company-column"
+                        <input type="text" id="company-column" [(ngModel)]="obj.addressLine1"  formControlName="addressLine1" class="form-control" name="company-column"
                             placeholder="AddressLine 1" />
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="country-floating">AddressLine 2</label>
-                        <input type="text" id="country-floating" class="form-control"  formControlName="address" name="country-floating"
+                        <input type="text" id="country-floating" class="form-control" [(ngModel)]="obj.addressLine2" formControlName="addressLine2" name="country-floating"
                             placeholder="AddressLine 2" />
                     </div>
                 </div>
                  <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="city-column">Country</label>
-                        <input type="text" id="city-column" class="form-control"  formControlName="country" placeholder="Country"
+                        <input type="text" id="city-column" class="form-control" [(ngModel)]="obj.country" formControlName="country" placeholder="Country"
                             name="city-column" />
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="email-id-column">State</label>
-                        <input type="email" id="email-id-column" class="form-control" formControlName="state" name="email-id-column"
+                        <input type="email" id="email-id-column" class="form-control" [(ngModel)]="obj.state" formControlName="state" name="email-id-column"
                             placeholder="State" />
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="first-name-column">City</label>
-                        <input type="text" id="first-name-column" class="form-control" formControlName="city" placeholder="City"
+                        <input type="text" id="first-name-column" class="form-control" [(ngModel)]="obj.city" formControlName="city" placeholder="City"
                             name="fname-column" />
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
                     <label class="mb-1"> Status</label>
                     <div>
-                        <mat-slide-toggle formControlName="status"></mat-slide-toggle>
+                        <mat-slide-toggle formControlName="status" [(ngModel)]="obj.status"></mat-slide-toggle>
                     </div>
             </div>
             </div>
@@ -85,7 +85,7 @@
                 <button type="submit" class="btn btn-primary mx-2" rippleEffect>
                     Submit
                 </button>
-                <button type="button" class="btn btn-danger " (click)="modal.dismiss('Cross click')" rippleEffect>
+                <button type="reset" class="btn btn-danger " (click)="modal.dismiss('Cross click')" rippleEffect>
                     Cancel
                 </button>
             </div>
@@ -172,7 +172,8 @@
             <ngx-datatable-column name="Last Name" prop="lastName" [width]="120"></ngx-datatable-column>
             <ngx-datatable-column name="Mobile" prop="mobileNumber" [width]="120"></ngx-datatable-column>
             <ngx-datatable-column name="Email" prop="email" [width]="120"></ngx-datatable-column>
-            <ngx-datatable-column name="Address" prop="address" [width]="120"></ngx-datatable-column>
+            <ngx-datatable-column name="AddressLine1" prop="addressLine1" [width]="120"></ngx-datatable-column>
+            <ngx-datatable-column name="AddressLine2" prop="addressLine2" [width]="120"></ngx-datatable-column>
             <ngx-datatable-column name="Country" prop="country" [width]="120"></ngx-datatable-column>
             <ngx-datatable-column name="State" prop="state" [width]="120"></ngx-datatable-column>
             <ngx-datatable-column name="City" prop="city" [width]="120"></ngx-datatable-column>
@@ -180,9 +181,10 @@
             <ngx-datatable-column name="Actions" [width]="120" [sortable]="false">
                 <ng-template ngx-datatable-cell-template>
                     <div class="d-flex">
-                        <a href="" class="d-flex align-items-center"><i data-feather="trash-2" class="mr-50"></i>
+                        <a  (click)="editBranch(value,modalVC)">
+                        <i data-feather="edit" class="text-primary mx-1 cursor-pointer d-flex align-items-center"></i></a>
+                        <a (click)="rejected(value)" class="text-danger d-flex align-items-center"><i data-feather="trash-2" class="mr-50"></i>
                         </a>
-                        <i data-feather="edit" class="text-primary cursor-pointer d-flex align-items-center"></i>
                     </div>
                 </ng-template>
             </ngx-datatable-column>
