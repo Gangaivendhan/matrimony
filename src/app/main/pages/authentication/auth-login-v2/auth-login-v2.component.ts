@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 
 import { AuthenticationService } from 'app/auth/service';
 import { CoreConfigService } from '@core/services/config.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-auth-login-v2',
@@ -23,6 +24,7 @@ export class AuthLoginV2Component implements OnInit {
   public error = '';
   public passwordTextType: boolean;
 
+
   // Private
   private _unsubscribeAll: Subject<any>;
 
@@ -36,7 +38,9 @@ export class AuthLoginV2Component implements OnInit {
     private _formBuilder: UntypedFormBuilder,
     private _route: ActivatedRoute,
     private _router: Router,
-    private _authenticationService: AuthenticationService
+    private _authenticationService: AuthenticationService,
+    private toastr: ToastrService,
+
   ) {
     // redirect to home if already logged in
     if (this._authenticationService.currentUserValue) {
@@ -75,30 +79,7 @@ export class AuthLoginV2Component implements OnInit {
     this.passwordTextType = !this.passwordTextType;
   }
 
-  onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-      return;
-    }
-
-    // Login
-    this.loading = true;
-    this._authenticationService
-      .login(this.f.email.value, this.f.password.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this._router.navigate([this.returnUrl]);
-        },
-        error => {
-          this.error = error;
-          this.loading = false;
-        }
-      );
-  }
-
+ 
   // Lifecycle Hooks
   // -----------------------------------------------------------------------------------------------------
 
@@ -107,8 +88,8 @@ export class AuthLoginV2Component implements OnInit {
    */
   ngOnInit(): void {
     this.loginForm = this._formBuilder.group({
-      email: ['admin@demo.com', [Validators.required, Validators.email]],
-      password: ['admin', Validators.required]
+      userName: ['priya@gmail.com', [Validators.required]],
+      password: ['YC9uPq', Validators.required]
     });
 
     // get return url from route parameters or default to '/'
@@ -118,6 +99,49 @@ export class AuthLoginV2Component implements OnInit {
     this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
       this.coreConfig = config;
     });
+  }
+
+  onSubmit() {
+    
+
+    // stop here if form is invalid
+    // if (this.loginForm.invalid) {
+    //   this.toaster.error("hdrtgyui")
+
+
+    // }
+
+    // Login
+    if(this.submitted = true){
+      this.loading = true;
+      this._authenticationService
+        .login(this.f.userName.value, this.f.password.value)
+        .pipe(first())
+        .subscribe(
+          data => {
+            console.log(data);
+            this._router.navigate(['/dashboard']);
+            console.log(data.data.message);
+            this.toastr.success('', '{{data.data.message}}', {
+              progressBar: true,
+              toastClass: 'toast ngx-toastr',
+              closeButton: true
+            });
+          },
+  
+          (error) => {
+            this.error = error;
+            console.log(error.error.message);
+            this.loading = false;
+          }
+        );
+    }
+    // else{
+    //   alert("uygfuhd")
+    // }
+   
+      
+
   }
 
   /**

@@ -20,7 +20,7 @@
                 </div>
                 <!-- profile title -->
                 <div class="profile-title ml-3">
-                  <h2 class="text-white">{{ data.profileData.header.username }}</h2>
+                  <h3 class="text-white">{{ data.profileData.header.username }}</h3>
                   <p class="text-white">{{ data.profileData.header.designation }}</p>
                 </div>
               </div>
@@ -66,7 +66,7 @@
                       </li> -->
                     </ul>
                     <!-- edit button -->
-                    <button class="btn btn-primary" rippleEffect>
+                    <button class="btn btn-primary" rippleEffect >
                       <i data-feather="edit" class="d-block d-md-none"></i>
                       <span class="font-weight-bold d-none d-md-block">Edit</span>
                     </button>
@@ -121,11 +121,27 @@
 
             <!--/ twitter feed card -->
           </div>
+         
+          <!-- <div class="swiper-responsive-breakpoints swiper-container px-4 py-2"  >
+            <div class="swiper-wrapper mb-2">
+              <div class="swiper-slide" *ngFor="let latestPhotosRef of data.profileData.latestPhotos">
+                <a href="javascript:void(0)">
+                 
+                  <div class="img-container mx-auto py-75">
+                    <img [src]="relatedProduct.image" class="img-fluid" alt="image" />
+                  </div>
+                  
+                </a>
+              </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div> -->
           <!--/ left profile info section -->
 
           <!-- center profile info section -->
           <div class="col-lg-9  order-1 order-lg-2">
-            <div class="card" style="height: 518px;">
+            <div class="card">
               <div class="card-body">
                 <div class=" align-items-center mb-1">
                   <!-- avatar -->
@@ -134,7 +150,7 @@
                   <form class="form form-vertical">
                     <div>
                       <div>
-                        <h2 class="">Profile</h2>
+                        <h3 class="">Profile</h3>
                       </div>
                       <div class=" float-right">
                         <span class="editbtn" [data-feather]="'edit'"></span>
@@ -317,7 +333,7 @@
               <form>
                 <div>
                   <div class="mt-2">
-                    <h2 class="mx-2">Religious Info:</h2>
+                    <h3 class="mx-2">Religious Info:</h3>
                   </div>
                   <div>
                     <span class="editbtn" [data-feather]="'edit'"></span>
@@ -384,7 +400,7 @@
             <div class="card">
               <form>
                 <div class="mt-2">
-                  <h2 class="mx-2">Eductional Info:</h2>
+                  <h3 class="mx-2">Eductional Info:</h3>
                 </div>
                 <div>
                   <span class="editbtn" [data-feather]="'edit'"></span>
@@ -411,13 +427,13 @@
                         placeholder="First Name" value="Software Proffessional" />
                     </div>
                   </div>
-                  <!-- <div class="form-group">
-                  <label for="first-name-icon"> Occupation in Detial:</label>
-                  <div class="input-group input-group-merge">
-                    <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
-                      placeholder="First Name" value="Development" />
+                  <div class="form-group">
+                    <label for="first-name-icon"> Occupation in Detials:</label>
+                    <div class="input-group input-group-merge">
+                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
+                        placeholder="First Name" value="Development" />
+                    </div>
                   </div>
-                </div> -->
                   <div class="form-group">
                     <label for="first-name-icon"> Organization:</label>
                     <div class="input-group input-group-merge">
@@ -432,13 +448,7 @@
                         placeholder="First Name" value="Private" />
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="first-name-icon"> Annual Income:</label>
-                    <div class="input-group input-group-merge">
-                      <input type="text" id="first-name-icon" class="form-control" name="fname-icon"
-                        placeholder="First Name" value="B.E" />
-                    </div>
-                  </div>
+
                   <div class="form-group">
                     <label for="first-name-icon">Annual Income:</label>
                     <div class="input-group input-group-merge">
@@ -461,7 +471,7 @@
             <div class="card">
               <form>
                 <div class="mt-2">
-                  <h2 class="mx-2">Location:</h2>
+                  <h3 class="mx-2">Location:</h3>
                 </div>
                 <div>
                   <span class="editbtn" [data-feather]="'edit'"></span>
@@ -513,7 +523,7 @@
             <div class="card">
               <form>
                 <div class="mt-2">
-                  <h2 class="mx-2">Hobbies</h2>
+                  <h3 class="mx-2">Hobbies</h3>
                 </div>
                 <div>
                   <span class="editbtn" [data-feather]="'edit'"></span>
@@ -567,20 +577,6 @@
           </div>
 
         </div>
-        <div class="col-lg-12">
-          <div class="card">
-            <div class="mt-2">
-              <h2 class="mx-2">About Our Family</h2>
-            </div>
-            <div>
-              <span class="editbtn" [data-feather]="'edit'"></span>
-            </div>
-            <div>
-              <h5 class="mx-3">My Father is mason,Mother is home maker,Elder brother is working in a IT sector,Younger
-                sister completed M.E.,</h5>
-            </div>
-          </div>
-        </div>
         <div class="col-lg-12 ">
           <div class="card">
             <div class="card-body">
@@ -588,7 +584,7 @@
                 <form class="form form-vertical">
                   <div>
                     <div>
-                      <h2 class="">Family Detial</h2>
+                      <h3 class="">Family Detial</h3>
                     </div>
                     <div class=" float-right">
                       <span class="editbtn" [data-feather]="'edit'"></span>
@@ -715,11 +711,59 @@
           <!-- </div> -->
           <!--/ right profile info section -->
         </div>
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="mt-2">
+              <h3 class="mx-2">About Our Family</h3>
+            </div>
+            <div>
+              <span class="editbtn" [data-feather]="'edit'"></span>
+            </div>
+            <div>
+              <h5 class="mx-3">My Father is mason,Mother is home maker,Elder brother is working in a IT sector,Younger
+                sister completed M.E.,</h5>
+            </div>
+          </div>
+        </div>
+
 
 
       </section>
-      
+
       <!--/ profile info section -->
+      <div class="col-lg-12 col-12 order-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="mb-0">Latest Photos</h5>
+            <div class="row">
+              <div class="col-md-4 col-6 profile-latest-img"
+                *ngFor="let latestPhotosRef of data.profileData.latestPhotos">
+                <a href="javascript:void(0)">
+                  <img [src]="latestPhotosRef.img" class="img-fluid rounded" alt="avatar img" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-</div>
+  
+
+  <!-- <div class="wrapper">
+    <owl-carousel-o>
+  
+      <ng-container  *ngFor="let latestPhotosRef of data.profileData.latestPhotos">
+        <ng-template class="slide" carouselSlide >
+          <img [src]="latestPhotosRef.img" class="img-fluid rounded" alt="avatar img" />
+        </ng-template>
+      </ng-container>
+  
+    </owl-carousel-o>  
+  </div> -->
+  <!-- ngb-carousel component -->
+
+  <!-- ngb-carousel component -->
+
+ 
