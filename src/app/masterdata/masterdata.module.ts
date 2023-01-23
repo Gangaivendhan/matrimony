@@ -28,6 +28,10 @@ import { AnnualIncomeComponent } from './annual-income/annual-income.component';
 import { EducationComponent } from './education/education.component';
 import { BrokerComponent } from './broker/broker.component';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { SweetAlertsModule } from 'app/main/extensions/sweet-alerts/sweet-alerts.module';
+import { ToastrsModule } from 'app/main/extensions/toastr/toastr.module';
 
 @NgModule({
   declarations: [
@@ -43,9 +47,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common
   ],
   imports: [
     CommonModule,
+    ToastrsModule,
     MasterdataRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    ToastrModule.forRoot(),
     HttpClientModule,
     TranslateModule,
     CoreCommonModule,
@@ -63,6 +69,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common
     NgbModule,
     MatSlideToggleModule,
     MatPaginatorModule,
+    SweetAlert2Module.forRoot(),
+    SweetAlertsModule
+
   ]
 })
 export class MasterdataModule { }

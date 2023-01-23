@@ -2,7 +2,7 @@
     <form (ngSubmit)="onSubmit(modal)" [formGroup]="annualincomeForm">
         <div class="modal-header justify-content-center">
             <h4 class="modal-title"><b>Annual Income</b> </h4>
-            <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+            <button type="reset" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -37,14 +37,6 @@
             </button>
         </div>
         </div>
-        <!-- <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" rippleEffect>
-                Submit
-            </button>
-            <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')" rippleEffect>
-                Cancel
-            </button>
-        </div> -->
     </form>
 </ng-template>
 <section id="ngx-datatable-kitchen-sink">

@@ -30,16 +30,11 @@ export class MotherTongueComponent {
   public basicSelectedOption: number = 10;
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
-  public exportCSVData;
+  public exportCSVData = [];
   datalist:any
   columns:any
   paramId :any;
   obj:any={};
-  // columns: ({ prop: string; name?: undefined; } | { name: string; prop?: undefined; })[];
-  // datalist: { name: string; gender: string; company: string; }[];
-
- 
-
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
     private service: MotherTongueserviceService,
@@ -49,32 +44,12 @@ export class MotherTongueComponent {
 
   ngOnInit() {
     this.mothertongueForm = this.fb.group({
-      // id: [''],
+      id: [''],
       name: ['',Validators.required],
       description: ['',Validators.required],
       status:['',Validators.required]
     })
    
-    // this.datalist = [
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'nice', status: 'Inactive' },
-    //   { name: 'Molly',description: 'good', status: 'Active' },
-    //   { name: 'Austin',description: 'Bad', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    // ];
     this.columns = [
       { prop: 'name' },
       { name: 'description' },
@@ -88,11 +63,6 @@ export class MotherTongueComponent {
   }
   editBranch(id: any, content: any) {
     console.log(id)
-      // for (let i = 0; i < element.length; i++) {
-      //   var id = element[i].id;
-      //   console.log(id);
-        
-      // }
     this.service.getId(id).subscribe(res => {
       console.log(res)
       this.obj = res.data
@@ -131,8 +101,6 @@ export class MotherTongueComponent {
     
     this.service.postdata(this.mothertongueForm.value).subscribe(res => {
       console.log(res)
-      // this.toastr.success(res.message, ' Posted Successfully!');
-      // this.route.navigate(['/masterdata/currency']);
       modal.dismiss('cross click');
       this.mothertongueForm.reset();
       this.get();
@@ -145,9 +113,6 @@ export class MotherTongueComponent {
       res => {
         console.log(res)
         this.datalist = res.data
-        // this.dataSource = new MatTableDataSource<any>(this.array);
-        // this.dataSource.paginator = this.paginator;
-        // this.toastr.success(res.message, 'Uom get Successfully!');
         this.exportCSVData = this.datalist;
       })
   }

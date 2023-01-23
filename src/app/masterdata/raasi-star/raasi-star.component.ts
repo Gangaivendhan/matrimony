@@ -77,7 +77,7 @@ export class RaasiStarComponent implements OnInit {
     }
    
     console.log(this.raasiFrom.value);
-    if (this.raasiobj.id) {
+    if (this.raasiFrom.value.id!="") {
       console.log(this.raasiobj.id);
       this.raasiservice.updateraasi(this.raasiFrom.value).subscribe((res) => {
         console.log(res);
