@@ -78,9 +78,6 @@ export const menu: CoreMenu[] = [
       //   icon: 'calendar',
       //   url: 'apps/calendar'
       // },
-     
-     
-      
       {
         id: 'Masterdata',
         title: 'Masterdata',

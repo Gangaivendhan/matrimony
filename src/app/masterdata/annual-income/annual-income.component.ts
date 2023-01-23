@@ -136,8 +136,9 @@ this.get();
         console.log(res)
         this.datalist = res.data
         this.exportCSVData = this.datalist
+      })
         this.annualincomeForm.reset();
-      }); err => {
+       err => {
         if (err) {
           console.log(err.error.error);
 
@@ -146,6 +147,8 @@ this.get();
       }
       }
   
+    
+
 
   filterUpdate(event) {
     const val = event.target.value.toLowerCase();

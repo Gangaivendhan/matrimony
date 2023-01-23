@@ -37,6 +37,8 @@ export class MotherTongueComponent {
   columns:any
   paramId :any;
   obj:any={};
+
+
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
     private service: MotherTongueserviceService,
@@ -54,34 +56,13 @@ export class MotherTongueComponent {
       status: ['', Validators.required]
     })
 
-    // this.datalist = [
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'nice', status: 'Inactive' },
-    //   { name: 'Molly',description: 'good', status: 'Active' },
-    //   { name: 'Austin',description: 'Bad', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    // ];
-      
+   
     this.columns = [
       { prop: 'name' },
       { name: 'description' },
       { name: 'status' },
       { name: 'Action' }
     ];
-    this.get();
   }
   get f(): { [key: string]: AbstractControl } {
     return this.mothertongueForm.controls;
@@ -130,32 +111,25 @@ export class MotherTongueComponent {
 
           }
 
-        ); err => {
+        );
+    }else{
+    
+    this.service.postdata(this.mothertongueForm.value).subscribe(res => {
+      console.log(res)
+      modal.dismiss('cross click');
+      this.mothertongueForm.reset();
+      this.get();
+    })
+ }; err => {
           if (err) {
             console.log(err.error.error);
 
             this.toastr.error(err.error.error.message);
           }
         }
-    } else {
-
-      this.service.postdata(this.mothertongueForm.value).subscribe(res => {
-        console.log(res)
-        this.toastr.success("Submitted Successfully!")
-        // this.toastr.success(res.message, ' Posted Successfully!');
-        // this.route.navigate(['/masterdata/currency']);
-        modal.dismiss('cross click');
-        this.mothertongueForm.reset();
-        this.get();
-
-      })
-
-    }
-            }
+   
+      }        
         
-          
-
-
   get() {
     this.service.getdata().subscribe(
       res => {

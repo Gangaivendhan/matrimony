@@ -46,6 +46,7 @@ export class CastComponent {
     private toastr: ToastrService,
 
   ) { }
+  
 
     toastrProgressBar() {
       this.toastr.success('Have fun storming the castle!', 'Progress Bar', {

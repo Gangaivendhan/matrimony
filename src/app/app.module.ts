@@ -89,16 +89,16 @@ const appRoutes: Routes = [
     loadChildren: () => import('./main/tables/tables.module').then(m => m.TablesModule),
     canActivate: [AuthGuard]
   },
-  // {
-   
-  //   path: '',
-  //   redirectTo: '/dashboard/profile',
-  //   pathMatch: 'full'
-  // },
-  // {
-  //   path: '**',
-  //   redirectTo: '/pages/miscellaneous/error' //Error 404 - Page not found
-  // }
+
+    {
+    path: '',
+    redirectTo: '/pages/profile',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: '/pages/miscellaneous/error' //Error 404 - Page not found
+  }
 ];
 
 @NgModule({
