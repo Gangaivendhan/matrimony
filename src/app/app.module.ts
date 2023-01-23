@@ -45,11 +45,12 @@ const appRoutes: Routes = [
   {
     path: 'pages',
     loadChildren: () => import('./main/pages/pages.module').then(m => m.PagesModule),
-
+    // canActivate: [AuthGuard]
   },
   {
     path: 'masterdata',
-    loadChildren: () => import('./masterdata/masterdata.module').then(m => m.MasterdataModule)
+    loadChildren: () => import('./masterdata/masterdata.module').then(m => m.MasterdataModule),
+    // canActivate: [AuthGuard]
   },
   {
     path: 'ui',
