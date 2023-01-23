@@ -80,7 +80,7 @@ const appRoutes: Routes = [
     
     path: 'broker',
     loadChildren: () => import('./broker/broker.module').then(m=>m.BrokerModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   
   {

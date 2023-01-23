@@ -5,7 +5,7 @@ import { AddUserlistComponent } from './add-userlist/add-userlist.component';
 
 const routes: Routes = [
   {
-    path:'add-user',component:AddUserComponent
+    path:'add-user',component:AddUserComponent,
   },
   {
     path:'add-userlist',component:AddUserlistComponent

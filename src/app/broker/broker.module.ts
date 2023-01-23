@@ -17,13 +17,11 @@ import { CardSnippetModule } from '@core/components/card-snippet/card-snippet.mo
 import { ContentHeaderModule } from 'app/layout/components/content-header/content-header.module';
 import { CoreCardModule } from "../../@core/components/core-card/core-card.module";
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { SweetAlertsModule } from 'app/main/extensions/sweet-alerts/sweet-alerts.module';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ToastrsModule } from 'app/main/extensions/toastr/toastr.module';
-
 import { BrokerRoutingModule } from './broker-routing.module';
 import { AddUserComponent } from './add-user/add-user.component';
 import { AddUserlistComponent } from './add-userlist/add-userlist.component';
