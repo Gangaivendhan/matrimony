@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {PlatformModule} from '@angular/cdk/platform';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FakeDbService } from '@fake-db/fake-db.service';
@@ -85,12 +86,13 @@ const appRoutes: Routes = [
         ContextMenuComponent,
         BasicCustomContextMenuComponent,
         AnimatedCustomContextMenuComponent,
-        SubMenuCustomContextMenuComponent
+        SubMenuCustomContextMenuComponent,
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
+      
         HttpClientInMemoryWebApiModule.forRoot(FakeDbService, {
             delay: 0,
             passThruUnknownUrl: true

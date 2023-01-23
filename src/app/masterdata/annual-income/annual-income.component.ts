@@ -1,39 +1,41 @@
-
-  import { Component, OnInit, ViewEncapsulation} from '@angular/core';
-  import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
-  import { MatPaginator } from '@angular/material/paginator';
-  import { MatTableDataSource } from '@angular/material/table';
-  import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-  import { Router, ActivatedRoute, Route } from '@angular/router';
-  import { Inject } from '@angular/core';
-  import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-  import { Subject } from 'rxjs';
-  import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
-  import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
-  import { StarserviceService } from './starservice.service';
-  @Component({
-  selector: 'app-star',
-  templateUrl: './star.component.html',
-  styleUrls: ['./star.component.scss'],
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Router, ActivatedRoute, Route } from '@angular/router';
+import { Inject } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
+import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
+import { AnnualIncomeService } from './annual-income.service';
+@Component({
+  selector: 'app-annual-income',
+  templateUrl: './annual-income.component.html',
+  styleUrls: ['./annual-income.component.scss'],
   encapsulation: ViewEncapsulation.None
-})
 
-export class StarComponent implements OnInit {
-  starForm!: FormGroup;
+})
+export class AnnualIncomeComponent {
+  annualincomeForm!: FormGroup;
   public Submitted = false;
   Status = [
     { id: 1, name: 'ACTIVE' },
     { id: 2, name: 'INACTIVE' },
 
   ];
+
+
+  
   public rows: any;
   public selected = [];
   public basicSelectedOption: number = 10;
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
   public exportCSVData;
-  datalist:any
-  columns:any
+  datalist:any;
+  columns:any;
   paramId :any;
   obj:any={};
 
@@ -44,13 +46,13 @@ export class StarComponent implements OnInit {
 
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
-    private service: StarserviceService,
+    private service: AnnualIncomeService,
     private route: Router,
     private router: ActivatedRoute,
-) { }
+    ) { }
 
   ngOnInit() {
-    this.starForm = this.fb.group({
+    this.annualincomeForm = this.fb.group({
       id: [''],
       name: ['',Validators.required],
       description: ['',Validators.required],
@@ -83,28 +85,24 @@ export class StarComponent implements OnInit {
       { name: 'status' },
       { name: 'Action' }
     ];
-    this.get();
+this.get();
   }
   get f(): { [key: string]: AbstractControl } {
-    return this.starForm.controls;
+    return this.annualincomeForm.controls;
   }
   editBranch(id: any, content: any) {
-    console.log(id)
-      // for (let i = 0; i < element.length; i++) {
-      //   var id = element[i].id;
-      //   console.log(id);
-        
-      // }
-    this.service.getId(id).subscribe(res => {
-      console.log(res)
-      this.obj = res.data
-      console.log(this.obj)
+    // for (let i = 0; i < element.length; i++) {
+    //   var id = element[i].id;
+    //   console.log(id);
       
-    })
-    this.modalService.open(content, { size: 'm' });
-  }
-
-
+    // }
+  this.service.getId(id).subscribe(res => {
+    console.log(res)
+    this.obj = res.data
+    console.log(this.obj)
+  })
+  this.modalService.open(content, { size: 'm' });
+}
 
 
   modalOpenVC(modalVC) {
@@ -115,30 +113,32 @@ export class StarComponent implements OnInit {
 
   onSubmit(modal:any) {
     this.Submitted = true;
-    if (this.starForm.value.status === true) {
-      this.starForm.value.status = 'ACTIVE'
+    if (this.annualincomeForm.value.status === true) {
+      this.annualincomeForm.value.status = 'ACTIVE'
     } else {
-      this.starForm.value.status = 'INACTIVE'
+      this.annualincomeForm.value.status = 'INACTIVE'
     }
-    console.log(this.starForm.value);
+    console.log(this.annualincomeForm.value);
     if (this.obj.id) {
-      this.starForm.value.id = this.obj.id;
-      this.service.updatedata(this.starForm.value)
+      this.annualincomeForm.value.id = this.obj.id;
+      this.service.updatedata(this.annualincomeForm.value)
         .subscribe(
           (res) => {
             modal.dismiss('cross click');
             console.log(res)
               this.get();
+              this.annualincomeForm.reset();
+
             }
         )
     }else{
     
-    this.service.postdata(this.starForm.value).subscribe(res => {
+    this.service.postdata(this.annualincomeForm.value).subscribe(res => {
       console.log(res)
       // this.toastr.success(res.message, ' Posted Successfully!');
       // this.route.navigate(['/masterdata/currency']);
       modal.dismiss('cross click')
-      this.starForm.reset();
+      this.annualincomeForm.reset();
       this.get();
     })
 
@@ -151,10 +151,18 @@ export class StarComponent implements OnInit {
         this.datalist = res.data
         // this.dataSource = new MatTableDataSource<any>(this.array);
         // this.dataSource.paginator = this.paginator;
-        // this.toastr.success(res.message, 'Uom get Successfully!');
-        this.exportCSVData = this.datalist;
+        // this.toastr.success(res.message, 'get Successfully!');
+        this.exportCSVData = this.datalist
+        this.annualincomeForm.reset();
       })
   }
+  // getIds(id: any) {
+  //   console.log(id);
+  //   this.service.getId(id).subscribe((res) => {
+  //     console.log(res);
+  //   });
+  // }
+
 
   filterUpdate(event) {
     const val = event.target.value.toLowerCase();
@@ -178,7 +186,4 @@ export class StarComponent implements OnInit {
       })
   
   }
-
 }
-
-

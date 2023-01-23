@@ -1,0 +1,31 @@
+.btn-primary,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: rgb(51, 20, 95) !important;
+}
+
+
+
+  @import '@core/scss/angular/libs/datatables.component.scss';
+
+.datatable-scroll {
+  width: auto !important;
+}
+
+// .ngx-datatable.bootstrap.core-bootstrap .datatable-header .datatable-header-cell-template-wrap {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   letter-spacing: 1px;
+// }
+// .ngx-datatable.fixed-row .datatable-scroll .datatable-body-row .datatable-body-cell, .ngx-datatable.fixed-row .datatable-scroll .datatable-body-row .datatable-body-group-cell {
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+//   justify-content: center;
+// }
+
+.example-form mat-slide-toggle {
+  margin: 8px 0;
+  display: block;
+}
