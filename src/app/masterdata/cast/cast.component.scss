@@ -1,4 +1,6 @@
 @import '../../../@core/scss/angular/libs/datatables.component.scss';
+@import '../../../@core/scss/angular/libs/toastr.component.scss';
+@import '../../../@core/scss/angular/libs/sweet-alerts.component.scss';
 
 .datatable-scroll {
   width: auto !important;
@@ -7,22 +9,16 @@
   margin: 8px 0;
   display: block;
 }
-.error{
-  color:red;
+.mat-mdc-slide-toggle.mat-accent{
+  --mdc-switch-selected-focus-state-layer-color: #7367f0;
+  --mdc-switch-selected-handle-color: #7367f0;
+  --mdc-switch-selected-hover-state-layer-color: #7367f0;
+  --mdc-switch-selected-pressed-state-layer-color: #7367f0;
+  --mdc-switch-selected-focus-handle-color: #7367f0;
+  --mdc-switch-selected-hover-handle-color: #7367f0;
+  --mdc-switch-selected-pressed-handle-color: #7367f0;
+  --mdc-switch-selected-focus-track-color: #7367f0;
+  --mdc-switch-selected-hover-track-color: #7367f0;
+  --mdc-switch-selected-pressed-track-color: #7367f0;
+  --mdc-switch-selected-track-color: #7367f0;
 }
-// .ngx-datatable.bootstrap.core-bootstrap .datatable-header .datatable-header-cell-template-wrap {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   letter-spacing: 1px;
-// }
-// .ngx-datatable.fixed-row .datatable-scroll .datatable-body-row .datatable-body-cell, .ngx-datatable.fixed-row .datatable-scroll .datatable-body-row .datatable-body-group-cell {
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   white-space: nowrap;
-//   justify-content: center;
-// }
-// .btn-toggle {
-//   top: 50%;
-//   transform: translateY(-50%);
-// }

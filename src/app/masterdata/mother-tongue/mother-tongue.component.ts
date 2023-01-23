@@ -32,16 +32,11 @@ export class MotherTongueComponent {
   public basicSelectedOption: number = 10;
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
-  public exportCSVData: any = []
-  datalist: any
-  columns: any
-  paramId: any;
-  obj: any = {};
-  // columns: ({ prop: string; name?: undefined; } | { name: string; prop?: undefined; })[];
-  // datalist: { name: string; gender: string; company: string; }[];
-
-
-
+  public exportCSVData = [];
+  datalist:any
+  columns:any
+  paramId :any;
+  obj:any={};
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
     private service: MotherTongueserviceService,
@@ -79,6 +74,7 @@ export class MotherTongueComponent {
     //   { name: 'Dany',description: 'good', status: 'Inactive' },
     //   { name: 'Molly',description: 'Bad', status: 'Active' },
     // ];
+      
     this.columns = [
       { prop: 'name' },
       { name: 'description' },
@@ -155,8 +151,9 @@ export class MotherTongueComponent {
       })
 
     }
-
-  }
+            }
+        
+          
 
 
   get() {

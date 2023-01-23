@@ -89,7 +89,7 @@ export class AppComponent implements OnInit, OnDestroy {
    */
   ngOnInit(): void {
     // Init wave effect (Ripple effect)
-    Waves.init();
+    // Waves.init();
 
     // Subscribe to config changes
     this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {

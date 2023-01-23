@@ -35,16 +35,11 @@ export class CurrencyComponent {
   public basicSelectedOption: number = 10;
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
-  public exportCSVData;
+  public exportCSVData = [];
   datalist: any
   columns: any;
   paramId :any;
   obj:any={};
-  // columns: ({ prop: string; name?: undefined; } | { name: string; prop?: undefined; })[];
-  // datalist: { name: string; gender: string; company: string; }[];
-
- 
-
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
     private service: CurrencyserviceService,
@@ -56,7 +51,7 @@ export class CurrencyComponent {
 
   ngOnInit() {
     this.currencyForm = this.fb.group({
-      // id: [''],
+      id: [''],
       name: [''],
       description: [''],
       status:['']
@@ -96,11 +91,6 @@ export class CurrencyComponent {
   }
   editBranch(id: any, content: any) {
     console.log(id)
-      // for (let i = 0; i < element.length; i++) {
-      //   var id = element[i].id;
-      //   console.log(id);
-        
-      // }
     this.service.getId(id).subscribe(res => {
       console.log(res)
       this.obj = res.data

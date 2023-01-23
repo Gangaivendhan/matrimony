@@ -41,28 +41,28 @@
           ></span>
         </ngb-alert>
 
-        <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+        <!-- <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
           <div class="alert-body">
             <p>{{ error }}</p>
           </div>
-        </ngb-alert>
+        </ngb-alert> -->
 
         <form class="auth-login-form mt-2" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label class="form-label" for="login-email">Email</label>
+            <label class="form-label" for="login-userName">userName</label>
             <input
               type="text"
-              formControlName="email"
+              formControlName="userName"
               class="form-control"
-              [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+              [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
               placeholder="admin@demo.com"
-              aria-describedby="login-email"
+              aria-describedby="login-userName"
               autofocus=""
               tabindex="1"
             />
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-              <div *ngIf="f.email.errors.required">Email is required</div>
-              <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+            <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+              <div *ngIf="f.userName.errors.required">userName is required</div>
+              <div *ngIf="f.userName.errors.userName">userName must be a valid userName address</div>
             </div>
           </div>
           <div class="form-group">
@@ -107,8 +107,11 @@
               <label class="custom-control-label" for="remember-me"> Remember Me</label>
             </div>
           </div>
-          <button [disabled]="loading" class="btn btn-primary btn-block" tabindex="4" rippleEffect>
-            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Sign in
+          <button 
+          
+           class="btn btn-primary btn-block" tabindex="4" rippleEffect >
+            <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> -->
+            Sign in
           </button>
         </form>
         <p class="text-center mt-2">

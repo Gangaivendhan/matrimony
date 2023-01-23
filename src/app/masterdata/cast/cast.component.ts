@@ -7,7 +7,6 @@ import { Router, ActivatedRoute, Route } from '@angular/router';
 import { Inject } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
-import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
 import { CasteserviceService } from './casteservice.service';
 import { ToastrService, GlobalConfig } from 'ngx-toastr';
@@ -21,28 +20,24 @@ import Swal from 'sweetalert2';
 export class CastComponent {
   castForm!: FormGroup;
   public Submitted = false;
-  Status = [
+  status = [
     { id: 1, name: 'ACTIVE' },
     { id: 2, name: 'INACTIVE' },
 
   ];
-
-
+  public contentHeader: object;
+  private toastRef: any;
+  private options: GlobalConfig;
   public rows: any;
   public selected = [];
   public basicSelectedOption: number = 10;
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
-  public exportCSVData;
+  public exportCSVData = [];
   datalist: any
   columns: any;
   paramId :any;
   obj:any={};
-  // columns: ({ prop: string; name?: undefined; } | { name: string; prop?: undefined; })[];
-  // datalist: { name: string; description: sgoodg; company: string; }[];
-
-
-
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
     private service: CasteserviceService,
@@ -52,35 +47,21 @@ export class CastComponent {
 
   ) { }
 
+    toastrProgressBar() {
+      this.toastr.success('Have fun storming the castle!', 'Progress Bar', {
+        progressBar: true,
+        toastClass: 'toast ngx-toastr',
+        closeButton: true
+      });
+    }
 
   ngOnInit() {
     this.castForm = this.fb.group({
-      // id: [''],
+      id: [''],
       casteName: ['', Validators.required],
       description: ['', Validators.required],
       status: ['', Validators.required]
     })
-    // this.datalist = [
-    //   { name: 'Austin', description: 'good', status: 'Active' },
-    //   { name: 'Dany', description: 'nice', status: 'Inactive' },
-    //   { name: 'Molly', description: 'good', status: 'Active' },
-    //   { name: 'Austin', description: 'Bad', status: 'Active' },
-    //   { name: 'Dany', description: 'good', status: 'Inactive' },
-    //   { name: 'Molly', description: 'Bad', status: 'Active' },
-    //   { name: 'Austin', description: 'good', status: 'Active' },
-    //   { name: 'Dany', description: 'good', status: 'Inactive' },
-    //   { name: 'Molly', description: 'Bad', status: 'Active' },
-    //   { name: 'Austin', description: 'good', status: 'Active' },
-    //   { name: 'Dany', description: 'good', status: 'Inactive' },
-    //   { name: 'Molly', description: 'Bad', status: 'Active' },
-    //   { name: 'Austin', description: 'good', status: 'Active' },
-    //   { name: 'Dany', description: 'good', status: 'Inactive' },
-    //   { name: 'Molly', description: 'Bad', status: 'Active' },
-    //   { name: 'Austin', description: 'good', status: 'Active' },
-    //   { name: 'Dany', description: 'good', status: 'Inactive' },
-    //   { name: 'Molly', description: 'Bad', status: 'Active' },
-    // ];
-  
     this.columns = [
       { prop: 'casteName' },
       { name: 'description' },
@@ -94,15 +75,7 @@ export class CastComponent {
   get f(): { [key: string]: AbstractControl } {
     return this.castForm.controls;
   }
-  // open(Subject:any) {
-  //   this.modalService.open(Subject, { size: 'm' });
-  // }
   editBranch(id: any, content: any) {
-      // for (let i = 0; i < element.length; i++) {
-      //   var id = element[i].id;
-      //   console.log(id);
-        
-      // }
     this.service.getId(id).subscribe(res => {
       console.log(res)
       this.obj = res.data
@@ -111,8 +84,6 @@ export class CastComponent {
     })
     this.modalService.open(content, { size: 'm' });
   }
-
-
   modalOpenVC(modalVC) {
     this.modalService.open(modalVC, {
       centered: true
@@ -143,8 +114,6 @@ export class CastComponent {
     
     this.service.postdata(this.castForm.value).subscribe(res => {
       console.log(res)
-      // this.toastr.success(res.message, ' Posted Successfully!');
-      // this.route.navigate(['/masterdata/currency']);
       modal.dismiss('cross click');
       this.toastr.success("Submitted Successfully!")
 
@@ -159,19 +128,9 @@ export class CastComponent {
       res => {
         console.log(res)
         this.datalist = res.data
-        // this.dataSource = new MatTableDataSource<any>(this.array);
-        // this.dataSource.paginator = this.paginator;
-        // this.toastr.success(res.message, 'Uom get Successfully!');
         this.exportCSVData = this.datalist
       })
   }
-  // getIds(id: any) {
-  //   console.log(id);
-  //   this.service.getId(id).subscribe((res) => {
-  //     console.log(res);
-  //   });
-  // }
-
 
   filterUpdate(event) {
     const val = event.target.value.toLowerCase();
@@ -212,4 +171,7 @@ export class CastComponent {
   
   
   }
+  
+  
 }
+

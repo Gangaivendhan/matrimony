@@ -35,16 +35,11 @@ export class BrokerComponent {
   public basicSelectedOption: number = 10;
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
-  public exportCSVData;
+  public exportCSVData = [];
   datalist:any
   columns:any;
   paramId :any;
   obj:any={};
-
-  // columns: ({ prop: string; name?: undefined; } | { name: string; prop?: undefined; })[];
-  // datalist: { name: string; gender: string; company: string; }[];
-
- 
 
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
@@ -57,7 +52,7 @@ export class BrokerComponent {
 
   ngOnInit() {
     this.brokerForm = this.fb.group({
-      // id: [''],
+      id: [''],
       firstName: [''],
       lastName: [''],
       mobileNumber:[''],
