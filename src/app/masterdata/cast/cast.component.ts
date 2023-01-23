@@ -10,7 +10,8 @@ import { Subject } from 'rxjs';
 import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
 import { CasteserviceService } from './casteservice.service';
-
+import { ToastrService, GlobalConfig } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-cast',
   templateUrl: './cast.component.html',
@@ -47,6 +48,8 @@ export class CastComponent {
     private service: CasteserviceService,
     private route: Router,
     private router: ActivatedRoute,
+    private toastr: ToastrService,
+
   ) { }
 
 
@@ -130,6 +133,8 @@ export class CastComponent {
         .subscribe(
           (res) => {
             modal.dismiss('cross click');
+            this.toastr.success("Updated Successfully!")
+
             console.log(res)
               this.get();
             }
@@ -141,6 +146,8 @@ export class CastComponent {
       // this.toastr.success(res.message, ' Posted Successfully!');
       // this.route.navigate(['/masterdata/currency']);
       modal.dismiss('cross click');
+      this.toastr.success("Submitted Successfully!")
+
       this.castForm.reset();
       this.get();
     })
@@ -179,13 +186,30 @@ export class CastComponent {
     }
   }
   rejected(id:any){
-    alert("data is deleted")
-    this.service.deleteData(id).subscribe(
-      res => {
-        this.get()
-        console.log(res)
-      
-      })
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#7367F0',
+      cancelButtonColor: '#E42728',
+      confirmButtonText: 'Yes, delete it!',
+      customClass: {
+        confirmButton: 'btn btn-primary',
+        cancelButton: 'btn btn-danger ml-1'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.deleteData(id).subscribe(
+          res => {
+            Swal.fire('deleted successfully!', '', 'success')
+            this.get()
+          })
+  
+      }
+    })
+  
+  
   
   }
 }

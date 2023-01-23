@@ -10,7 +10,8 @@ import { Subject } from 'rxjs';
 import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
 import { BrokerserviceService } from './brokerservice.service';
-
+import { ToastrService, GlobalConfig } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-broker',
   templateUrl: './broker.component.html',
@@ -50,6 +51,7 @@ export class BrokerComponent {
     private service: BrokerserviceService,
     private route: Router,
     private router: ActivatedRoute,
+    private toastr: ToastrService,
 
 ) { }
 
@@ -131,6 +133,7 @@ onSubmit(modal:any) {
       .subscribe(
         (res) => {
           modal.dismiss('cross click');
+          this.toastr.success("Updated Successfully!")
           console.log(res)
             this.get();
             this.brokerForm.reset();
@@ -142,7 +145,9 @@ onSubmit(modal:any) {
     console.log(res)
     // this.toastr.success(res.message, 'Posted Successfully!');
     // this.route.navigate(['/masterdata/currency']);
-    modal.dismiss('cross click')
+    modal.dismiss('cross click');
+    this.toastr.success("submitted Successfully!")
+
     this.brokerForm.reset();
     this.get();
   })
@@ -181,13 +186,31 @@ filterUpdate(event) {
   }
 }
 rejected(id:any){
-  alert("data is deleted")
-  this.service.deleteData(id).subscribe(
-    res => {
-      this.get()
-      console.log(res)
-    
-    })
+  
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#7367F0',
+    cancelButtonColor: '#E42728',
+    confirmButtonText: 'Yes, delete it!',
+    customClass: {
+      confirmButton: 'btn btn-primary',
+      cancelButton: 'btn btn-danger ml-1'
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.service.deleteData(id).subscribe(
+        res => {
+          Swal.fire('deleted successfully!', '', 'success')
+          this.get()
+        })
+
+    }
+  })
+
+
 
 }
 }

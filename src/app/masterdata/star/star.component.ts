@@ -1,17 +1,19 @@
 
-  import { Component, OnInit, ViewEncapsulation} from '@angular/core';
-  import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
-  import { MatPaginator } from '@angular/material/paginator';
-  import { MatTableDataSource } from '@angular/material/table';
-  import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-  import { Router, ActivatedRoute, Route } from '@angular/router';
-  import { Inject } from '@angular/core';
-  import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-  import { Subject } from 'rxjs';
-  import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
-  import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
-  import { StarserviceService } from './starservice.service';
-  @Component({
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Router, ActivatedRoute, Route } from '@angular/router';
+import { Inject } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
+import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
+import { StarserviceService } from './starservice.service';
+import { ToastrService, GlobalConfig } from 'ngx-toastr';
+import Swal from 'sweetalert2';
+@Component({
   selector: 'app-star',
   templateUrl: './star.component.html',
   styleUrls: ['./star.component.scss'],
@@ -31,111 +33,70 @@ export class StarComponent implements OnInit {
   public basicSelectedOption: number = 10;
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
-  public exportCSVData;
-  datalist:any
-  columns:any
-  paramId :any;
-  obj:any={};
-
-  // columns: ({ prop: string; name?: undefined; } | { name: string; prop?: undefined; })[];
-  // datalist: { name: string; gender: string; company: string; }[];
-
- 
+  public exportCSVData: any = []
+  datalist: any
+  columns: any
+  paramId: any;
+  obj: any = {};
+  private toastRef: any;
+  private options: GlobalConfig;
+  timerInterval: NodeJS.Timeout;
+  
+  
 
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
     private service: StarserviceService,
     private route: Router,
     private router: ActivatedRoute,
-) { }
+    private toastr: ToastrService,
+
+  ) {   this.options = this.toastr.toastrConfig;
+
+  }
 
   ngOnInit() {
-
-    this.datalist = [
-      { name: 'Austin',gender: 'Male', status: 'Active' },
-      { name: 'Dany',gender: 'Male', status: 'Inactive' },
-      { name: 'Molly',gender: 'Female', status: 'Active' },
-      { name: 'Austin',gender: 'Male', status: 'Active' },
-      { name: 'Dany',gender: 'Male', status: 'Inactive' },
-      { name: 'Molly',gender: 'Female', status: 'Active' },
-      { name: 'Austin',gender: 'Male', status: 'Active' },
-      { name: 'Dany',gender: 'Male', status: 'Inactive' },
-      { name: 'Molly',gender: 'Female', status: 'Active' },
-      { name: 'Austin',gender: 'Male', status: 'Active' },
-      { name: 'Dany',gender: 'Male', status: 'Inactive' },
-      { name: 'Molly',gender: 'Female', status: 'Active' },
-      { name: 'Austin',gender: 'Male', status: 'Active' },
-      { name: 'Dany',gender: 'Male', status: 'Inactive' },
-      { name: 'Molly',gender: 'Female', status: 'Active' },
-      { name: 'Austin',gender: 'Male', status: 'Active' },
-      { name: 'Dany',gender: 'Male', status: 'Inactive' },
-      { name: 'Molly',gender: 'Female', status: 'Active' },
-    ];
+    this.starForm = this.fb.group({
+      id: [''],
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      status: ['', Validators.required]
+    })
     this.columns = [
       { prop: 'name' },
       { name: 'description' },
       { name: 'status' },
       { name: 'Action' }
     ],
-    this.starForm = this.fb.group({
-      id: [''],
-      name: ['',Validators.required],
-      description: ['',Validators.required],
-      status:['',Validators.required]
-    })
-   
-    // this.datalist = [
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'nice', status: 'Inactive' },
-    //   { name: 'Molly',description: 'good', status: 'Active' },
-    //   { name: 'Austin',description: 'Bad', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    // ];
-  
-    this.get()
+      
+
+      this.get()
   }
   get f(): { [key: string]: AbstractControl } {
     return this.starForm.controls;
   }
   editBranch(id: any, content: any) {
     console.log(id)
-      // for (let i = 0; i < element.length; i++) {
-      //   var id = element[i].id;
-      //   console.log(id);
-        
-      // }
+   
     this.service.getId(id).subscribe(res => {
       console.log(res)
       this.obj = res.data
       console.log(this.obj)
-      
+
     })
     this.modalService.open(content, { size: 'm' });
   }
 
+ 
 
 
-
-  modalOpenVC(modalVC) {
+  modalOpenVC(modalVC: any) {
     this.modalService.open(modalVC, {
       centered: true
     });
   }
 
-  onSubmit(modal:any) {
+  onSubmit(modal: any) {
     this.Submitted = true;
     if (this.starForm.value.status === true) {
       this.starForm.value.status = 'ACTIVE'
@@ -149,23 +110,26 @@ export class StarComponent implements OnInit {
         .subscribe(
           (res) => {
             modal.dismiss('cross click');
+            this.toastr.success("Updated Successfully!")
             console.log(res)
-              this.get();
-            }
+            this.get();
+          }
         )
-    }else{
-    
-    this.service.postdata(this.starForm.value).subscribe(res => {
-      console.log(res)
-      // this.toastr.success(res.message, ' Posted Successfully!');
-      // this.route.navigate(['/masterdata/currency']);
-      modal.dismiss('cross click')
-      this.starForm.reset();
-      this.get();
-    })
+    } else {
 
+      this.service.postdata(this.starForm.value).subscribe(res => {
+        console.log(res)
+        // this.toastr.success(res.message, ' Posted Successfully!');
+        // this.route.navigate(['/masterdata/currency']);
+
+        modal.dismiss('cross click');
+        this.toastr.success("Submitted Successfully!")
+        this.starForm.reset();
+        this.get();
+      })
+
+    }
   }
-}
   get() {
     this.service.getdata().subscribe(
       res => {
@@ -190,15 +154,40 @@ export class StarComponent implements OnInit {
       this.datalist = this.datalist;
     }
   }
-  rejected(id:any){
-    alert("data is deleted")
-    this.service.deleteData(id).subscribe(
-      res => {
-        this.get()
-        console.log(res)
-      
-      })
+  reject(id: any) {
+   
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#7367F0',
+      cancelButtonColor: '#E42728',
+      confirmButtonText: 'Yes, delete it!',
+      customClass: {
+        confirmButton: 'btn btn-primary',
+        cancelButton: 'btn btn-danger ml-1'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.deleteData(id).subscribe(
+          res => {
+            Swal.fire('deleted successfully!', '', 'success')
+            this.get()
+          })
   
+      }
+    })
+  
+  
+  
+  }
+  toastrProgressBar() {
+    this.toastr.success('Have fun storming the castle!', 'Progress Bar', {
+      progressBar: true,
+      toastClass: 'toast ngx-toastr',
+      closeButton: true
+    });
   }
 
 }

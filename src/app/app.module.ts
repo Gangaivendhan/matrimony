@@ -76,6 +76,13 @@ const appRoutes: Routes = [
   },
   {
     
+    path: 'broker',
+    loadChildren: () => import('./broker/broker.module').then(m=>m.BrokerModule),
+    canActivate: [AuthGuard]
+  },
+  
+  {
+    
     path: 'tables',
     loadChildren: () => import('./main/tables/tables.module').then(m => m.TablesModule),
     canActivate: [AuthGuard]
