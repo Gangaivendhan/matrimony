@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validator, Validators, AbstractControl } from '
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import { ActivatedRoute } from '@angular/router';
 import { RasiStarService } from './rasi-star.service';
+import { ToastrService, GlobalConfig } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-raasi-star',
   templateUrl: './raasi-star.component.html',
@@ -35,7 +37,10 @@ export class RaasiStarComponent implements OnInit {
 
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
-    private raasiservice: RasiStarService) { }
+    private raasiservice: RasiStarService,
+    private toastr: ToastrService) { }
+
+
 
   ngOnInit(): void {
     this.raasiFrom = this.fb.group({
@@ -82,7 +87,8 @@ export class RaasiStarComponent implements OnInit {
         console.log(res);
         // this.toaster.success(res.data);
         this.get();
-        modal.dismiss('cross click')
+        modal.dismiss('cross click');
+        this.toastr.success("Updated Successfully!")
         this.raasiFrom.reset();
       });
     }
@@ -92,7 +98,8 @@ export class RaasiStarComponent implements OnInit {
           console.log(res);
           // this.toaster.success(res.data)
           this.get();
-          modal.dismiss('cross click')
+          modal.dismiss('cross click');
+          this.toastr.success("Submitted Successfully!")
           this.raasiFrom.reset();
         });
     }
@@ -122,13 +129,32 @@ export class RaasiStarComponent implements OnInit {
   }
 
   reject(id: any) {
-    this.raasiservice.deleteData(id).subscribe((res) => {
-      console.log(res);
-      // console.log(res.data);
-      // console.log(res.data.data);
-      this.get();
-      // this.toaster.success(res.data)
+   
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#7367F0',
+      cancelButtonColor: '#E42728',
+      confirmButtonText: 'Yes, delete it!',
+      customClass: {
+        confirmButton: 'btn btn-primary',
+        cancelButton: 'btn btn-danger ml-1'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.raasiservice.deleteData(id).subscribe(
+          res => {
+            Swal.fire('deleted successfully!', '', 'success')
+            this.get()
+          })
+  
+      }
     })
+  
+  
+  
   }
 
   editBranch(id: any, content: any) {

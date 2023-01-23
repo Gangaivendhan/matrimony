@@ -7,11 +7,11 @@ import { Router } from '@angular/router';
 })
 export class StarserviceService {
   private baseUrl = environment.apiUrl;
-  private starpost = this.baseUrl+"/api/matStar/create";
-  private starget = this.baseUrl+"/api/matStar/getAllStars";
-  private stargetId = this.baseUrl+"/api/matStar/getStarInfo";
-  private starupdate = this.baseUrl+"/api/matStar/update";
-  private stardelete = this.baseUrl+"/api/matStar/delete";
+  private starpost = this.baseUrl+"/api/star/create";
+  private starget = this.baseUrl+" /api/star/getAllStars";
+  private stargetId = this.baseUrl+"/api/star/getActiveStarInfo";
+  private starupdate = this.baseUrl+"/api/star/update";
+  private stardelete = this.baseUrl+"/api/star/delete";
   constructor(private http: HttpClient,
     private router: Router
 ) { }

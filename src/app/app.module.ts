@@ -48,9 +48,22 @@ const appRoutes: Routes = [
     // canActivate: [AuthGuard]
   },
   {
+    path: 'components',
+    loadChildren: () => import('./main/components/components.module').then(m => m.ComponentsModule)
+  },
+  
+  {
+    path: 'forms',
+    loadChildren: () => import('./main/forms/forms.module').then(m => m.FormsModule)
+  },
+  {
     path: 'masterdata',
     loadChildren: () => import('./masterdata/masterdata.module').then(m => m.MasterdataModule),
     // canActivate: [AuthGuard]
+  },
+  {
+    path: 'horizontal',
+    loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule)
   },
   {
     path: 'ui',
@@ -63,6 +76,13 @@ const appRoutes: Routes = [
     loadChildren: () => import('./main/extensions/extensions.module').then(m => m.ExtensionsModule),
     canActivate: [AuthGuard]
   },
+  {
+    
+    path: 'broker',
+    loadChildren: () => import('./broker/broker.module').then(m=>m.BrokerModule),
+    canActivate: [AuthGuard]
+  },
+  
   {
     
     path: 'tables',

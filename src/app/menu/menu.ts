@@ -79,12 +79,14 @@ export const menu: CoreMenu[] = [
       //   url: 'apps/calendar'
       // },
       
+     
+     
       {
         id: 'Masterdata',
         title: 'Masterdata',
         translate: 'MENU.PAGES.SECTION',
         type: 'collapsible',
-        icon: 'file-text',
+        icon: 'database',
         children: [
           {
             id: 'religion',
@@ -178,6 +180,31 @@ export const menu: CoreMenu[] = [
       //     },
         ],
       },
+      {
+        id: 'broker',
+        title: 'Broker',
+        translate: 'MENU.PAGES.SECTION',
+        type: 'collapsible',
+        icon: 'user-plus',
+        children: [
+          {
+            id: 'brokerlog',
+            title: 'Add-user',
+            translate: 'MENU.PAGES.PROFILE',
+            type: 'item',
+            icon: 'circle',
+            url: 'broker/add-user'
+           
+          },
+          {
+            id: 'brokerlog',
+            title: 'Add-userlist',
+            translate: 'MENU.PAGES.PROFILE',
+            type: 'item',
+            icon: 'circle',
+            url: 'broker/add-userlist'
+           
+          }]},
       {
         id: 'pages',
         title: 'Pages',
