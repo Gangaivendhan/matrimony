@@ -3,8 +3,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
 import { ProfileService } from 'app/main/pages/profile/profile.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +14,18 @@ import { ProfileService } from 'app/main/pages/profile/profile.service';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   // public
+  // public carouselImages = {
+  //   one: 'assets/images/slider/01.jpg',
+  //   two: 'assets/images/slider/02.jpg',
+  //   three: 'assets/images/slider/03.jpg',
+  //   four: 'assets/images/slider/04.jpg',
+  //   five: 'assets/images/slider/05.jpg',
+  //   six: 'assets/images/slider/06.jpg'
+  // };
+  
+  
+ 
+  
   public contentHeader: object;
   public data: any;
   public toggleMenu = true;
@@ -29,7 +41,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
    *
    * @param {PricingService} _pricingService
    */
-  constructor(private _pricingService: ProfileService, private sanitizer: DomSanitizer) {
+  constructor(private _pricingService: ProfileService, private sanitizer: DomSanitizer,private toastr:ToastrService) {
     this._unsubscribeAll = new Subject();
   }
 
@@ -44,6 +56,22 @@ export class ProfileComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.loadMoreRef = !this.loadMoreRef;
     }, 2000);
+  }
+  toastrProgressBar() {
+    this.toastr.success('Have fun storming the castle!', 'Progress Bar', {
+      progressBar: true,
+      toastClass: 'toast ngx-toastr',
+      closeButton: true
+    });
+  }
+
+  // Clear Toast Button
+  toastrClearToastButton() {
+    this.toastr.info('Clear itself?<br><br><span class="btn btn-info clear">Yes</span>', 'Clear Toast Button', {
+      enableHtml: true,
+      toastClass: 'toast ngx-toastr',
+      closeButton: true
+    });
   }
 
   // Lifecycle Hooks

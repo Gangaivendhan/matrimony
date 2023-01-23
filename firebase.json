@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/vuexy",
+    "public": "dist/Matrimony",
     "ignore": [
       "firebase.json",
       "**/.*",

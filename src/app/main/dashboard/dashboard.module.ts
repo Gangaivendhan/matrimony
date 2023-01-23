@@ -18,7 +18,15 @@ import { DashboardService } from 'app/main/dashboard/dashboard.service';
 
 import { AnalyticsComponent } from 'app/main/dashboard/analytics/analytics.component';
 import { EcommerceComponent } from 'app/main/dashboard/ecommerce/ecommerce.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SwiperConfigInterface, SwiperModule, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { ProfileService } from '../pages/profile/profile.service';
 
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  observer: true
+};
 const routes = [
   {
     path: 'analytics',
@@ -37,11 +45,19 @@ const routes = [
       css: DashboardService
     },
     data: { animation: 'decommerce' }
+  },
+  {
+    path: '',
+    component: DashboardComponent,
+    // canActivate: [AuthGuard],
+    // resolve: {
+    //   css: DashboardService
+    // },
   }
 ];
 
 @NgModule({
-  declarations: [AnalyticsComponent, EcommerceComponent],
+  declarations: [AnalyticsComponent, EcommerceComponent, DashboardComponent, ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -50,8 +66,16 @@ const routes = [
     PerfectScrollbarModule,
     CoreCommonModule,
     NgApexchartsModule,
+    SwiperModule,
+    
   ],
-  providers: [DashboardService],
-  exports: [EcommerceComponent]
+  providers: [
+    {
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
+    },
+    ProfileService
+  ],
+  exports: [EcommerceComponent],
 })
 export class DashboardModule {}

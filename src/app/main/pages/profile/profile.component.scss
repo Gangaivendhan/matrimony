@@ -1,1 +1,9 @@
 @import '@core/scss/base/pages/page-profile';
+@import '@core/scss/angular/libs/toastr.component.scss';
+
+
+.editbtn{
+    cursor: pointer;
+    float: right;
+    margin-right: 5%;
+}
