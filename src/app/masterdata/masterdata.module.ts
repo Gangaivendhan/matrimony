@@ -33,6 +33,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { SweetAlertsModule } from 'app/main/extensions/sweet-alerts/sweet-alerts.module';
 import { ToastrsModule } from 'app/main/extensions/toastr/toastr.module';
 
+
 @NgModule({
   declarations: [
     StarComponent,
@@ -70,8 +71,8 @@ import { ToastrsModule } from 'app/main/extensions/toastr/toastr.module';
     MatSlideToggleModule,
     MatPaginatorModule,
     SweetAlert2Module.forRoot(),
-    SweetAlertsModule
-
+    SweetAlertsModule,
+    ToastrModule.forRoot()
   ]
 })
 export class MasterdataModule { }

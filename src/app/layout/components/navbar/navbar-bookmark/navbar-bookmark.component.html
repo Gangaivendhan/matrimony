@@ -51,7 +51,7 @@
               <button
                 type="button"
                 class="btn p-0"
-                (click)="$event.stopPropagation(); $event.preventDefault(); toggleBookmark(page.id)"
+                (click)="$event.stopPropagation(); $event.preventDefault(); toggleBookmark(page.id)" 
               >
                 <i class="feather icon-star" [class.text-warning]="page.isBookmarked"></i>
               </button>

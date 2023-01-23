@@ -47,13 +47,13 @@ export class AuthenticationService {
   /**
    * User login
    *
-   * @param email
+   * @param userName
    * @param password
    * @returns user
    */
-  login(email: string, password: string) {
+  login(userName: string, password: string) {
     return this._http
-      .post<any>(`${environment.apiUrl}/users/authenticate`, { email, password })
+      .post<any>(`${environment.apiUrl}/auth/login`, { userName, password })
       .pipe(
         map(user => {
           // login successful if there's a jwt token in the response
@@ -66,7 +66,7 @@ export class AuthenticationService {
               this._toastrService.success(
                 'You have successfully logged in as an ' +
                   user.role +
-                  ' user to Vuexy. Now you can start to explore. Enjoy! 🎉',
+                  ' user to Matrimony. Now you can start to explore. Enjoy! 🎉',
                 '👋 Welcome, ' + user.firstName + '!',
                 { toastClass: 'toast ngx-toastr', closeButton: true }
               );

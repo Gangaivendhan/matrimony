@@ -1,8 +1,9 @@
+
 <ng-template #modalVC let-modal>
     <form (ngSubmit)="onSubmit(modal)" [formGroup]="starForm">
         <div class="modal-header justify-content-center">
             <h4 class="modal-title"><b>Star</b> </h4>
-            <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+            <button type="reset" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -94,11 +95,13 @@
                     <div class="d-flex">
                         <a  (click)="editBranch(value,modalVC)">
                         <i data-feather="edit" class="text-primary mx-1 cursor-pointer d-flex align-items-center"></i></a>
-                        <a (click)="rejected(value)" class="text-danger d-flex align-items-center"><i data-feather="trash-2" class="mr-50"></i>
+                        <a (click)="rejected(value)"
+                        class="text-danger d-flex align-items-center"><i data-feather="trash-2" class="mr-50"></i>
                         </a>
                     </div>
                 </ng-template>
             </ngx-datatable-column>
         </ngx-datatable>
     </div>
+    
 </section>

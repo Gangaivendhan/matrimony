@@ -40,15 +40,30 @@ const appRoutes: Routes = [
   {
     path: 'apps',
     loadChildren: () => import('./main/apps/apps.module').then(m => m.AppsModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'pages',
-    loadChildren: () => import('./main/pages/pages.module').then(m => m.PagesModule)
+    loadChildren: () => import('./main/pages/pages.module').then(m => m.PagesModule),
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: 'components',
+    loadChildren: () => import('./main/components/components.module').then(m => m.ComponentsModule)
+  },
+  
+  {
+    path: 'forms',
+    loadChildren: () => import('./main/forms/forms.module').then(m => m.FormsModule)
   },
   {
     path: 'masterdata',
-    loadChildren: () => import('./masterdata/masterdata.module').then(m => m.MasterdataModule)
+    loadChildren: () => import('./masterdata/masterdata.module').then(m => m.MasterdataModule),
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: 'horizontal',
+    loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule)
   },
   {
     path: 'ui',
@@ -63,12 +78,19 @@ const appRoutes: Routes = [
   },
   {
     
+    path: 'broker',
+    loadChildren: () => import('./broker/broker.module').then(m=>m.BrokerModule),
+    canActivate: [AuthGuard]
+  },
+  
+  {
+    
     path: 'tables',
     loadChildren: () => import('./main/tables/tables.module').then(m => m.TablesModule),
     canActivate: [AuthGuard]
   },
-  {
-   
+
+    {
     path: '',
     redirectTo: '/pages/profile',
     pathMatch: 'full'
