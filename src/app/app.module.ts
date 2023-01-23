@@ -70,7 +70,7 @@ const appRoutes: Routes = [
   {
    
     path: '',
-    redirectTo: '/dashboard/profile',
+    redirectTo: '/pages/profile',
     pathMatch: 'full'
   },
   {
