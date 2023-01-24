@@ -1,1 +1,57 @@
-<p>add-userlist works!</p>
+<section id="ngx-datatable-kitchen-sink">
+    <div class="card">
+    <h4 class="card-title mx-1 mt-2"><b>Manage Broker</b></h4>
+        <div class="row">
+            <div class="col-12 mb-50">
+                <button class="btn btn-primary ml-1"  rippleEffect>
+                    <i data-feather="plus" class="mr-0 mr-sm-1"></i><span class="d-none d-sm-inline-block">Add
+                        Broker</span>
+                </button>
+                <a csvLink [data]="exportCSVData" class="btn btn-outline-secondary float-right mr-1" rippleEffect>Export
+                CSV</a>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="d-flex justify-content-between align-items-center m-1">
+                    <label class="d-flex align-items-center">Show
+                        <select class="form-control mx-25" [(ngModel)]="basicSelectedOption">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                      entries</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-12 d-flex justify-content-md-end">
+                <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pl-1 pl-md-0 pb-md-0 ">
+                    <input type="search" placeholder="Search" class="form-control ml-25"
+                     (keyup)="filterUpdate($event)" />
+                </div>
+            </div>
+        </div>
+        <ngx-datatable [rows]="datalist" [rowHeight]="58" class="bootstrap core-bootstrap text-dark" [limit]="10"
+            [columnMode]="ColumnMode.force" [headerHeight]="40" [footerHeight]="50" [scrollbarH]="true"
+            [columns]="columns" [selectionType]="SelectionType.checkbox" [limit]="basicSelectedOption">
+            <ngx-datatable-column name="First Name" prop="firstName" [width]="250"></ngx-datatable-column>
+            <ngx-datatable-column name="Last Name" prop="lastName" [width]="120"></ngx-datatable-column>
+            <ngx-datatable-column name="Mobile" prop="mobileNumber" [width]="120"></ngx-datatable-column>
+            <ngx-datatable-column name="Email" prop="email" [width]="120"></ngx-datatable-column>
+            <ngx-datatable-column name="AddressLine1" prop="addressLine1" [width]="120"></ngx-datatable-column>
+            <ngx-datatable-column name="AddressLine2" prop="addressLine2" [width]="120"></ngx-datatable-column>
+            <ngx-datatable-column name="Country" prop="country" [width]="120"></ngx-datatable-column>
+            <ngx-datatable-column name="State" prop="state" [width]="120"></ngx-datatable-column>
+            <ngx-datatable-column name="City" prop="city" [width]="120"></ngx-datatable-column>
+            <ngx-datatable-column name="Status" prop="status" [width]="120"></ngx-datatable-column>
+            <ngx-datatable-column name="Actions" [width]="120" [sortable]="false">
+                <ng-template ngx-datatable-cell-template>
+                    <div class="d-flex">
+                        <a  (click)="editBranch(value,modalVC)">
+                        <i data-feather="edit" class="text-primary mx-1 cursor-pointer d-flex align-items-center"></i></a>
+                        <a (click)="rejected(value)" class="text-danger d-flex align-items-center"><i data-feather="trash-2" class="mr-50"></i>
+                        </a>
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
+</section>

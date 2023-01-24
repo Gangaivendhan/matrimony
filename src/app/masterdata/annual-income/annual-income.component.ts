@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -27,54 +27,54 @@ export class AnnualIncomeComponent {
     { id: 2, name: 'INACTIVE' },
 
   ];
-  
+
   public rows: any;
   public selected = [];
   public basicSelectedOption: number = 10;
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
   public exportCSVData = [];
-  datalist:any;
-  columns:any;
-  paramId :any;
-  obj:any={};
+  datalist: any;
+  columns: any;
+  paramId: any;
+  obj: any = {};
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
     private service: AnnualIncomeService,
     private route: Router,
     private router: ActivatedRoute,
     private toastr: ToastrService,
-    
 
-    ) { }
+
+  ) { }
 
   ngOnInit() {
     this.annualincomeForm = this.fb.group({
       id: [''],
-      name: ['',Validators.required],
-      description: ['',Validators.required],
-      status:['',Validators.required]
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      status: ['', Validators.required]
     })
-   
+
     this.columns = [
-      { prop: 'name' },
+      { prop: 'names' },
       { name: 'description' },
       { name: 'status' },
       { name: 'Action' }
     ];
-this.get();
+    this.get();
   }
   get f(): { [key: string]: AbstractControl } {
     return this.annualincomeForm.controls;
   }
   editBranch(id: any, content: any) {
-  this.service.getId(id).subscribe(res => {
-    console.log(res)
-    this.obj = res.data
-    console.log(this.obj)
-  })
-  this.modalService.open(content, { size: 'm' });
-}
+    this.service.getId(id).subscribe(res => {
+      console.log(res)
+      this.obj = res.data
+      console.log(this.obj)
+    })
+    this.modalService.open(content, { size: 'm' });
+  }
 
 
   modalOpenVC(modalVC) {
@@ -83,7 +83,7 @@ this.get();
     });
   }
 
-  onSubmit(modal:any) {
+  onSubmit(modal: any) {
     this.Submitted = true;
     if (this.annualincomeForm.value.status === true) {
       this.annualincomeForm.value.status = 'ACTIVE'
@@ -100,36 +100,36 @@ this.get();
             this.toastr.success("Updated Successfully!")
 
             console.log(res)
-              this.get();
-              this.annualincomeForm.reset();
+            this.get();
+            this.annualincomeForm.reset();
 
-            }
-        ) ;err => {
+          }
+        ); err => {
           if (err) {
             console.log(err.error.error);
 
             this.toastr.error(err.error.error.message);
           }
         }
-    }else{
-    
-    this.service.postdata(this.annualincomeForm.value).subscribe(res => {
-      console.log(res)
-      modal.dismiss('cross click')
-      this.toastr.success("submitted Successfully!")
+    } else {
 
-      this.annualincomeForm.reset();
-      this.get();
-    }); err => {
-      if (err) {
-        console.log(err.error.error);
+      this.service.postdata(this.annualincomeForm.value).subscribe(res => {
+        console.log(res)
+        modal.dismiss('cross click')
+        this.toastr.success("submitted Successfully!")
 
-        this.toastr.error(err.error.error.message);
+        this.annualincomeForm.reset();
+        this.get();
+      }); err => {
+        if (err) {
+          console.log(err.error.error);
+
+          this.toastr.error(err.error.error.message);
+        }
       }
-    }
 
+    }
   }
-}
   get() {
     this.service.getdata().subscribe(
       res => {
@@ -137,17 +137,17 @@ this.get();
         this.datalist = res.data
         this.exportCSVData = this.datalist
       })
-        this.annualincomeForm.reset();
-       err => {
-        if (err) {
-          console.log(err.error.error);
+    this.annualincomeForm.reset();
+    err => {
+      if (err) {
+        console.log(err.error.error);
 
-          this.toastr.error(err.error.error.message);
-        }
+        this.toastr.error(err.error.error.message);
       }
-      }
-  
-    
+    }
+  }
+
+
 
 
   filterUpdate(event) {
@@ -162,8 +162,8 @@ this.get();
       this.datalist = this.datalist;
     }
   }
-  rejected(id:any){
-    
+  rejected(id: any) {
+
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -188,6 +188,6 @@ this.get();
     })
 
 
-  
+
   }
 }

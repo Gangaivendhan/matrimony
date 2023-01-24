@@ -27,9 +27,6 @@ export class BrokerComponent {
     { id: 2, name: 'INACTIVE' },
 
   ];
-
-
-  
   public rows: any;
   public selected = [];
   public basicSelectedOption: number = 10;

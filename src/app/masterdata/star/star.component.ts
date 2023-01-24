@@ -68,8 +68,6 @@ export class StarComponent implements OnInit {
       { name: 'status' },
       { name: 'Action' }
     ],
-      
-
       this.get()
   }
   get f(): { [key: string]: AbstractControl } {
@@ -86,60 +84,51 @@ export class StarComponent implements OnInit {
     })
     this.modalService.open(content, { size: 'm' });
   }
-
- 
-
-
   modalOpenVC(modalVC: any) {
     this.modalService.open(modalVC, {
       centered: true
     });
   }
-
   onSubmit(modal: any) {
     this.Submitted = true;
+    console.log(this.starForm.value.status)
     if (this.starForm.value.status === true) {
       this.starForm.value.status = 'ACTIVE'
     } else {
       this.starForm.value.status = 'INACTIVE'
     }
     console.log(this.starForm.value);
-    if (this.obj.id) {
-      this.starForm.value.id = this.obj.id;
-      this.service.updatedata(this.starForm.value)
-        .subscribe(
-          (res) => {
-            modal.dismiss('cross click');
-            this.toastr.success("Updated Successfully!")
-            console.log(res)
-            this.get();
-          }
-        )
-    } else {
-
-      this.service.postdata(this.starForm.value).subscribe(res => {
-        console.log(res)
-        // this.toastr.success(res.message, ' Posted Successfully!');
-        // this.route.navigate(['/masterdata/currency']);
-
-        modal.dismiss('cross click');
-        this.toastr.success("Submitted Successfully!")
-        this.starForm.reset();
+    if (this.starForm.value.id != "") {
+      console.log(this.obj.id);
+      this.service.updatedata(this.starForm.value).subscribe((res) => {
+        console.log(res);
         this.get();
-      })
+        this.toastr.success("Updated successfully!");
+        this.starForm.reset();
 
+      });
+    } else {
+      this.service.postdata(this.starForm.value).subscribe(
+        res => {
+          console.log(res);
+          this.toastr.success("Submitted Successfully!")
+          this.get();
+          modal.dismiss('cross click')
+          this.starForm.reset();
+        });
     }
   }
-  get() {
-    this.service.getdata().subscribe(
-      res => {
-        console.log(res)
-        this.datalist = res.data
-        // this.dataSource = new MatTableDataSource<any>(this.array);
-        // this.dataSource.paginator = this.paginator;
-        // this.toastr.success(res.message, 'Uom get Successfully!');
-        this.exportCSVData = this.datalist;
-      })
+
+
+
+  get(){
+    // this.service.getdata().subscribe(
+    //   res => {
+    //     console.log(res)
+    //     this.datalist = res.data
+       
+    //     // this.exportCSVData = this.datalist;
+    //   })
   }
 
   filterUpdate(event) {

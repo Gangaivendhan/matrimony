@@ -36,8 +36,8 @@ export class CastComponent {
   public exportCSVData = [];
   datalist: any
   columns: any;
-  paramId :any;
-  obj:any={};
+  paramId: any;
+  obj: any = {};
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
     private service: CasteserviceService,
@@ -46,16 +46,13 @@ export class CastComponent {
     private toastr: ToastrService,
 
   ) { }
-  
-
-    toastrProgressBar() {
-      this.toastr.success('Have fun storming the castle!', 'Progress Bar', {
-        progressBar: true,
-        toastClass: 'toast ngx-toastr',
-        closeButton: true
-      });
-    }
-
+  toastrProgressBar() {
+    this.toastr.success('Have fun storming the castle!', 'Progress Bar', {
+      progressBar: true,
+      toastClass: 'toast ngx-toastr',
+      closeButton: true
+    });
+  }
   ngOnInit() {
     this.castForm = this.fb.group({
       id: [''],
@@ -69,9 +66,9 @@ export class CastComponent {
       { name: 'status' },
       { name: 'Action' }
     ];
-  
+
     this.get();
-   
+
   }
   get f(): { [key: string]: AbstractControl } {
     return this.castForm.controls;
@@ -81,7 +78,7 @@ export class CastComponent {
       console.log(res)
       this.obj = res.data
       console.log(this.obj)
-      
+
     })
     this.modalService.open(content, { size: 'm' });
   }
@@ -90,8 +87,7 @@ export class CastComponent {
       centered: true
     });
   }
-
-  onSubmit(modal:any) {
+  onSubmit(modal: any) {
     this.Submitted = true;
     if (this.castForm.value.status === true) {
       this.castForm.value.status = 'ACTIVE'
@@ -108,22 +104,22 @@ export class CastComponent {
             this.toastr.success("Updated Successfully!")
 
             console.log(res)
-              this.get();
-            }
+            this.get();
+          }
         )
-    }else{
-    
-    this.service.postdata(this.castForm.value).subscribe(res => {
-      console.log(res)
-      modal.dismiss('cross click');
-      this.toastr.success("Submitted Successfully!")
+    } else {
 
-      this.castForm.reset();
-      this.get();
-    })
+      this.service.postdata(this.castForm.value).subscribe(res => {
+        console.log(res)
+        modal.dismiss('cross click');
+        this.toastr.success("Submitted Successfully!")
 
+        this.castForm.reset();
+        this.get();
+      })
+
+    }
   }
-}
   get() {
     this.service.getdata().subscribe(
       res => {
@@ -145,11 +141,10 @@ export class CastComponent {
       this.datalist = this.datalist;
     }
   }
-  rejected(id:any){
+  rejected(id: any) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#7367F0',
       cancelButtonColor: '#E42728',
@@ -164,15 +159,10 @@ export class CastComponent {
           res => {
             Swal.fire('deleted successfully!', '', 'success')
             this.get()
-          })
-  
-      }
+          })     
+         }
     })
-  
-  
-  
   }
-  
-  
+
 }
 

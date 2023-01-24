@@ -39,12 +39,12 @@
 </ng-template>
 <section id="ngx-datatable-kitchen-sink">
     <div class="card">
-        <h4 class="card-title mx-1 mt-2"><b>Manage Cast</b></h4>
+        <h4 class="card-title mx-1 mt-2"><b>Manage Caste</b></h4>
         <div class="row">
             <div class="col-12 mb-50">
                 <button class="btn btn-primary ml-1" (click)="modalOpenVC(modalVC)" rippleEffect>
                     <i data-feather="plus" class="mr-0 mr-sm-1"></i><span class="d-none d-sm-inline-block">Add New
-                        Cast</span>
+                        Caste</span>
                 </button>
 
                 <a csvLink [data]="exportCSVData" class="btn btn-outline-secondary float-right mr-1" rippleEffect>Export
@@ -72,7 +72,7 @@
         <ngx-datatable [rows]="datalist" [rowHeight]="58" class="bootstrap core-bootstrap text-dark" [limit]="10"
         [columnMode]="ColumnMode.force" [headerHeight]="40" [footerHeight]="50" [scrollbarH]="true"
         [columns]="columns" [selectionType]="SelectionType.checkbox" [limit]="basicSelectedOption">
-        <ngx-datatable-column name="casteName" prop="casteName" [width]="250"></ngx-datatable-column>
+        <ngx-datatable-column name="caste Name" prop="casteName" [width]="250"></ngx-datatable-column>
         <ngx-datatable-column name="status" prop="status" [width]="120"></ngx-datatable-column>
         <ngx-datatable-column name="description" prop="description" [width]="120"></ngx-datatable-column>
 

@@ -25,6 +25,7 @@ import { ToastrsModule } from 'app/main/extensions/toastr/toastr.module';
 import { BrokerRoutingModule } from './broker-routing.module';
 import { AddUserComponent } from './add-user/add-user.component';
 import { AddUserlistComponent } from './add-userlist/add-userlist.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -35,29 +36,32 @@ import { AddUserlistComponent } from './add-userlist/add-userlist.component';
   ],
   imports: [
     CommonModule,
-    BrokerRoutingModule,
-    ReactiveFormsModule,FormsModule,
-    MatPaginatorModule,
-    SweetAlert2Module,
-    ToastrsModule,
-    SweetAlertsModule ,
+    ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
+    TranslateModule,
+    CoreCommonModule,
+    ContentHeaderModule,
+    CardSnippetModule,
+    NgxDatatableModule,
+    CsvModule,
+    CoreCardModule,
+    DatatablesModule,
+    TableModule,
+    MatDialogModule,
+    MatInputModule,
+    MatMenuModule,
     MatTableModule,
-    TableModule ,
-    DatatablesModule ,
-     NgbModule ,
-     CsvModule ,
-     TranslateModule ,
-     NgxDatatableModule,
-     MatDialogModule ,
-     MatInputModule ,
-     MatMenuModule,
-     CoreCommonModule , 
-     CardSnippetModule,
-     ContentHeaderModule ,
-     CoreCardModule ,
-     MatSlideToggleModule ,
-     ToastrModule 
+    NgbModule,
+    MatSlideToggleModule,
+    MatPaginatorModule,
+    SweetAlert2Module.forRoot(),
+    ToastrModule.forRoot(),
+    BrokerRoutingModule,
+    NgSelectModule,
+    ToastrModule,
+    SweetAlertsModule,
+    ToastrsModule 
   ]
 })
 export class BrokerModule { }
