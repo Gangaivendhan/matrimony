@@ -27,9 +27,6 @@ export class EducationComponent {
     { id: 2, name: 'INACTIVE' },
 
   ];
-
-
-  
   public rows: any;
   public selected = [];
   public basicSelectedOption: number = 10;
@@ -40,11 +37,6 @@ export class EducationComponent {
   columns:any;
   paramId :any;
   obj:any={};
-
-  // columns: ({ prop: string; name?: undefined; } | { name: string; prop?: undefined; })[];
-  // datalist: { name: string; gender: string; company: string; }[];
-
- 
 
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
@@ -63,28 +55,6 @@ export class EducationComponent {
     })
     this.get();
    
-    // this.datalist = [
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'nice', status: 'Inactive' },
-    //   { name: 'Molly',description: 'good', status: 'Active' },
-    //   { name: 'Austin',description: 'Bad', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    // ];
-    // this.exportCSVData = this.datalist
-
     this.columns = [
       { prop: 'name' },
       { name: 'description' },
@@ -97,12 +67,6 @@ this.get();
     return this.educationForm.controls;
   }
   editBranch(id: any, content: any) {
-    console.log(id)
-      // for (let i = 0; i < element.length; i++) {
-      //   var id = element[i].id;
-      //   console.log(id);
-        
-      // }
     this.service.getId(id).subscribe(res => {
       console.log(res)
       this.obj = res.data
@@ -143,8 +107,6 @@ this.get();
     
     this.service.postdata(this.educationForm.value).subscribe(res => {
       console.log(res)
-      // this.toastr.success(res.message, ' Posted Successfully!');
-      // this.route.navigate(['/masterdata/currency']);
       modal.dismiss('cross click');
       this.toastr.success("Submitted Successfully!")
       this.educationForm.reset();
@@ -159,20 +121,10 @@ this.get();
       res => {
         console.log(res)
         this.datalist = res.data
-        // this.dataSource = new MatTableDataSource<any>(this.array);
-        // this.dataSource.paginator = this.paginator;
-        // this.toastr.success(res.message, 'Uom get Successfully!');
         this.exportCSVData = this.datalist
       })
   }
-  // getIds(id: any) {
-  //   console.log(id);
-  //   this.service.getId(id).subscribe((res) => {
-  //     console.log(res);
-  //   });
-  // }
-
-
+ 
   filterUpdate(event) {
     const val = event.target.value.toLowerCase();
     console.log(val);

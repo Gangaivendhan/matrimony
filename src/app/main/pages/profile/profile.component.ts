@@ -5,7 +5,9 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ProfileService } from 'app/main/pages/profile/profile.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { CoreConfigService } from '@core/services/config.service';
+import { AuthenticationService } from 'app/auth/service';
+import { User } from 'app/auth/models';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -32,7 +34,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public Monthly = false;
   public toggleNavbarRef = false;
   public loadMoreRef = false;
-
+  public currentUser: User;
   // private
   private _unsubscribeAll: Subject<any>;
 
@@ -41,7 +43,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
    *
    * @param {PricingService} _pricingService
    */
-  constructor(private _pricingService: ProfileService, private sanitizer: DomSanitizer,private toastr:ToastrService) {
+  constructor(private _pricingService: ProfileService, private sanitizer: DomSanitizer,private toastr:ToastrService,
+    private _coreConfigService: CoreConfigService,
+    private _authenticationService: AuthenticationService,) {
+      this._authenticationService.currentUser.subscribe(x => (this.currentUser = x));
+      console.log(this.currentUser );
+      
     this._unsubscribeAll = new Subject();
   }
 
@@ -81,6 +88,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
    * On init
    */
   ngOnInit(): void {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this._pricingService.onPricingChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(response => {
       this.data = response;
     });

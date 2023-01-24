@@ -21,7 +21,7 @@ import { CardSnippetModule } from '@core/components/card-snippet/card-snippet.mo
 
 import { coreConfig } from 'app/app-config';
 import { AuthGuard } from 'app/auth/helpers/auth.guards';
-import { fakeBackendProvider } from 'app/auth/helpers'; // used to create fake backend
+// import { fakeBackendProvider } from 'app/auth/helpers'; // used to create fake backend
 import { JwtInterceptor, ErrorInterceptor } from 'app/auth/helpers';
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
@@ -92,7 +92,7 @@ const appRoutes: Routes = [
 
     {
     path: '',
-    redirectTo: '/pages/profile',
+    redirectTo: '/pages',
     pathMatch: 'full'
   },
   {
@@ -137,7 +137,7 @@ const appRoutes: Routes = [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
         // ! IMPORTANT: Provider used to create fake backend, comment while using real API
-        fakeBackendProvider
+        // fakeBackendProvider
     ],
     bootstrap: [AppComponent]
 })

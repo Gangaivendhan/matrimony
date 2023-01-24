@@ -56,28 +56,7 @@ export class CurrencyComponent {
       description: [''],
       status:['']
     })
-   
-    // this.datalist = [
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'nice', status: 'Inactive' },
-    //   { name: 'Molly',description: 'good', status: 'Active' },
-    //   { name: 'Austin',description: 'Bad', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    // ];
-    this.columns = [
+       this.columns = [
       { prop: 'name' },
       { name: 'description' },
       { name: 'status' },
@@ -132,8 +111,6 @@ export class CurrencyComponent {
     
     this.service.postdata(this.currencyForm.value).subscribe(res => {
       console.log(res)
-      // this.toastr.success(res.message, ' Posted Successfully!');
-      // this.route.navigate(['/masterdata/currency']);
       modal.dismiss('cross click');
       this.toastr.success("Submitted Successfully!")
       this.currencyForm.reset();

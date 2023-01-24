@@ -23,7 +23,7 @@ export class RaasiStarComponent implements OnInit {
   public basicSelectedOption: number = 10;
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
-  public exportCSVData;
+  public exportCSVData = [];
   datalist: any
   columns: any
 
@@ -75,9 +75,9 @@ export class RaasiStarComponent implements OnInit {
   onSubmit(modal: any) {
     this.Submitted = true;
     if (this.raasiFrom.value.status === true) {
-      this.raasiFrom.value.status = 'Active'
+      this.raasiFrom.value.status = 'ACTIVE'
     } else {
-      this.raasiFrom.value.status = 'Inactive'
+      this.raasiFrom.value.status = 'INACTIVE'
     }
 
     console.log(this.raasiFrom.value);
@@ -85,7 +85,6 @@ export class RaasiStarComponent implements OnInit {
       console.log(this.raasiobj.id);
       this.raasiservice.updateraasi(this.raasiFrom.value).subscribe((res) => {
         console.log(res);
-        // this.toaster.success(res.data);
         this.get();
         modal.dismiss('cross click');
         this.toastr.success("Updated Successfully!")
@@ -96,7 +95,6 @@ export class RaasiStarComponent implements OnInit {
       this.raasiservice.postraasi(this.raasiFrom.value).subscribe(
         res => {
           console.log(res);
-          // this.toaster.success(res.data)
           this.get();
           modal.dismiss('cross click');
           this.toastr.success("Submitted Successfully!")
@@ -124,7 +122,6 @@ export class RaasiStarComponent implements OnInit {
         console.log(res)
         this.datalist = res.data
         this.exportCSVData = this.datalist
-        // this.toaster.success(res.message)
       })
   }
 

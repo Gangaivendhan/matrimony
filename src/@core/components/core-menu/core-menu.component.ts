@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, V
 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
+import { AuthenticationService } from 'app/auth/service';
 import { CoreMenuService } from '@core/components/core-menu/core-menu.service';
 
 @Component({
@@ -28,9 +28,13 @@ export class CoreMenuComponent implements OnInit {
    *
    * @param {ChangeDetectorRef} _changeDetectorRef
    * @param {CoreMenuService} _coreMenuService
+   * @param {AuthenticationService} _authenticationService
+
    */
-  constructor(private _changeDetectorRef: ChangeDetectorRef, private _coreMenuService: CoreMenuService) {
+  constructor(private _changeDetectorRef: ChangeDetectorRef, private _coreMenuService: CoreMenuService, private _authenticationService: AuthenticationService) {
     // Set the private defaults
+    // this._authenticationService.currentUser.subscribe(x => (this.currentUser = x));
+    // console.log(this.currentUser)
     this._unsubscribeAll = new Subject();
   }
 
@@ -46,6 +50,7 @@ export class CoreMenuComponent implements OnInit {
 
     // Subscribe to the current menu changes
     this._coreMenuService.onMenuChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(() => {
+      console.log(this._coreMenuService);
       this.currentUser = this._coreMenuService.currentUser;
       console.log(this.currentUser);
       

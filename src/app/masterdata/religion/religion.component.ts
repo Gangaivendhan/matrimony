@@ -21,7 +21,7 @@ export class ReligionComponent implements OnInit {
   public basicSelectedOption: number = 10;
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
-  public exportCSVData;
+  public exportCSVData = [];
   datalist: any
   columns: any
 

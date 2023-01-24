@@ -52,14 +52,6 @@ export class CastComponent {
     private toastr: ToastrService,
     ) { this.options = this.toastr.toastrConfig; }
 
-    toastrProgressBar() {
-      this.toastr.success('Have fun storming the castle!', 'Progress Bar', {
-        progressBar: true,
-        toastClass: 'toast ngx-toastr',
-        closeButton: true
-      });
-    }
-
   ngOnInit() {
     this.castForm = this.fb.group({
       id: [''],
@@ -110,7 +102,6 @@ export class CastComponent {
           (res) => {
             modal.dismiss('cross click');
             this.toastr.success("Updated Successfully!")
-
             console.log(res)
               this.get();
             }
@@ -121,7 +112,6 @@ export class CastComponent {
       console.log(res)
       modal.dismiss('cross click');
       this.toastr.success("Submitted Successfully!")
-
       this.castForm.reset();
       this.get();
     })
