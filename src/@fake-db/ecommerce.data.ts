@@ -347,72 +347,90 @@ export class EcommerceFakeData {
   public static relatedProducts = [
     {
       id: 3,
-      name: 'Willful Smart Watch for Men Women 2020,',
+      name: 'Abinaya V',
+      MatrimonyId:'M9471682',
+      age:'22 Yrs',
+      work:'B.E., Software Professional,Chennai,TamilNadu',
       slug: 'willful-smart-watch-for-men-women-2020-3',
       description:
         'Are you looking for a smart watch, which can not only easily keep tracking of your steps, calories, heart rate and sleep quality, but also keep you informed of incoming calls.',
       brand: 'Willful',
       price: 29.99,
-      image: 'assets/images/pages/eCommerce/25.png',
+      image: 'assets/images/profile/user-uploads/user-07.jpg',
       hasFreeShipping: true,
       rating: 5
     },
     {
       id: 4,
-      name: 'Ronyes Unisex College Bag Bookbags for Women',
+      name: 'Aayushi E',
+      MatrimonyId:'M9471683',
+      age:'22 Yrs',
+      work:'B.E., Software Professional,Chennai,TamilNadu',
       slug: 'ronyes-unisex-college-bag-bookbags-for-women-4',
       description:
         'Made of high quality water-resistant material, padded and adjustable shoulder straps, external USB with built-in charging cable offers a convenient charging',
       brand: 'Ronyes',
       price: 23.99,
-      image: 'assets/images/pages/eCommerce/24.png',
+      image: 'assets/images/profile/user-uploads/user-08.jpg',
       hasFreeShipping: true,
       rating: 2
     },
     {
       id: 5,
-      name: 'Toshiba Canvio Advance 2TB Portable External Hard Drive',
+      name: 'Padmavathy',
+      MatrimonyId:'M9471684',
+      age:'22 Yrs',
+      work:'B.E., Software Professional,Chennai,TamilNadu',
       slug: 'toshiba-canvio-advance-2-tb-portable-external-hard-drive-5',
       description: 'Up to 3TB of storage capacity to store your growing files and content',
       brand: 'Toshiba',
       price: 69.99,
-      image: 'assets/images/pages/eCommerce/23.png',
+      image: 'assets/images/profile/user-uploads/user-11.jpg',
       hasFreeShipping: true,
       rating: 2
     },
     {
       id: 6,
-      name: 'Tile Pro - High Performance Bluetooth Tracker',
+      name: 'Sneha',
+      MatrimonyId:'M9471685',
+      age:'22 Yrs',
+      work:'B.E., Software Professional,Chennai,TamilNadu',
       slug: 'tile-pro-high-performance-bluetooth-tracker-6',
       description:
         'FIND KEYS, BAGS & MORE -- Pro is our high-performance finder ideal for keys, backpacks, luggage or any other items you want to keep track of. The easy-to-use finder and free app work with iOS and Android.',
       brand: 'Tile',
       price: 29.99,
-      image: 'assets/images/pages/eCommerce/22.png',
+      image: 'assets/images/profile/user-uploads/user-12.jpg',
       hasFreeShipping: false,
       rating: 4
     },
     {
       id: 7,
-      name: 'Bugani M90 Portable Bluetooth Speaker',
+      name: 'Ratchika',
+      MatrimonyId:'M9471686',
+      age:'22 Yrs',
+      work:'B.E., Software Professional,Chennai,TamilNadu',
       slug: 'bugani-m90-portable-bluetooth-speaker-7',
       description:
         'Bluetooth Speakers-The M90 Bluetooth speaker uses the latest Bluetooth 5.0 technology and the latest Bluetooth ATS chip, Connecting over Bluetooth in seconds to iPhone, iPad, Smart-phones, Tablets, Windows, and other Bluetooth devices.',
       brand: 'Bugani',
       price: 56.0,
-      image: 'assets/images/pages/eCommerce/21.png',
+      image: 'assets/images/profile/user-uploads/user-01.jpg',
       hasFreeShipping: false,
       rating: 3
     },
     {
       id: 8,
-      name: 'PlayStation 4 Console',
+      name: 'Kavitha',
+      MatrimonyId:'M9471687',
+      age:'22 Yrs',
+      work:'B.E., Software Professional,Chennai,TamilNadu',
       slug: 'play-station-4-console-8',
       description:
         'All the greatest, games, TV, music and more. Connect with your friends to broadcast and celebrate your epic moments at the press of the Share button to Twitch, YouTube, Facebook and Twitter.',
       brand: 'Sony',
       price: 339.95,
-      image: 'assets/images/pages/eCommerce/20.png',
+      image: 'assets/images/profile/user-uploads/user-06.jpg',
       hasFreeShipping: false,
       rating: 4
     }
