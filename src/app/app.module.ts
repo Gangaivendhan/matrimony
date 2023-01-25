@@ -59,7 +59,7 @@ const appRoutes: Routes = [
   {
     path: 'masterdata',
     loadChildren: () => import('./masterdata/masterdata.module').then(m => m.MasterdataModule),
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'horizontal',
