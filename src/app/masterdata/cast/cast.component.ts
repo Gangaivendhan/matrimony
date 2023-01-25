@@ -145,6 +145,7 @@ export class CastComponent {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
+      icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#7367F0',
       cancelButtonColor: '#E42728',

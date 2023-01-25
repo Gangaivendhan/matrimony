@@ -7,12 +7,12 @@
             </button>
         </div>
         <div class="modal-body mt-2" tabindex="0" ngbAutofocus>
-            <label class="mb-1">Name </label>
+            <label class="mb-1">Religion</label>
             <div class="input-group input-group-merge mb-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><span [data-feather]="'user'"></span></span>
                 </div>
-                <input type="text" class="form-control" formControlName="name" placeholder="Name" />
+                <input type="text" class="form-control" formControlName="name" placeholder="Religion" />
             </div>
             <label class="mb-1"> Description </label>
             <div class="input-group input-group-merge mb-2">
@@ -25,14 +25,6 @@
             <div>
                 <mat-slide-toggle formControlName="status"></mat-slide-toggle>
             </div>
-            <!-- <div class="form-group mb-2">
-                <select class="form-control" formControlName="status">
-                    <option value=""></option>
-                    <option *ngFor="let status of Status" [value]="status.name">
-                        {{status.name}}
-                    </option>
-                </select>
-            </div> -->
             <div class="d-flex justify-content-end mb-3 mt-3">
                 <button type="submit" class="btn btn-primary mx-2" rippleEffect>
                     Submit
@@ -54,7 +46,7 @@
                         Religion</span>
                 </button>
                 <a csvLink [data]="exportCSVData" class="btn btn-outline-secondary float-right mr-1" rippleEffect>Export
-                CSV</a>
+                    CSV</a>
             </div>
             <div class="col-md-6 col-12">
                 <div class="d-flex justify-content-between align-items-center m-1">
@@ -65,7 +57,7 @@
                             <option value="50">50</option>
                             <option value="100">100</option>
                         </select>
-                     entries</label>
+                        entries</label>
                 </div>
             </div>
             <div class="col-md-6 col-12 d-flex justify-content-md-end">
@@ -88,7 +80,7 @@
                             <i data-feather="edit" class="text-primary cursor-pointer d-flex align-items-center"></i>
                         </a>
                         <a class="d-flex align-items-center" (click)="reject(value)" data-toggle="modal"><i
-                             data-feather="trash-2" class="mr-50 text-danger"></i>
+                                data-feather="trash-2" class="mr-50 text-danger"></i>
                         </a>
                     </div>
                 </ng-template>

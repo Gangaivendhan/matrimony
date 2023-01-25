@@ -12,7 +12,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dia
 import { MotherTongueserviceService } from './mother-tongueservice.service';
 import { ToastrService, GlobalConfig } from 'ngx-toastr';
 import Swal from 'sweetalert2';
-
 @Component({
   selector: 'app-mother-tongue',
   templateUrl: './mother-tongue.component.html',
@@ -33,12 +32,10 @@ export class MotherTongueComponent {
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
   public exportCSVData = [];
-  datalist:any
-  columns:any
-  paramId :any;
-  obj:any={};
-
-
+  datalist: any
+  columns: any
+  paramId: any;
+  obj: any = {};
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
     private service: MotherTongueserviceService,
@@ -50,30 +47,23 @@ export class MotherTongueComponent {
 
   ngOnInit() {
     this.mothertongueForm = this.fb.group({
-      // id: [''],
       name: ['', Validators.required],
       description: ['', Validators.required],
       status: ['', Validators.required]
     })
-
-   
     this.columns = [
       { prop: 'name' },
       { name: 'description' },
       { name: 'status' },
       { name: 'Action' }
     ];
+    this.get()
   }
   get f(): { [key: string]: AbstractControl } {
     return this.mothertongueForm.controls;
   }
   editBranch(id: any, content: any) {
     console.log(id)
-    // for (let i = 0; i < element.length; i++) {
-    //   var id = element[i].id;
-    //   console.log(id);
-
-    // }
     this.service.getId(id).subscribe(res => {
       console.log(res)
 
@@ -83,14 +73,11 @@ export class MotherTongueComponent {
     })
     this.modalService.open(content, { size: 'm' });
   }
-
-
   modalOpenVC(modalVC) {
     this.modalService.open(modalVC, {
       centered: true
     });
   }
-
   onSubmit(modal: any) {
     this.Submitted = true;
     if (this.mothertongueForm.value.status === true) {
@@ -112,44 +99,32 @@ export class MotherTongueComponent {
           }
 
         );
-    }else{
-    
-    this.service.postdata(this.mothertongueForm.value).subscribe(res => {
-      console.log(res)
-      modal.dismiss('cross click');
-      this.mothertongueForm.reset();
-      this.get();
-    })
- }; err => {
-          if (err) {
-            console.log(err.error.error);
+    } else {
 
-            this.toastr.error(err.error.error.message);
-          }
-        }
-   
-      }        
-        
+      this.service.postdata(this.mothertongueForm.value).subscribe(res => {
+        console.log(res)
+        modal.dismiss('cross click');
+        this.get();
+        this.toastr.success("Submitted Successfully!")
+        this.mothertongueForm.reset();
+
+      })
+    }; err => {
+      if (err) {
+        console.log(err.error.error);
+
+        this.toastr.error(err.error.error.message);
+      }
+    }
+
+  }
   get() {
     this.service.getdata().subscribe(
       res => {
-
         console.log(res)
         this.datalist = res.data
-
-        // this.dataSource = new MatTableDataSource<any>(this.array);
-        // this.dataSource.paginator = this.paginator;
-        // this.toastr.success(res.message, 'Uom get Successfully!');
         this.exportCSVData = this.datalist;
-
-
-      }), err => {
-        if (err) {
-          console.log(err.error.error);
-
-          this.toastr.error(err.error.error.message);
-        }
-      }
+      })
   }
 
   filterUpdate(event) {
@@ -164,9 +139,7 @@ export class MotherTongueComponent {
       this.datalist = this.datalist;
     }
   }
-
   rejected(id: any) {
-
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -190,10 +163,7 @@ export class MotherTongueComponent {
       }
     })
 
-
   }
-
-
 }
 
 

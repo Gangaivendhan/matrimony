@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validator, Validators, AbstractControl } from '
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import { ActivatedRoute } from '@angular/router';
 import { ReligionService } from '../religion.service';
+import { ToastrService, GlobalConfig } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-religion',
   templateUrl: './religion.component.html',
@@ -11,38 +13,35 @@ import { ReligionService } from '../religion.service';
   encapsulation: ViewEncapsulation.None
 })
 export class ReligionComponent implements OnInit {
-
   religionForm!: FormGroup;
   isChecked = true;
   public Submitted = false;
-
   public rows: any;
   public selected = [];
   public basicSelectedOption: number = 10;
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
-  public exportCSVData;
+  public exportCSVData: any = [];
   datalist: any
   columns: any
-
+  paramId: any;
+  religionobj: any;
   Status = [
     { id: 1, name: 'ACTIVE' },
     { id: 2, name: 'INACTIVE' },
 
   ];
-  paramId: any;
-  religionobj: any;
-
-
-
+ 
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private religionservice: ReligionService) { }
+    private religionservice: ReligionService,
+    private toastr: ToastrService,
+  ) { }
 
   ngOnInit(): void {
     this.religionForm = this.fb.group({
-      id:[''],
+      id: [''],
       name: [''],
       description: [''],
       status: ['']
@@ -55,15 +54,11 @@ export class ReligionComponent implements OnInit {
       { name: 'Action' }
     ];
 
-    this.exportCSVData = this.datalist
-
     this.get();
   }
-
   get f(): { [key: string]: AbstractControl } {
     return this.religionForm.controls;
   }
-
   modalOpenVC(modalVC) {
     this.modalService.open(modalVC, {
       centered: true
@@ -95,8 +90,9 @@ export class ReligionComponent implements OnInit {
       console.log(this.religionobj.id);
       this.religionservice.updatereligion(this.religionForm.value).subscribe((res) => {
         console.log(res);
+        modal.dismiss('cross click')
         this.get();
-        // this.toaster.success(res.data);
+        this.toastr.success("Updated successfully!");
         this.religionForm.reset();
 
       });
@@ -104,20 +100,13 @@ export class ReligionComponent implements OnInit {
       this.religionservice.postreligion(this.religionForm.value).subscribe(
         res => {
           console.log(res);
-          // this.toaster.success(res.data)
-          this.get();
           modal.dismiss('cross click')
+          this.get();
+          this.toastr.success("Submitted successfully!");
           this.religionForm.reset();
         });
     }
   }
-
-
-  findstatus(event: any) {
-    console.log(event.target.value);
-
-  }
-
   filterUpdate(event) {
     const val = event.target.value.toLowerCase();
     console.log(val);
@@ -136,19 +125,33 @@ export class ReligionComponent implements OnInit {
         console.log(res)
         this.datalist = res.data
         this.exportCSVData = this.datalist
-        // this.toaster.success(res.message)
       })
   }
-
   reject(id: any) {
-    this.religionservice.deleteData(id).subscribe((res) => {
-      console.log(res);
-      this.get();
-      // this.toaster.success(res.data)
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#7367F0',
+      cancelButtonColor: '#E42728',
+      confirmButtonText: 'Yes, delete it!',
+      customClass: {
+        confirmButton: 'btn btn-primary',
+        cancelButton: 'btn btn-danger ml-1'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.religionservice.deleteData(id).subscribe(
+          res => {
+            Swal.fire('deleted successfully!', '', 'success')
+            this.get()
+          })
+
+      }
     })
   }
 
- 
 }
 
 

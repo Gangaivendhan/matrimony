@@ -37,16 +37,13 @@ export class BrokerComponent {
   columns:any;
   paramId :any;
   obj:any={};
-
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
     private service: BrokerserviceService,
     private route: Router,
     private router: ActivatedRoute,
     private toastr: ToastrService,
-
 ) { }
-
   ngOnInit() {
     this.brokerForm = this.fb.group({
       id: [''],
@@ -61,18 +58,6 @@ export class BrokerComponent {
       city:[''],
       status:['']
     })
-   
-    // this.datalist = [
-    //   { firstName: 'Austin', lastName:'Mani', mobileNumber:9087656789,email:'prithvi@gmail.com',address:'mmm',country:'India',state:'Tamilnadu',city:'Thanjavur',status:'active'},
-    //   { firstName: 'Austin', lastName:'Mani', mobileNumber:9087656789,email:'prithvi@gmail.com',address:'mmm',country:'India',state:'Tamilnadu',city:'Thanjavur',status:'inactive'},
-    //   { firstName: 'Austin', lastName:'Mani', mobileNumber:9087656789,email:'prithvi@gmail.com',address:'mmm',country:'India',state:'Tamilnadu',city:'Thanjavur',status:'active'},
-    //   { firstName: 'Austin', lastName:'Mani', mobileNumber:9087656789,email:'prithvi@gmail.com',address:'mmm',country:'India',state:'Tamilnadu',city:'Thanjavur',status:'inactive'},
-    //   { firstName: 'Austin', lastName:'Mani', mobileNumber:9087656789,email:'prithvi@gmail.com',address:'mmm',country:'India',state:'Tamilnadu',city:'Thanjavur',status:'inactive'},
-    //   { firstName: 'Austin', lastName:'Mani', mobileNumber:9087656789,email:'prithvi@gmail.com',address:'mmm',country:'India',state:'Tamilnadu',city:'Thanjavur',status:'active'},
-    //   { firstName: 'Austin', lastName:'Mani', mobileNumber:9087656789,email:'prithvi@gmail.com',address:'mmm',country:'India',state:'Tamilnadu',city:'Thanjavur',status:'active'},
-    //   { firstName: 'Austin', lastName:'Mani', mobileNumber:9087656789,email:'prithvi@gmail.com',address:'mmm',country:'India',state:'Tamilnadu',city:'Thanjavur',status:'inactive'},
-    //   { firstName: 'Austin', lastName:'Mani', mobileNumber:9087656789,email:'prithvi@gmail.com',address:'mmm',country:'India',state:'Tamilnadu',city:'Thanjavur',status:'active'},
-    // ];
     this.columns = [
       { prop: 'firstName' },
       { name: 'lastName' },
@@ -90,19 +75,11 @@ this.get();
   get f(): { [key: string]: AbstractControl } {
     return this.brokerForm.controls;
   }
-  editBranch(id: any, content: any) {
-    // for (let i = 0; i < element.length; i++) {
-    //   var id = element[i].id;
-    //   console.log(id);
-      
-    // }
+  editBranch(id: any, content: any) { 
   this.service.getId(id).subscribe(res => {
     console.log(res)
     this.obj = res.data
-    console.log(this.obj)
-    // this.toastr.success(res.message, 'GetId Successfully!');
-
-    
+    console.log(this.obj) 
   })
   this.modalService.open(content, { size: 'm' });
 }
@@ -135,36 +112,21 @@ onSubmit(modal:any) {
   
   this.service.postdata(this.brokerForm.value).subscribe(res => {
     console.log(res)
-    // this.toastr.success(res.message, 'Posted Successfully!');
-    // this.route.navigate(['/masterdata/currency']);
     modal.dismiss('cross click');
     this.toastr.success("submitted Successfully!")
 
     this.brokerForm.reset();
     this.get();
-  })
-
-}
+  })}
 }
 get() {
   this.service.getdata().subscribe(
     res => {
       console.log(res)
       this.datalist = res.data
-      // this.dataSource = new MatTableDataSource<any>(this.array);
-      // this.dataSource.paginator = this.paginator;
-      // this.toastr.success(res.message, 'Get Successfully!');
       this.exportCSVData = this.datalist
     })
 }
-// getIds(id: any) {
-//   console.log(id);
-//   this.service.getId(id).subscribe((res) => {
-//     console.log(res);
-//   });
-// }
-
-
 filterUpdate(event) {
   const val = event.target.value.toLowerCase();
   console.log(val);
@@ -178,7 +140,6 @@ filterUpdate(event) {
   }
 }
 rejected(id:any){
-  
   Swal.fire({
     title: 'Are you sure?',
     text: "You won't be able to revert this!",
@@ -198,11 +159,7 @@ rejected(id:any){
           Swal.fire('deleted successfully!', '', 'success')
           this.get()
         })
-
     }
   })
-
-
-
 }
 }

@@ -14,7 +14,6 @@ import Swal from 'sweetalert2';
 
 })
 export class RaasiStarComponent implements OnInit {
-
   raasiFrom!: FormGroup;
   isChecked = true;
   public Submitted = false;
@@ -23,25 +22,21 @@ export class RaasiStarComponent implements OnInit {
   public basicSelectedOption: number = 10;
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
-  public exportCSVData;
+  public exportCSVData: any = [];
   datalist: any
   columns: any
-
+  raasiobj: any;
   Star = [
     { id: 1, starname: 'Bharani' },
     { id: 2, starname: 'Pushya' },
     { id: 3, starname: 'Mrigashira' },
     { id: 4, starname: 'Purva Ashadha' },
   ];
-  raasiobj: any;
-
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
-    private raasiservice:RasiStarService,
+    private raasiservice: RasiStarService,
     private toastr: ToastrService,
-
-    ) { }
-  
+  ) { }
   ngOnInit(): void {
     this.raasiFrom = this.fb.group({
       id: [''],
@@ -49,9 +44,7 @@ export class RaasiStarComponent implements OnInit {
       name: [''],
       description: [''],
       status: [''],
-
     })
-
     this.columns = [
       { prop: 'name' },
       { name: 'description' },
@@ -61,17 +54,14 @@ export class RaasiStarComponent implements OnInit {
 
     this.get();
   }
-
   get f(): { [key: string]: AbstractControl } {
     return this.raasiFrom.controls;
   }
-
   modalOpenVC(modalVC) {
     this.modalService.open(modalVC, {
       centered: true
     });
   }
-
   onSubmit(modal: any) {
     this.Submitted = true;
     if (this.raasiFrom.value.status === true) {
@@ -79,13 +69,11 @@ export class RaasiStarComponent implements OnInit {
     } else {
       this.raasiFrom.value.status = 'Inactive'
     }
-
     console.log(this.raasiFrom.value);
     if (this.raasiFrom.value.id != '') {
       console.log(this.raasiobj.id);
       this.raasiservice.updateraasi(this.raasiFrom.value).subscribe((res) => {
         console.log(res);
-        // this.toaster.success(res.data);
         this.get();
         modal.dismiss('cross click');
         this.toastr.success("Updated Successfully!")
@@ -96,7 +84,6 @@ export class RaasiStarComponent implements OnInit {
       this.raasiservice.postraasi(this.raasiFrom.value).subscribe(
         res => {
           console.log(res);
-          // this.toaster.success(res.data)
           this.get();
           modal.dismiss('cross click');
           this.toastr.success("Submitted Successfully!")
@@ -117,19 +104,15 @@ export class RaasiStarComponent implements OnInit {
       this.datalist = this.datalist;
     }
   }
-  
   get() {
     this.raasiservice.getraasi().subscribe(
       res => {
         console.log(res)
         this.datalist = res.data
         this.exportCSVData = this.datalist
-        // this.toaster.success(res.message)
       })
   }
-
   reject(id: any) {
-   
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -149,12 +132,9 @@ export class RaasiStarComponent implements OnInit {
             Swal.fire('deleted successfully!', '', 'success')
             this.get()
           })
-  
+
       }
     })
-  
-  
-  
   }
 
   editBranch(id: any, content: any) {

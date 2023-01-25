@@ -27,7 +27,6 @@ export class AnnualIncomeComponent {
     { id: 2, name: 'INACTIVE' },
 
   ];
-
   public rows: any;
   public selected = [];
   public basicSelectedOption: number = 10;
@@ -44,8 +43,6 @@ export class AnnualIncomeComponent {
     private route: Router,
     private router: ActivatedRoute,
     private toastr: ToastrService,
-
-
   ) { }
 
   ngOnInit() {
@@ -75,14 +72,11 @@ export class AnnualIncomeComponent {
     })
     this.modalService.open(content, { size: 'm' });
   }
-
-
   modalOpenVC(modalVC) {
     this.modalService.open(modalVC, {
       centered: true
     });
   }
-
   onSubmit(modal: any) {
     this.Submitted = true;
     if (this.annualincomeForm.value.status === true) {
@@ -146,10 +140,6 @@ export class AnnualIncomeComponent {
       }
     }
   }
-
-
-
-
   filterUpdate(event) {
     const val = event.target.value.toLowerCase();
     console.log(val);
@@ -163,7 +153,6 @@ export class AnnualIncomeComponent {
     }
   }
   rejected(id: any) {
-
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -183,11 +172,8 @@ export class AnnualIncomeComponent {
             Swal.fire('deleted successfully!', '', 'success')
             this.get()
           })
-
       }
     })
-
-
 
   }
 }
