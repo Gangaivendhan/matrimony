@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 export class StarserviceService {
   private baseUrl = environment.apiUrl;
   private starpost = this.baseUrl+"/api/star/create";
-  private starget = this.baseUrl+" /api/star/getAllStars";
+  private starget = this.baseUrl+"/api/star/getStarsInfo";
   private stargetId = this.baseUrl+"/api/star/getActiveStarInfo";
   private starupdate = this.baseUrl+"/api/star/update";
   private stardelete = this.baseUrl+"/api/star/delete";
