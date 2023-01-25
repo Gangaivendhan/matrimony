@@ -313,7 +313,8 @@
                     <button class="btn btn-secondary btn-sm m-2 float-right" (click)="customFooterDP.close()"
                       rippleEffect>Close</button>
                   </ng-template> -->
-\                    <div class="form-group">
+                    <div class="form-group">
+                      <label>Date Of Birth</label>
                       <div class="input-group">
                         <input class="form-control" placeholder="yyyy-mm-dd" name="Custom Day Date Picker"
                           [(ngModel)]="CustomDayDPdata" ngbDatepicker [dayTemplate]="customDay" [markDisabled]="isDisabled"
@@ -333,7 +334,7 @@
                   </ng-template>
             </div>
             <div class="form-group col-md-6">
-              <label>Mother Tounge</label>
+              <label>Mother Tongue</label>
               <div class="form-group">
                 <ng-select [items]="selectBasic" bindLabel="name"  placeholder="choose" [loading]="selectBasicLoading">
                 </ng-select>

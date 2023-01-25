@@ -120,7 +120,7 @@ export class AuthLoginV2Component implements OnInit {
         .subscribe(
           data => {
             console.log(data);
-            this._router.navigate(['/pages/profile']);
+            this._router.navigate(['/dashboard']);
             localStorage.setItem('currentUser',JSON.stringify(data.data));
             console.log(data.data.message);
             // this.toastr.success('', '{{data.data.message}}', {

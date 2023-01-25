@@ -4,6 +4,24 @@ import { CoreMenu } from '@core/types';
 
 export const menu: CoreMenu[] = [
   {
+    id: 'dashboard',
+    //   translate: 'MENU.APPS.EMAIL',
+    //   type: 'item',
+    //   icon: 'mail',
+    //   url: 'apps/email'
+    title: 'Dashboard',
+    translate: 'MENU.DASHBOARD.COLLAPSIBLE',
+    type: 'item',
+    url: '/dashboard',
+    // role: ['Admin'], //? To hide collapsible based on user role
+    icon: 'home',
+    // badge: {
+    //   // title: '2',
+    //   translate: 'MENU.DASHBOARD.BADGE',
+    //   classes: 'badge-light-warning badge-pill'
+    // }
+  },
+  {
     id: 'apps',
     type: 'section',
     title: 'Apps & Pages',
