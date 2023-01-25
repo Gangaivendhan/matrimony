@@ -21,7 +21,7 @@ import { CardSnippetModule } from '@core/components/card-snippet/card-snippet.mo
 
 import { coreConfig } from 'app/app-config';
 import { AuthGuard } from 'app/auth/helpers/auth.guards';
-import { fakeBackendProvider } from 'app/auth/helpers'; // used to create fake backend
+// import { fakeBackendProvider } from 'app/auth/helpers'; // used to create fake backend
 import { JwtInterceptor, ErrorInterceptor } from 'app/auth/helpers';
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
@@ -48,9 +48,22 @@ const appRoutes: Routes = [
     // canActivate: [AuthGuard]
   },
   {
+    path: 'components',
+    loadChildren: () => import('./main/components/components.module').then(m => m.ComponentsModule)
+  },
+  
+  {
+    path: 'forms',
+    loadChildren: () => import('./main/forms/forms.module').then(m => m.FormsModule)
+  },
+  {
     path: 'masterdata',
     loadChildren: () => import('./masterdata/masterdata.module').then(m => m.MasterdataModule),
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'horizontal',
+    loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule)
   },
   {
     path: 'ui',
@@ -65,20 +78,27 @@ const appRoutes: Routes = [
   },
   {
     
+    path: 'broker',
+    loadChildren: () => import('./broker/broker.module').then(m=>m.BrokerModule),
+    canActivate: [AuthGuard]
+  },
+  
+  {
+    
     path: 'tables',
     loadChildren: () => import('./main/tables/tables.module').then(m => m.TablesModule),
     canActivate: [AuthGuard]
   },
-  // {
-   
-  //   path: '',
-  //   redirectTo: '/dashboard/profile',
-  //   pathMatch: 'full'
-  // },
-  // {
-  //   path: '**',
-  //   redirectTo: '/pages/miscellaneous/error' //Error 404 - Page not found
-  // }
+
+    {
+    path: '',
+    redirectTo: '/pages',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: '/pages/miscellaneous/error' //Error 404 - Page not found
+  }
 ];
 
 @NgModule({
@@ -117,7 +137,7 @@ const appRoutes: Routes = [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
         // ! IMPORTANT: Provider used to create fake backend, comment while using real API
-        fakeBackendProvider
+        // fakeBackendProvider
     ],
     bootstrap: [AppComponent]
 })

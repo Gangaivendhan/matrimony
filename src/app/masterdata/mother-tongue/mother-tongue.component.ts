@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -10,6 +10,8 @@ import { Subject } from 'rxjs';
 import * as snippet from 'app/main/forms/form-layout/form-layout.snippetcode';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
 import { MotherTongueserviceService } from './mother-tongueservice.service';
+import { ToastrService, GlobalConfig } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mother-tongue',
@@ -30,51 +32,30 @@ export class MotherTongueComponent {
   public basicSelectedOption: number = 10;
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
-  public exportCSVData;
+  public exportCSVData = [];
   datalist:any
   columns:any
   paramId :any;
   obj:any={};
-  // columns: ({ prop: string; name?: undefined; } | { name: string; prop?: undefined; })[];
-  // datalist: { name: string; gender: string; company: string; }[];
 
- 
 
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
     private service: MotherTongueserviceService,
     private route: Router,
     private router: ActivatedRoute,
-    ) { }
+    private toastr: ToastrService,
+
+  ) { }
 
   ngOnInit() {
     this.mothertongueForm = this.fb.group({
-      // id: [''],
+      id: [''],
       name: ['',Validators.required],
       description: ['',Validators.required],
       status:['',Validators.required]
     })
-   
-    // this.datalist = [
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'nice', status: 'Inactive' },
-    //   { name: 'Molly',description: 'good', status: 'Active' },
-    //   { name: 'Austin',description: 'Bad', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    //   { name: 'Austin',description: 'good', status: 'Active' },
-    //   { name: 'Dany',description: 'good', status: 'Inactive' },
-    //   { name: 'Molly',description: 'Bad', status: 'Active' },
-    // ];
+  
     this.columns = [
       { prop: 'name' },
       { name: 'description' },
@@ -88,16 +69,12 @@ export class MotherTongueComponent {
   }
   editBranch(id: any, content: any) {
     console.log(id)
-      // for (let i = 0; i < element.length; i++) {
-      //   var id = element[i].id;
-      //   console.log(id);
-        
-      // }
     this.service.getId(id).subscribe(res => {
       console.log(res)
+
       this.obj = res.data
       console.log(this.obj)
-      
+
     })
     this.modalService.open(content, { size: 'm' });
   }
@@ -109,7 +86,7 @@ export class MotherTongueComponent {
     });
   }
 
-  onSubmit(modal:any) {
+  onSubmit(modal: any) {
     this.Submitted = true;
     if (this.mothertongueForm.value.status === true) {
       this.mothertongueForm.value.status = 'ACTIVE'
@@ -123,6 +100,7 @@ export class MotherTongueComponent {
         .subscribe(
           (res) => {
             modal.dismiss('cross click');
+            this.toastr.success("Updated Successfully!")
             console.log(res)
               this.get();
             }
@@ -131,25 +109,35 @@ export class MotherTongueComponent {
     
     this.service.postdata(this.mothertongueForm.value).subscribe(res => {
       console.log(res)
-      // this.toastr.success(res.message, ' Posted Successfully!');
-      // this.route.navigate(['/masterdata/currency']);
       modal.dismiss('cross click');
       this.mothertongueForm.reset();
       this.get();
     })
+ } err => {
+          if (err) {
+            console.log(err.error.error);
 
-  }
-}
+            this.toastr.error(err.error.error.message);
+          }
+        }
+    } 
   get() {
     this.service.getdata().subscribe(
       res => {
+
         console.log(res)
         this.datalist = res.data
-        // this.dataSource = new MatTableDataSource<any>(this.array);
-        // this.dataSource.paginator = this.paginator;
-        // this.toastr.success(res.message, 'Uom get Successfully!');
+
         this.exportCSVData = this.datalist;
-      })
+
+
+      }), err => {
+        if (err) {
+          console.log(err.error.error);
+
+          this.toastr.error(err.error.error.message);
+        }
+      }
   }
 
   filterUpdate(event) {
@@ -164,16 +152,35 @@ export class MotherTongueComponent {
       this.datalist = this.datalist;
     }
   }
-  rejected(id:any){
-    alert("data is deleted")
-    this.service.deleteData(id).subscribe(
-      res => {
-        this.get()
-        console.log(res)
-      
-      })
-  
+
+  rejected(id: any) {
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#7367F0',
+      cancelButtonColor: '#E42728',
+      confirmButtonText: 'Yes, delete it!',
+      customClass: {
+        confirmButton: 'btn btn-primary',
+        cancelButton: 'btn btn-danger ml-1'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.deleteData(id).subscribe(
+          res => {
+            Swal.fire('deleted successfully!', '', 'success')
+            this.get()
+          })
+
+      }
+    })
+
+
   }
+
 
 }
 

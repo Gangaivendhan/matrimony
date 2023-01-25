@@ -1,9 +1,11 @@
-import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validator, Validators, AbstractControl } from '@angular/forms';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import { ActivatedRoute } from '@angular/router';
 import { RasiStarService } from './rasi-star.service';
+import { ToastrService, GlobalConfig } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-raasi-star',
   templateUrl: './raasi-star.component.html',
@@ -21,9 +23,9 @@ export class RaasiStarComponent implements OnInit {
   public basicSelectedOption: number = 10;
   public ColumnMode = ColumnMode;
   public SelectionType = SelectionType;
-  public exportCSVData;
-  datalist:any
-  columns:any
+  public exportCSVData = [];
+  datalist: any
+  columns: any
 
   Star = [
     { id: 1, starname: 'Bharani' },
@@ -32,22 +34,24 @@ export class RaasiStarComponent implements OnInit {
     { id: 4, starname: 'Purva Ashadha' },
   ];
   raasiobj: any;
-  paramId: any;
 
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
-    private raasiservice:RasiStarService) { }
+    private raasiservice: RasiStarService,
+    private toastr: ToastrService) { }
+
+
 
   ngOnInit(): void {
     this.raasiFrom = this.fb.group({
       id: [''],
-      star:[''],
+      star: [''],
       name: [''],
       description: [''],
-      status:[''],
-      
+      status: [''],
+
     })
-    
+
     this.columns = [
       { prop: 'name' },
       { name: 'description' },
@@ -68,31 +72,32 @@ export class RaasiStarComponent implements OnInit {
     });
   }
 
-  onSubmit(modal:any) {
+  onSubmit(modal: any) {
     this.Submitted = true;
     if (this.raasiFrom.value.status === true) {
-      this.raasiFrom.value.status = 'Active'
+      this.raasiFrom.value.status = 'ACTIVE'
     } else {
-      this.raasiFrom.value.status = 'Inactive'
+      this.raasiFrom.value.status = 'INACTIVE'
     }
-   
+
     console.log(this.raasiFrom.value);
-    if (this.raasiobj.id) {
+    if (this.raasiFrom.value.id != '') {
       console.log(this.raasiobj.id);
       this.raasiservice.updateraasi(this.raasiFrom.value).subscribe((res) => {
         console.log(res);
-        // this.toaster.success(res.data);
         this.get();
-        modal.dismiss('cross click')
+        modal.dismiss('cross click');
+        this.toastr.success("Updated Successfully!")
         this.raasiFrom.reset();
       });
-    } else {
+    }
+    else {
       this.raasiservice.postraasi(this.raasiFrom.value).subscribe(
         res => {
           console.log(res);
-          // this.toaster.success(res.data)
           this.get();
-          modal.dismiss('cross click')
+          modal.dismiss('cross click');
+          this.toastr.success("Submitted Successfully!")
           this.raasiFrom.reset();
         });
     }
@@ -110,24 +115,43 @@ export class RaasiStarComponent implements OnInit {
       this.datalist = this.datalist;
     }
   }
+  
   get() {
     this.raasiservice.getraasi().subscribe(
       res => {
         console.log(res)
         this.datalist = res.data
         this.exportCSVData = this.datalist
-        // this.toaster.success(res.message)
       })
   }
 
   reject(id: any) {
-    this.raasiservice.deleteData(id).subscribe((res) => {
-      console.log(res);
-      // console.log(res.data);
-      // console.log(res.data.data);
-      this.get();
-      // this.toaster.success(res.data)
+   
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#7367F0',
+      cancelButtonColor: '#E42728',
+      confirmButtonText: 'Yes, delete it!',
+      customClass: {
+        confirmButton: 'btn btn-primary',
+        cancelButton: 'btn btn-danger ml-1'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.raasiservice.deleteData(id).subscribe(
+          res => {
+            Swal.fire('deleted successfully!', '', 'success')
+            this.get()
+          })
+  
+      }
     })
+  
+  
+  
   }
 
   editBranch(id: any, content: any) {
