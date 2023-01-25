@@ -65,9 +65,9 @@ export class RaasiStarComponent implements OnInit {
   onSubmit(modal: any) {
     this.Submitted = true;
     if (this.raasiFrom.value.status === true) {
-      this.raasiFrom.value.status = 'Active'
+      this.raasiFrom.value.status = 'ACTIVE'
     } else {
-      this.raasiFrom.value.status = 'Inactive'
+      this.raasiFrom.value.status = 'INACTIVE'
     }
     console.log(this.raasiFrom.value);
     if (this.raasiFrom.value.id != '') {

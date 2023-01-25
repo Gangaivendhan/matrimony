@@ -53,6 +53,7 @@ export class CastComponent {
       closeButton: true
     });
   }
+
   ngOnInit() {
     this.castForm = this.fb.group({
       id: [''],
@@ -102,21 +103,20 @@ export class CastComponent {
           (res) => {
             modal.dismiss('cross click');
             this.toastr.success("Updated Successfully!")
-
             console.log(res)
             this.get();
           }
         )
-    } else {
-
-      this.service.postdata(this.castForm.value).subscribe(res => {
-        console.log(res)
-        modal.dismiss('cross click');
-        this.toastr.success("Submitted Successfully!")
-
-        this.castForm.reset();
-        this.get();
-      })
+    } 
+    else{
+    
+    this.service.postdata(this.castForm.value).subscribe(res => {
+      console.log(res)
+      modal.dismiss('cross click');
+      this.toastr.success("Submitted Successfully!")
+      this.castForm.reset();
+      this.get();
+    })
 
     }
   }

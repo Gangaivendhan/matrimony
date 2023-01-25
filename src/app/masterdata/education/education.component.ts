@@ -37,6 +37,8 @@ export class EducationComponent {
   columns: any;
   paramId: any;
   obj: any = {};
+ 
+
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
     private service: EducationserviceService,
@@ -51,6 +53,7 @@ export class EducationComponent {
       status: ['', Validators.required]
     })
     this.get();
+   
     this.columns = [
       { prop: 'name' },
       { name: 'description' },
@@ -106,7 +109,6 @@ export class EducationComponent {
         this.educationForm.reset();
         this.get();
       })
-
     }
   }
   get() {
@@ -117,6 +119,7 @@ export class EducationComponent {
         this.exportCSVData = this.datalist
       })
   }
+ 
   filterUpdate(event) {
     const val = event.target.value.toLowerCase();
     console.log(val);

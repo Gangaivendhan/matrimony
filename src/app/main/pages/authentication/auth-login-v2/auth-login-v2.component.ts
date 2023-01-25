@@ -120,20 +120,21 @@ export class AuthLoginV2Component implements OnInit {
         .subscribe(
           data => {
             console.log(data);
-            this._router.navigate(['/dashboard']);
+            this._router.navigate(['/pages/profile']);
+            localStorage.setItem('currentUser',JSON.stringify(data.data));
             console.log(data.data.message);
-            this.toastr.success('', '{{data.data.message}}', {
-              progressBar: true,
-              toastClass: 'toast ngx-toastr',
-              closeButton: true
-            });
+            // this.toastr.success('', '{{data.data.message}}', {
+            //   progressBar: true,
+            //   toastClass: 'toast ngx-toastr',
+            //   closeButton: true
+            // });
           },
   
-          (error) => {
-            this.error = error;
-            console.log(error.error.message);
-            this.loading = false;
-          }
+          // (error) => {
+          //   this.error = error;
+          //   console.log(error.error.message);
+          //   this.loading = false;
+          // }
         );
     }
     // else{
