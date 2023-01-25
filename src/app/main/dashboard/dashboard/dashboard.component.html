@@ -1,49 +1,35 @@
-<div class="content-wrapper container-xxl p-0">
-  <div class="content-body">
-    <!-- app e-commerce details start -->
-    <section class="app-ecommerce-details">
-      <div class="card">
-        
+<div class="card">
+  <div class="content-wrapper  p-3">
+    <div class="content-body">
+      <!-- app e-commerce details start -->
+      <section class="">
+        <!-- <div class="card"> -->
+
         <!-- Item features ends -->
 
         <!-- Related Products starts -->
-        <div class="card-body">
-            <!-- <div>
-                <h4>Top Matches</h4>
+        <div class="">
+          <div class="row">
+            <div class="col-lg-6">
+              <h4 style="color: rgb(255,159,67);"><b>Top Matches</b></h4>
             </div>
-            <div class="text-end">
-                <h4>See more</h4>
-            </div> -->
-            <div class="row">
-                <div class="col-lg-6">
-                    <h4>Top Matches</h4>
-                </div>
-                <div class="col-lg-6">
-                    <h5 class="float-right"><span class="text-danger" style="cursor: pointer;" >See more</span></h5>
-                </div>
-           
+            <div class="col-lg-6">
+              <h5 class="float-right" routerLink="top-matches"><span class="text-danger" style="cursor: pointer;">See
+                  more</span></h5>
+            </div>
+
           </div>
-          <div class="swiper-responsive-breakpoints swiper-container px-4 py-2"  [swiper]="swiperResponsive">
+          <div class="swiper-responsive-breakpoints swiper-container px-4 py-2" [swiper]="swiperResponsive">
             <div class="swiper-wrapper ">
               <div class="swiper-slide" *ngFor="let relatedProduct of relatedProducts">
                 <a href="javascript:void(0)">
-                  <div class="item-heading">
-                    <h5 class="text-truncate ">{{ relatedProduct.name }}</h5>
-                    <small class="text-body">by {{ relatedProduct.brand }}</small>
+                  <div class=" ">
+                    <img [src]="relatedProduct.image" class="img-fluid rounded-circle" alt="image" />
                   </div>
-                  <div class="img-container mx-auto py-75">
-                    <img [src]="relatedProduct.image" class="img-fluid" alt="image" />
+                  <div class="mt-lg-2">
+                    <h5 class="text-truncate ">{{ relatedProduct.name }},</h5>
+                    <small class="text-body mx-2"> {{ relatedProduct.age }}.</small><br>
                   </div>
-                  <!-- <div class="item-meta">
-                    <div class="rating rating-sm">
-                      <ngb-rating [rate]="relatedProduct.rating" [readonly]="true" [max]="5" class="outline-none">
-                        <ng-template let-fill="fill" let-index="index"
-                          ><span class="fa fa-star-o mr-25" [class.fa-star]="fill === 100"></span
-                        ></ng-template>
-                      </ngb-rating>
-                    </div>
-                    <p class="card-text text-primary mb-0">${{ relatedProduct.price }}</p>
-                  </div> -->
                 </a>
               </div>
             </div>
@@ -53,8 +39,9 @@
           </div>
         </div>
         <!-- Related Products ends -->
-      </div>
-    </section>
-    <!-- app e-commerce details end -->
+        <!-- </div> -->
+      </section>
+      <!-- app e-commerce details end -->
+    </div>
   </div>
 </div>

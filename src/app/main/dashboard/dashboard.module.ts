@@ -21,6 +21,7 @@ import { EcommerceComponent } from 'app/main/dashboard/ecommerce/ecommerce.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SwiperConfigInterface, SwiperModule, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { ProfileService } from '../pages/profile/profile.service';
+import { TopMatchesComponent } from './top-matches/top-matches.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -53,11 +54,15 @@ const routes = [
     // resolve: {
     //   css: DashboardService
     // },
+  },
+  {
+    path: 'top-matches',
+    component: TopMatchesComponent,
   }
 ];
 
 @NgModule({
-  declarations: [AnalyticsComponent, EcommerceComponent, DashboardComponent, ],
+  declarations: [AnalyticsComponent, EcommerceComponent, DashboardComponent, TopMatchesComponent, ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
