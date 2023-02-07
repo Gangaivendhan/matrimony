@@ -98,7 +98,7 @@ export class StarComponent implements OnInit {
       this.starForm.value.status = 'INACTIVE'
     }
     console.log(this.starForm.value);
-    if (this.starForm.value.id != "") {
+    if (this.starForm.value.id !="") {
       console.log(this.obj.id);
       this.service.updatedata(this.starForm.value).subscribe((res) => {
         console.log(res);
@@ -107,14 +107,14 @@ export class StarComponent implements OnInit {
         this.starForm.reset();
 
       });
-    } else {
+    } else  {
       this.service.postdata(this.starForm.value).subscribe(
         res => {
           console.log(res);
-          this.toastr.success("Submitted Successfully!")
-          this.get();
           modal.dismiss('cross click')
+          this.toastr.success("Submitted Successfully!")
           this.starForm.reset();
+          this.get();
         });
     }
   }
@@ -122,13 +122,13 @@ export class StarComponent implements OnInit {
 
 
   get(){
-    // this.service.getdata().subscribe(
-    //   res => {
-    //     console.log(res)
-    //     this.datalist = res.data
+    this.service.getdata().subscribe(
+      res => {
+        console.log(res)
+        this.datalist = res.data
        
-    //     // this.exportCSVData = this.datalist;
-    //   })
+        // this.exportCSVData = this.datalist;
+      })
   }
 
   filterUpdate(event) {
