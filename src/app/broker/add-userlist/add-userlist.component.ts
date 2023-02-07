@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder } from '@angular/forms';
@@ -6,9 +6,11 @@ import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-add-userlist',
   templateUrl: './add-userlist.component.html',
-  styleUrls: ['./add-userlist.component.scss']
+  styleUrls: ['./add-userlist.component.scss'],
+  encapsulation: ViewEncapsulation.None
+
 })
-export class AddUserlistComponent {
+export class AddUserlistComponent implements OnInit {
   public rows: any;
   public selected = [];
   public basicSelectedOption: number = 10;
@@ -26,12 +28,12 @@ export class AddUserlistComponent {
 
 ) { }
 
+  ngOnInit(): void {
+  
 
-  modalOpenVC(modalVC) {
-    this.modalService.open(modalVC, {
-      centered: true
-    });
   }
+
+
   filterUpdate(event) {
     const val = event.target.value.toLowerCase();
     console.log(val);

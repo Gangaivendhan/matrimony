@@ -9,7 +9,7 @@ export class StarserviceService {
   private baseUrl = environment.apiUrl;
   private starpost = this.baseUrl+"/api/star/create";
   private starget = this.baseUrl+"/api/star/getStarsInfo";
-  private stargetId = this.baseUrl+"/api/star/getActiveStarInfo";
+  private stargetId = this.baseUrl+"/api/star/getStarInfoById";
   private starupdate = this.baseUrl+"/api/star/update";
   private stardelete = this.baseUrl+"/api/star/delete";
   constructor(private http: HttpClient,

@@ -1,24 +1,12 @@
-@import '../../../@core/scss/angular/libs/datatables.component.scss';
 @import '../../../@core/scss/angular/libs/date-time-picker.component.scss';
+@import '../../../@core/scss/angular/libs/datatables.component.scss';
 
 .datatable-scroll {
   width: auto !important;
 }
-.example-form mat-slide-toggle {
+
+ample-form mat-slide-toggle {
     margin: 8px 0;
     display: block;
-  }
-  .mat-mdc-slide-toggle.mat-accent{
-    --mdc-switch-selected-focus-state-layer-color: #7367f0;
-    --mdc-switch-selected-handle-color: #7367f0;
-    --mdc-switch-selected-hover-state-layer-color: #7367f0;
-    --mdc-switch-selected-pressed-state-layer-color: #7367f0;
-    --mdc-switch-selected-focus-handle-color: #7367f0;
-    --mdc-switch-selected-hover-handle-color: #7367f0;
-    --mdc-switch-selected-pressed-handle-color: #7367f0;
-    --mdc-switch-selected-focus-track-color: #7367f0;
-    --mdc-switch-selected-hover-track-color: #7367f0;
-    --mdc-switch-selected-pressed-track-color: #7367f0;
-    --mdc-switch-selected-track-color: #7367f0;
   }
   

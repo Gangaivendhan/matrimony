@@ -94,8 +94,8 @@ export class CurrencyComponent {
       this.currencyForm.value.status = 'INACTIVE'
     }
     console.log(this.currencyForm.value);
-    if (this.obj.id) {
-      this.currencyForm.value.id = this.obj.id;
+    if (this.obj.id !="") {
+      // this.currencyForm.value.id = this.obj.id;
       this.service.updatedata(this.currencyForm.value)
         .subscribe(
           (res) => {
@@ -107,7 +107,7 @@ export class CurrencyComponent {
               this.currencyForm.reset();
             }
         )
-    }else{
+    }else {
     
     this.service.postdata(this.currencyForm.value).subscribe(res => {
       console.log(res)

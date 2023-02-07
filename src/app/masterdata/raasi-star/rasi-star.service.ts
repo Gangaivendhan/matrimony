@@ -8,11 +8,11 @@ export class RasiStarService {
 
   
   private baseurl= environment.apiUrl
-  private raasipost= this.baseurl + '/api/raasiStar/create'
-  private raasiget= this.baseurl +'/api/raasiStar/getAllRaasi'
-  private raasiupdate= this.baseurl +'/api/raasiStar/update'
-  private raasidelete= this.baseurl +'/api/raasiStar/delete'
-  private raasiedit = this.baseurl + '/api/raasiStar/getRaasiInfo'
+  private raasipost= this.baseurl +'/api/raasiStar/create'
+  private raasiget= this.baseurl +'/api/raasi/getRaasisInfo'
+  private raasiupdate= this.baseurl +'/api/raasi/updateRaasi'
+  private raasidelete= this.baseurl +'/api/raasi/delete'
+  private raasiedit = this.baseurl +'/api/raasi/getRaasiInfo'
 
   
   constructor(private http:HttpClient) { }

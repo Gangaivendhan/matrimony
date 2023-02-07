@@ -3,223 +3,7 @@
     <app-content-header [contentHeader]="contentHeader"></app-content-header>
   </div>
 </div>
-<!-- <div class="row">
-  <div class="col-md-6 col-6">
-    <core-card>
-      <div class="card-body">
-        <form class="form form-vertical">
-          <div class="row">
-            <div class="col-6">
-              <div class="form-group">
-                <label for="customSelect">Profile For</label>
-                <select class="custom-select" id="customSelect">
-                  <option selected>choose</option>
-                  <option></option>
-                </select>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="email-id-icon">Email</label>
-                <div class="form-group">
-                   <input type="text" id="Email" class="form-control" name="email"  placeholder="Email" />
-                </div>
-              </div>
-            </div>
-            <div class="col-12">
-                <div class="form-group">
-                  <label for="first-name-icon">Date Of Birth</label>
-                  <div class="input-group ">
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="Custom Footer Date Picker"
-                      [(ngModel)]="customFooterDPdata" ngbDatepicker #customFooterDP="ngbDatepicker"
-                      [footerTemplate]="footerTemplate">
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-secondary feather icon-calendar" (click)="customFooterDP.toggle()"
-                        type="button" rippleEffect></button>
-                    </div>
-                  </div>
-                </div>
-            </div>
-                <ng-template #footerTemplate>
-                  <hr class="my-0">
-                  <button class="btn btn-primary btn-sm m-2 float-left"
-                    (click)="customFooterDPdata = today; customFooterDP.close()" rippleEffect>Today</button>
-                  <button class="btn btn-secondary btn-sm m-2 float-right" (click)="customFooterDP.close()"
-                    rippleEffect>Close</button>
-                </ng-template>
-              </div>
-              <div class=" col-12">
-                <label>Mother Tounge</label>
-                <div class="form-group">
-                  <ng-select [items]="selectBasic" bindLabel="name"  placeholder="choose" [loading]="selectBasicLoading">
-                  </ng-select>
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
-                  <label for="first-name-icon">Dosam</label>
-                   <input type="text" id="dosam" class="form-control" name="dosam" placeholder="dosam" />
-                </div>
-              </div>
-              <div class=" col-12">
-                <label>Religion</label>
-                <div class="form-group">
-                  <ng-select [items]="selectBasic" placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
-                  </ng-select>
-                </div>
-              </div>
-              <div class="col-12">
-              <div class="form-group">
-                <label for="first-name-icon">Heighest Education</label>
-                 <input type="text" id="familyStatus" class="form-control" name="familyStatus" placeholder="Heighest Education" />
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="first-name-icon">Disability</label>
-                 <input type="text" id="disability" class="form-control" name="disability" placeholder="Disability" />
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="first-name-icon">Sub Type</label>
-                 <input type="text" id="subType" class="form-control" name="subType" placeholder="Sub Type" />
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="first-name-icon">Role Type</label>
-                 <input type="text" id="roleType" class="form-control" name="roleType" placeholder="Role Type" />
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="first-name-icon">Occupation</label>
-                 <input type="text" id="occupation" class="form-control" name="occupation" placeholder="Occupation" />
-              </div>
-            </div>
-            <div class=" col-12">
-              <label>Country</label>
-              <div class="form-group">
-                <ng-select [items]="selectBasic" placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
-                </ng-select>
-              </div>
-            </div>
-            <div class="col mb-4">
-              <div class="form-group">
-                <label for="first-name-icon">Expiry Date</label>
-                <div class="input-group ">
-                  <input class="form-control" placeholder="yyyy-mm-dd" name="Custom Footer Date Picker"
-                    [(ngModel)]="customFooterDPdata" ngbDatepicker #customFooterDP="ngbDatepicker"
-                    [footerTemplate]="footerTemplate">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary feather icon-calendar" (click)="customFooterDP.toggle()"
-                      type="button" rippleEffect></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </form>
-      </div>
-    </core-card>
-  </div>
-  <div class="col-md-6 col-6">
-    <core-card>
-      <div class="card-body">
-        <form class="form form-vertical">
-          <div class="row">
-            <div class="col-12">
-              <div class="form-group">
-                <label for="first-name-icon"> Name</label>
-                 <input type="text" id="first-name" class="form-control" name="fname" placeholder="First Name" />
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="contact-info-icon">Phone Number</label>
-                <input type="number" id="phonenumber" class="form-control" name="fname" placeholder="Phone Number" />
-              </div>
-            </div>
-            <div class=" col-12">
-              <label>Cast</label>
-              <div class="form-group">
-                <ng-select [items]="selectBasic" placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
-                </ng-select>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="first-name-icon">Sub Cast</label>
-                 <input type="text" id="sub-cast" class="form-control" name="subcast" placeholder="Sub Cast" />
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="first-name-icon">Gothram</label>
-                 <input type="text" id="gothram" class="form-control" name="gothram" placeholder="Gothram" />
-              </div>
-            </div>
-            <div class=" col-12">
-              <label>Maritial Status</label>
-              <div class="form-group">
-                <ng-select [items]="selectBasic" placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
-                </ng-select>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="first-name-icon">Hieght</label>
-                 <input type="text" id="height" class="form-control" name="height" placeholder="Height" />
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="first-name-icon">Family Status</label>
-                 <input type="text" id="familyStatus" class="form-control" name="familyStatus" placeholder="Family Status" />
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="first-name-icon">Family Type</label>
-                 <input type="text" id="familyType" class="form-control" name="familyType" placeholder="Family Type" />
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="first-name-icon">Family Value</label>
-                 <input type="text" id="familyValue" class="form-control" name="familyValue" placeholder="Family Value" />
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="first-name-icon">Annual Income</label>
-                 <input type="text" id="annualIncome" class="form-control" name="annualIncome" placeholder="Annual Income" />
-              </div>
-            </div>
-            <div class=" col-12">
-              <label>State</label>
-              <div class="form-group">
-                <ng-select [items]="selectBasic" placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
-                </ng-select>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="first-name-icon">About</label>
-                 <input type="text" id="about" class="form-control" name="about" placeholder="About" />
-              </div>
-            </div>
-            
-            <div class="col-12 d-flex justify-content-end ">
-              <button type="submit" rippleEffect class="btn btn-primary mr-1">Submit</button>
-              <button type="reset" rippleEffect class="btn btn-outline-secondary">Reset</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </core-card>
-  </div>
-</div> -->
+
 <section class="horizontal-wizard">
   <div id="stepper1" class="bs-stepper horizontal-wizard-example">
     <div class="bs-stepper-header">
@@ -252,6 +36,56 @@
           </span>
         </button>
       </div>
+      <div class="line"><i data-feather="chevron-right" class="font-medium-2"></i></div>
+      <div class="step" data-target="#Verification">
+        <button class="step-trigger">
+          <span class="bs-stepper-box">4</span>
+          <span class="bs-stepper-label">
+            <span class="bs-stepper-title">Verification</span>
+            <span class="bs-stepper-subtitle">Verify Your Account</span>
+          </span>
+        </button>
+      </div>
+      <div class="line"><i data-feather="chevron-right" class="font-medium-2"></i></div>
+      <div class="step" data-target="#Basicinformation">
+        <button class="step-trigger">
+          <span class="bs-stepper-box">5</span>
+          <span class="bs-stepper-label">
+            <span class="bs-stepper-title">BasicInfo</span>
+            <span class="bs-stepper-subtitle">Enter Your BasicInfo</span>
+          </span>
+        </button>
+      </div>
+      <div class="line"><i data-feather="chevron-right" class="font-medium-2"></i></div>
+      <div class="step" data-target="#Lifeinfo">
+        <button class="step-trigger">
+          <span class="bs-stepper-box">6</span>
+          <span class="bs-stepper-label">
+            <span class="bs-stepper-title">lifestyleInfo</span>
+            <span class="bs-stepper-subtitle">Enter Your lifestyleInfo</span>
+          </span>
+        </button>
+      </div>
+      <div class="line"><i data-feather="chevron-right" class="font-medium-2"></i></div>
+      <div class="step" data-target="#RasistarInfo">
+        <button class="step-trigger">
+          <span class="bs-stepper-box">7</span>
+          <span class="bs-stepper-label">
+            <span class="bs-stepper-title">Rasi&starInfo</span>
+            <span class="bs-stepper-subtitle">Enter Your Rasi&starInfomation</span>
+          </span>
+        </button>
+      </div>
+      <div class="line"><i data-feather="chevron-right" class="font-medium-2"></i></div>
+      <div class="step" data-target="#Horoscope">
+        <button class="step-trigger">
+          <span class="bs-stepper-box">8</span>
+          <span class="bs-stepper-label">
+            <span class="bs-stepper-title">HoroscopeInfo</span>
+            <span class="bs-stepper-subtitle">Enter Your HoroscopeInfomation</span>
+          </span>
+        </button>
+      </div>
     </div>
     <div class="bs-stepper-content">
       <form (ngSubmit)="(HWForm.form.valid)" #HWForm="ngForm">
@@ -261,19 +95,18 @@
               <h5 class="mb-0">Account Details</h5>
               <small class="text-muted">Enter Your Account Details.</small>
             </div>
-
             <div class="row">
               <div class="form-group col-md-6">
-                  <label for="customSelect">Profile For</label>
-                  <select class="custom-select" id="customSelect">
-                    <option selected>choose</option>
-                    <option></option>
-                  </select>
+                <label for="customSelect">Profile For</label>
+                <select class="custom-select" id="customSelect">
+                  <option value="">choose</option>
+                  <option *ngFor="let  profile of profile" [value]=" profile.id">{{profile.value}}</option>
+                </select>
               </div>
               <div class="form-group col-md-6">
                 <div class="form-group">
-                  <label for="first-name-icon"> Name</label>
-                   <input type="text" id="first-name" class="form-control" name="fname" placeholder="First Name" />
+                  <label for="first-name-icon">Name</label>
+                  <input type="text" id="first-name" class="form-control" name="fname" placeholder="First Name" />
                 </div>
               </div>
             </div>
@@ -282,120 +115,207 @@
                 <div class="form-group">
                   <label for="email-id-icon">Email</label>
                   <div class="form-group">
-                     <input type="text" id="Email" class="form-control" name="email"  placeholder="Email" />
+                    <input type="text" id="Email" class="form-control" name="email" placeholder="Email" />
                   </div>
                 </div>
-                </div>
-              
-              <div class="form-group col-md-6">
-                  <div class="form-group">
-                    <label for="contact-info-icon">Phone Number</label>
-                    <input type="number" id="phonenumber" class="form-control" name="fname" placeholder="Phone Number" />
-                  </div>
               </div>
-            
-            <div class="form-group col-md-6">
+              <div class="form-group  col-md-6">
+                <div class="form-group">
+                  <label for="email-id-icon">Password</label>
+                  <div class="form-group">
+                    <input type="Password" id="password" class="form-control" name="Password" placeholder="Password" />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group  col-md-6">
+                <div class="form-group">
+                  <label for="email-id-icon">Gender</label>
+                  <div class="form-group">
+                    <ng-select bindLabel="name" placeholder="choose" [loading]="selectBasicLoading">
+                      <ng-option *ngFor="let Gender of Gender" [value]="Gender.id">{{Gender.value}}</ng-option>
 
-             <!-- <label for="first-name-icon">Date Of Birth</label>
-                  <div class="input-group ">
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="Custom Footer Date Picker"
-                      [(ngModel)]="customFooterDPdata" ngbDatepicker #customFooterDP="ngbDatepicker"
-                      [footerTemplate]="footerTemplate">
+                    </ng-select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="contact-info-icon">Phone Number</label>
+                  <input type="number" id="phonenumber" class="form-control" name="fname" placeholder="Phone Number" />
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label>Date Of Birth</label>
+                  <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="Custom Day Date Picker"
+                      [(ngModel)]="CustomDayDPdata" ngbDatepicker [dayTemplate]="customDay" [markDisabled]="isDisabled"
+                      #CustomDayDP="ngbDatepicker">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-secondary feather icon-calendar" (click)="customFooterDP.toggle()"
+                      <button class="btn btn-outline-secondary feather icon-calendar" (click)="CustomDayDP.toggle()"
                         type="button" rippleEffect></button>
                     </div>
                   </div>
-                  <ng-template #footerTemplate>
-                    <hr class="my-0">
-                    <button class="btn btn-primary btn-sm m-2 float-left"
-                      (click)="customFooterDPdata = today; customFooterDP.close()" rippleEffect>Today</button>
-                    <button class="btn btn-secondary btn-sm m-2 float-right" (click)="customFooterDP.close()"
-                      rippleEffect>Close</button>
-                  </ng-template> -->
-                    <div class="form-group">
-                      <label>Date Of Birth</label>
-                      <div class="input-group">
-                        <input class="form-control" placeholder="yyyy-mm-dd" name="Custom Day Date Picker"
-                          [(ngModel)]="CustomDayDPdata" ngbDatepicker [dayTemplate]="customDay" [markDisabled]="isDisabled"
-                          #CustomDayDP="ngbDatepicker">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-secondary feather icon-calendar" (click)="CustomDayDP.toggle()"
-                            type="button" rippleEffect></button>
-                        </div>
-                      </div>
-                    </div>
-                  <ng-template #customDay let-date let-currentMonth="currentMonth" let-selected="selected" let-disabled="disabled"
-                    let-focused="focused">
-                    <span class="custom-day" [class.weekend]="isWeekend(date)" [class.focused]="focused"
-                      [class.bg-primary]="selected" [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
-                      {{ date.day }}
-                    </span>
-                  </ng-template>
-            </div>
-            <div class="form-group col-md-6">
-              <label>Mother Tongue</label>
-              <div class="form-group">
-                <ng-select [items]="selectBasic" bindLabel="name"  placeholder="choose" [loading]="selectBasicLoading">
-                </ng-select>
+                </div>
+                <ng-template #customDay let-date let-currentMonth="currentMonth" let-selected="selected"
+                  let-disabled="disabled" let-focused="focused">
+                  <span class="custom-day" [class.weekend]="isWeekend(date)" [class.focused]="focused"
+                    [class.bg-primary]="selected" [class.hidden]="date.month !== currentMonth"
+                    [class.text-muted]="disabled">
+                    {{ date.day }}
+                  </span>
+                </ng-template>
+              </div>
+              <div class="form-group col-md-6">
+                <label>Mother Tongue</label>
+                <div class="form-group">
+                  <ng-select [items]="selectBasic" bindLabel="name" placeholder="choose" [loading]="selectBasicLoading">
+                  </ng-select>
+                </div>
+              </div>
+
+              <div class="form-group col-md-6">
+                <label>Religion</label>
+                <div class="form-group">
+                  <ng-select [items]="selectBasic" placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
+                  </ng-select>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">Annual Income</label>
+                  <input type="text" id="annualIncome" class="form-control" name="annualIncome"
+                    placeholder="Annual Income" />
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label>Maritial Status</label>
+                <div class="form-group">
+                  <ng-select placeholder="choose" bindLabel="name">
+                    <ng-option *ngFor="let   MaretailStatus of MaretailStatus" [value]=" MaretailStatus.id">{{
+                      MaretailStatus.value}}</ng-option>
+                  </ng-select>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">Occupation</label>
+                  <input type="text" id="occupation" class="form-control" name="occupation" placeholder="Occupation" />
+                </div>
               </div>
             </div>
            
-            <div class="form-group col-md-6">
-            <label>Religion</label>
-            <div class="form-group">
-              <ng-select [items]="selectBasic" placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
-              </ng-select>
-            </div>
-            </div>
-            <div class="form-group col-md-6">
-              <div class="form-group">
-                <label for="first-name-icon">Annual Income</label>
-                 <input type="text" id="annualIncome" class="form-control" name="annualIncome" placeholder="Annual Income" />
+
+            <!----------start--------object type two--------->
+            <!-- 
+            <div class="row" formGroupName="familyInfoObj">
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">Family Location</label>
+                   <input type="text" id="familyLocation" class="form-control" name="familyLocation" placeholder="Family Location" />
+                </div>
               </div>
-            </div>
-            <div class="form-group col-md-6">
-              <label>Maritial Status</label>
-              <div class="form-group">
-                <ng-select [items]="selectBasic" placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
-                </ng-select>
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">Family Married Status</label>
+                   <input type="text" id="familyMarriedStatus" class="form-control" name="familyMarriedStatus" placeholder="Family Married Status" />
+                </div>
               </div>
-            </div>
-            <div class="form-group col-md-6">
-              <div class="form-group">
-                <label for="first-name-icon">Occupation</label>
-                 <input type="text" id="occupation" class="form-control" name="occupation" placeholder="Occupation" />
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">Father status</label>
+                   <input type="text" id="father_status" class="form-control" name="father_status" placeholder="Father Status" />
+                </div>
               </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group">
-                <label for="first-name-icon">Job Type</label>
-                 <input type="text" id="jobType" class="form-control" name="jobType" placeholder="Job Type" />
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">No Of Brothers</label>
+                   <input type="text" id="noOfBrothers" class="form-control" name="noOfBrothers" placeholder="No Of Brothers" />
+                </div>
               </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group">
-                <label for="first-name-icon">Role Type</label>
-                 <input type="text" id="roleType" class="form-control" name="roleType" placeholder="Role Type" />
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">No Of Sister</label>
+                   <input type="text" id="noOfSister" class="form-control" name="noOfSister" placeholder="No Of Sister" />
+                </div>
               </div>
-            </div>
-          </div>
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">Status</label>
+                   <input type="text" id="status" class="form-control" name="status" placeholder="status" />
+                </div>
+              </div>
+            </div> -->
+            <!----------end--------object type two--------->
+
+            <!----------start--------object type three--------->
+            <!-- <div class="row" formGroupName="horoscopeDetailsObj">
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">cityId</label>
+                   <input type="text" id="cityId" class="form-control" name="cityId" placeholder="City" />
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">Place Of Birth</label>
+                   <input type="text" id="placeOfBirth" class="form-control" name="placeOfBirth" placeholder="Place Of Birth" />
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">State</label>
+                   <input type="text" id="stateId" class="form-control" name="stateId" placeholder="State" />
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">Time Of Birth</label>
+                   <input type="text" id="timeOfbirth" class="form-control" name="timeOfbirth" placeholder="Time Of Birth" />
+                </div>
+              </div>
+            </div> -->
+            <!----------end--------object type three--------->
+            <!--start  ------------ object tybe four------------->
+            <!-- <div class="row" formGroupName="lifeStyleInfoObj">
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">drinking</label>
+                   <input type="text" id="cityId" class="form-control" name="cityId" placeholder="City" />
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">EatingHabit</label>
+                   <input type="text" id="eatingHabit" class="form-control" name="eatingHabit" placeholder="EatingHabit" />
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">Smoking</label>
+                   <input type="text" id="smoking" class="form-control" name="smoking" placeholder="Smoking" />
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">Status</label>
+                   <input type="text" id="status" class="form-control" name="status" placeholder="status" />
+                </div>
+              </div>
+            </div> -->
+
+            <!--end ------------ object tybe four------------->
+
+
+
             <div class="d-flex justify-content-between">
-              <button
-                (click)="horizontalWizardStepperPrevious()"
-                class="btn btn-outline-secondary btn-prev"
-                disabled
-                rippleEffect
-              >
+              <button (click)="horizontalWizardStepperPrevious()" class="btn btn-outline-secondary btn-prev" disabled
+                rippleEffect>
                 <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
               </button>
-              <button
-                (click)="horizontalWizardStepperNext(accountDetailsForm)"
-                type="submit"
-                class="btn btn-primary btn-next"
-                rippleEffect
-              >
+              <button (click)="horizontalWizardStepperNext(accountDetailsForm)" type="submit"
+                class="btn btn-primary btn-next" rippleEffect>
                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                 <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
               </button>
@@ -413,76 +333,84 @@
             <div class="row">
               <div class="form-group col-md-6">
                 <label for="first-name-icon">Heighest Education</label>
-                 <input type="text" id="familyStatus" class="form-control" name="familyStatus" placeholder="Heighest Education" />
+                <input type="text" id="familyStatus" class="form-control" name="familyStatus"
+                  placeholder="Heighest Education" />
               </div>
               <div class="form-group col-md-6">
                 <label>Cast</label>
-              <div class="form-group">
-                <ng-select [items]="selectBasic" placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
+                <div class="form-group">
+                  <ng-select [items]="selectBasic" placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
+                  </ng-select>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">Sub Cast</label>
+                  <input type="text" id="sub-cast" class="form-control" name="subcast" placeholder="Sub Cast" />
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label>Dosam</label>
+                <div class="form-group">
+                  <ng-select placeholder="choose" bindLabel="name">
+                    <ng-option *ngFor="let Dosham of Dosham" [value]="Dosham.id">{{ Dosham.value}}</ng-option>
+                  </ng-select>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">Gothram</label>
+                  <input type="text" id="gothram" class="form-control" name="gothram" placeholder="Gothram" />
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="form-group">
+                  <label for="first-name-icon">Disability</label>
+                  <ng-select placeholder="choose" bindLabel="name">
+                    <ng-option *ngFor="let Disability of Disability " [value]="Disability.id">{{ Disability.value
+                      }}</ng-option>
+                  </ng-select>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="first-name-icon">Hieght</label>
+                  <input type="text" id="height" class="form-control" name="height" placeholder="Height" />
+                </div>
+              </div>
+              <div class="col-6">
+                <label for="first-name-icon">Family Type</label>
+                <ng-select placeholder="choose" bindLabel="name">
+                  <ng-option *ngFor="let FamilyType of FamilyType " [value]=" FamilyType.id">{{ FamilyType.value
+                    }}</ng-option>
                 </ng-select>
               </div>
-            </div>
-            <div class="form-group col-md-6">
-              <div class="form-group">
-                <label for="first-name-icon">Sub Cast</label>
-                 <input type="text" id="sub-cast" class="form-control" name="subcast" placeholder="Sub Cast" />
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="first-name-icon">Family Status</label>
+                  <ng-select placeholder="choose" bindLabel="name">
+                    <ng-option *ngFor="let FamilyStatus of familyStatus" [value]=" FamilyStatus.id">{{
+                      FamilyStatus.value }}</ng-option>
+                  </ng-select>
+                </div>
               </div>
-            </div>
-            <div class="form-group col-md-6">
-              <div class="form-group">
-                <label for="first-name-icon">Dosam</label>
-                 <input type="text" id="dosam" class="form-control" name="dosam" placeholder="dosam" />
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="first-name-icon">Family Value</label>
+                  <ng-select placeholder="choose" bindLabel="name">
+                    <ng-option *ngFor="let familyvalue of  FamilyValue"
+                      [value]="familyvalue.id">{{familyvalue.value}}</ng-option>
+                  </ng-select>
+                </div>
               </div>
-            </div>
-            <div class="form-group col-md-6">
-              <div class="form-group">
-                <label for="first-name-icon">Gothram</label>
-                 <input type="text" id="gothram" class="form-control" name="gothram" placeholder="Gothram" />
-              </div>
-            </div>
-            <div class="form-group col-md-6">
-              <div class="form-group">
-                <label for="first-name-icon">Disability</label>
-                 <input type="text" id="disability" class="form-control" name="disability" placeholder="Disability" />
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group">
-                <label for="first-name-icon">Hieght</label>
-                 <input type="text" id="height" class="form-control" name="height" placeholder="Height" />
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group">
-                <label for="first-name-icon">Family Status</label>
-                 <input type="text" id="familyStatus" class="form-control" name="familyStatus" placeholder="Family Status" />
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group">
-                <label for="first-name-icon">Family Type</label>
-                 <input type="text" id="familyType" class="form-control" name="familyType" placeholder="Family Type" />
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group">
-                <label for="first-name-icon">Family Value</label>
-                 <input type="text" id="familyValue" class="form-control" name="familyValue" placeholder="Family Value" />
-              </div>
-            </div>
             </div>
             <div class="d-flex justify-content-between">
-              <button
-                type="button"
-                (click)="horizontalWizardStepperPrevious()"
-                class="btn btn-primary btn-prev"
+              <button type="button" (click)="horizontalWizardStepperPrevious()" class="btn btn-primary btn-prev"
                 rippleEffect>
                 <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
               </button>
-              <button
-                (click)="horizontalWizardStepperNext(personalInfoForm)"
-                class="btn btn-primary btn-next"
+              <button (click)="horizontalWizardStepperNext(personalInfoForm)" class="btn btn-primary btn-next"
                 rippleEffect>
                 <span class="align-middle d-sm-inline-block d-none">Next</span>
                 <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
@@ -506,46 +434,282 @@
               </div>
               <div class="form-group col-md-6">
                 <label>State</label>
-              <div class="form-group">
-                <ng-select [items]="selectBasic" placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
-                </ng-select>
-              </div>
+                <div class="form-group">
+                  <ng-select [items]="selectBasic" placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
+                  </ng-select>
+                </div>
               </div>
             </div>
             <div class="row">
               <div class="form-group col-md-6">
-                <label for="first-name-icon">Expiry Date</label>
-                <div class="input-group ">
-                  <input class="form-control" placeholder="yyyy-mm-dd" name="Custom Footer Date Picker"
-                    [(ngModel)]="customFooterDPdata" ngbDatepicker #customFooterDP="ngbDatepicker"
-                    [footerTemplate]="footerTemplate">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary feather icon-calendar" (click)="customFooterDP.toggle()"
-                      type="button" rippleEffect></button>
-                  </div>
-              </div>
-              
+                <label>Employed In</label>
+                <div class="form-group">
+                  <ng-select placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
+                    <ng-option *ngFor="let EmployedIn of  EmployedIn "
+                      [value]=" EmployedIn.id ">{{EmployedIn.value}}</ng-option>
+                  </ng-select>
+                </div>
               </div>
               <div class="form-group col-md-6">
                 <div class="form-group">
-                  <label for="first-name-icon">About</label>
-                   <input type="text" id="about" class="form-control" name="about" placeholder="About" />
+                  <label for="first-name-icon">City</label>
+                  <input type="text" id="about" class="form-control" name="about" placeholder="About" />
                 </div>
+              </div>
+              <div class="form-group col">
+                <label for="basicTextarea">About You</label>
+                <fieldset class="form-group">
+                  <textarea class="form-control" id="basicTextarea" rows="3" placeholder="Type Here......."></textarea>
+                </fieldset>
               </div>
             </div>
             <div class="d-flex justify-content-between">
-              <button
-                type="button"
-                (click)="horizontalWizardStepperPrevious()"
-                class="btn btn-primary btn-prev"
+              <button type="button" (click)="horizontalWizardStepperPrevious()" class="btn btn-primary btn-prev"
                 rippleEffect>
                 <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
                 <span class="align-middle d-sm-inline-block d-none">Previous</span>
               </button>
-              <button class="btn btn-success btn-submit" rippleEffect (click)="onSubmit()">Submit</button>
+              <button (click)="horizontalWizardStepperNext(verificationForm)" class="btn btn-primary btn-next"
+                rippleEffect>
+                <span class="align-middle d-sm-inline-block d-none">Next</span>
+                <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+              </button>
             </div>
           </form>
         </div>
+        <div id="Verification" class="content">
+          <form #verificationForm="ngForm">
+            <div id="app">
+              <div class=" p-2 text-center">
+                <h6>Please enter the one time password <br> </h6>
+                <div> <span> sent to</span>
+                  <small>+1******4343</small>
+                </div>
+                <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+                  <input class="m-2 text-center form-control rounded" type="text" id="input1" v-on:keyup="inputenter(1)"
+                    maxlength="1" />
+                  <input class="m-2 text-center form-control rounded" v-on:keyup="inputenter(2)" type="text" id="input2"
+                    maxlength="1" />
+                  <input class="m-2 text-center form-control rounded" v-on:keyup="inputenter(3)" type="text" id="input3"
+                    maxlength="1" />
+                  <input class="m-2 text-center form-control rounded" v-on:keyup="inputenter(4)" type="text" id="input4"
+                    maxlength="1" />
+                </div>
+                <div class="mt-4 "> <button class="btn btn-success text-white px-4 validate">Verify</button>
+                </div>
+                <div class="mt-3 content d-flex justify-content-center align-items-center">
+                  <span>Didn't get the code</span> <a href="#" class="text-decoration-none ms-3">Resend(1/3)</a>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-primary btn-submit" rippleEffect
+                (click)="horizontalWizardStepperNext(BasicinformationForm)">Next
+                <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+          <div id="Basicinformation" class="content">
+            <form #BasicinformationForm="ngForm">
+              <div class="content-header">
+                <h5 class="mb-0">BasicInfo</h5>
+                <small>Enter Your BasicInfo.</small>
+              </div>
+              <div class="row" >
+                <div class="form-group col-md-6">
+                  <div class="form-group">
+                    <label for="first-name-icon">Body Type</label>
+                    <div class="form-group">
+                      <ng-select placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
+                        <ng-option *ngFor="let bodyType of  bodyType "
+                          [value]="bodyType.id">{{bodyType.value}}</ng-option>
+                      </ng-select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="form-group">
+                    <label for="first-name-icon">Weight</label>
+                     <input type="text" id="weight" class="form-control" name="weight" placeholder="weight" />
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="form-group">
+                    <label for="first-name-icon">Organization</label>
+                     <input type="text" id="organization" class="form-control" name="organization" placeholder="Organization" />
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="form-group">
+                    <label for="first-name-icon">ClgInstitution</label>
+                     <input type="text" id="clgInstitution" class="form-control" name="clgInstitution" placeholder="clgInstitution" />
+                  </div>
+                </div>
+              </div> 
+              <div class="d-flex justify-content-between">
+                <button type="button" (click)="horizontalWizardStepperPrevious()" class="btn btn-primary btn-prev"
+                  rippleEffect>
+                  <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+                  <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                </button>
+                <button class="btn btn-primary btn-next"
+                  rippleEffect>
+                  <span class="align-middle d-sm-inline-block d-none" (click)="horizontalWizardStepperNext(LifeForm)">Sikp</span>
+                  <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+          <div id="Lifeinfo" class="content">
+            <form #LifeForm="ngForm">
+              <div class="content-header">
+                <h5 class="mb-0">LifestyleInfo</h5>
+                <small>Enter Your LifestyleInfo.</small>
+              </div>
+              <div class="form form-horizontal" >
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group row">
+                      <div class="col-sm-3 col-form-label">
+                        <label>Drinking</label>
+                      </div>
+                      <div class="col-sm-9">
+                        <ng-select placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
+                          <ng-option *ngFor="let Drinking of  drinking "
+                            [value]="Drinking.id">{{ Drinking.value }}</ng-option>
+                        </ng-select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group row">
+                      <div class="col-sm-3 col-form-label">
+                        <label>EatingHabit</label>
+                      </div>
+                      <div class="col-sm-9">
+                        <ng-select placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
+                          <ng-option *ngFor="let EatingHabit of  EatingHabit "
+                            [value]=" EatingHabit.id ">{{ EatingHabit.value }}</ng-option>
+                        </ng-select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group row">
+                      <div class="col-sm-3 col-form-label">
+                        <label>Smoking</label>
+                      </div>
+                      <div class="col-sm-9">
+                        <ng-select placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
+                          <ng-option *ngFor="let Smoking of  Smoking "
+                            [value]="Smoking.id">{{Smoking.value}}</ng-option>
+                        </ng-select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <button type="button" (click)="horizontalWizardStepperPrevious()" class="btn btn-primary btn-prev"
+                  rippleEffect>
+                  <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+                  <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                </button>
+                <button class="btn btn-primary btn-next"  (click)="horizontalWizardStepperNext(RasistarForm)"
+                  rippleEffect>
+                  <span class="align-middle d-sm-inline-block d-none">Sikp</span>
+                  <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+          <div id="RasistarInfo" class="content">
+            <form #RasistarForm="ngForm">
+              <div class="content-header">
+                <h5 class="mb-0">Rasi&StarInfo</h5>
+                <small>Enter Your Rasi&StarInfo.</small>
+              </div>
+              <div class="form form-horizontal" >
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                      <div class="form-group ">
+                        <label>Drinking</label>
+                        <ng-select placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
+                          <ng-option *ngFor="let Drinking of  drinking "
+                            [value]="Drinking.id">{{ Drinking.value }}</ng-option>
+                        </ng-select>
+                    </div>
+                    </div>
+                  <div class="col-6">
+                    <div class="form-group ">
+                        <label>EatingHabit</label>
+                        <ng-select placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
+                          <ng-option *ngFor="let EatingHabit of  EatingHabit "
+                            [value]=" EatingHabit.id ">{{ EatingHabit.value }}</ng-option>
+                        </ng-select>
+                      </div>
+
+                    </div>
+                  </div>
+               </div>
+               <div class="d-flex justify-content-between">
+                <button type="button" (click)="horizontalWizardStepperPrevious()" class="btn btn-primary btn-prev"
+                  rippleEffect>
+                  <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+                  <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                </button>
+                <button class="btn btn-primary btn-next"  (click)="horizontalWizardStepperNext(BasicinformationForm)"
+                  rippleEffect>
+                  <span class="align-middle d-sm-inline-block d-none">Sikp</span>
+                  <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+          <div id="Horoscope" class="content">
+            <form #HoroscopeForm="ngForm">
+              <div class="content-header">
+                <h5 class="mb-0">Horoscope Details</h5>
+                <small>Enter Your HoroscopeInfo.</small>
+              </div>
+              <div class="form form-horizontal" >
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                      <div class="form-group ">
+                        <label>Drinking</label>
+                        <ng-select placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
+                          <ng-option *ngFor="let Drinking of  drinking "
+                            [value]="Drinking.id">{{ Drinking.value }}</ng-option>
+                        </ng-select>
+                    </div>
+                    </div>
+                  <div class="col-6">
+                    <div class="form-group ">
+                        <label>EatingHabit</label>
+                        <ng-select placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
+                          <ng-option *ngFor="let EatingHabit of  EatingHabit "
+                            [value]=" EatingHabit.id ">{{ EatingHabit.value }}</ng-option>
+                        </ng-select>
+                      </div>
+
+                    </div>
+                  </div>
+               </div>
+               <div class="d-flex justify-content-between">
+                <button type="button" (click)="horizontalWizardStepperPrevious()" class="btn btn-primary btn-prev"
+                  rippleEffect>
+                  <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+                  <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                </button>
+                <button class="btn btn-primary btn-next"  (click)="horizontalWizardStepperNext(BasicinformationForm)"
+                  rippleEffect>
+                  <span class="align-middle d-sm-inline-block d-none">Sikp</span>
+                  <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+                </button>
+              </div>
+            </form>
+          </div>
       </form>
     </div>
   </div>

@@ -89,8 +89,8 @@ export class EducationComponent {
       this.educationForm.value.status = 'INACTIVE'
     }
     console.log(this.educationForm.value);
-    if (this.obj.id) {
-      this.educationForm.value.id = this.obj.id;
+    if (this.obj.id !="") {
+      // this.educationForm.value.id = this.obj.id;
       this.service.updatedata(this.educationForm.value)
         .subscribe(
           (res) => {

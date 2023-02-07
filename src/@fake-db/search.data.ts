@@ -155,7 +155,7 @@ export class SearchFakeData {
           isBookmarked: false,
           title: 'Login v2 Page',
           icon: 'user-plus',
-          link: '/pages/authentication/login-v2'
+          link: '/account/login'
         },
         {
           id: 19,
