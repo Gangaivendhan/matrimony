@@ -1,0 +1,49 @@
+.cards{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(34, 41, 47, 0.125);
+    border-radius: 0.428rem;
+}
+
+// .card{
+//     width: 280px;
+//     margin: 20px;
+// }
+/* Give the document some structure. */
+
+
+/* Create a responsive, centered, three-column grid. */
+.card-container {
+	align-items: center;
+	display: grid;
+	grid-gap: 16px;
+	grid-template-columns: repeat(auto-fit, 300px);
+	justify-content:space-evenly;
+}
+
+/* --- Optional styles (to make this pen look nice) --- */
+body {
+	font-family: sans-serif;
+}
+
+.card {
+	background-color: white;
+	border-radius: 5px;
+	padding: 24px 0 16px;
+	text-align: center;
+}
+
+
+.img-fluid {
+    max-width: 43%;
+    height: auto;
+}
+small, .small {
+    font-size: 0.977rem;
+    font-weight: 400;
+}
+
