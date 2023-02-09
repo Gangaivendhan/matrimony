@@ -193,6 +193,14 @@ export const menu: CoreMenu[] = [
           },
           
         ]
+      },
+      {
+        id: 'request',
+        title: 'Request',
+        translate: 'MENU.PAGES.SECTION',
+        type: 'collapsible',
+        icon: 'user-plus',
+        url:'/request'
       }
      ]
    },

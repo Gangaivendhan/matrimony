@@ -122,6 +122,16 @@ footerTemplate: any;
    
   ];
 
+  star = [
+      { id: 1, starname: 'Bharani' },
+      { id: 2, starname: 'Pushya' },
+      { id: 3, starname: 'Mrigashira' },
+      { id: 4, starname: 'Purva Ashadha' },
+    ];
+    Raasi=[
+      { id: 1, Raasiname:'mithunam' },
+      { id: 2, Raasiname:'meshum'  },
+    ]
   drinking=[
     { id: 1, value: 'No' },
     { id: 2, value: 'Yes' },
@@ -138,6 +148,22 @@ footerTemplate: any;
     { id: 2, value: 'No' },
    
   ];
+  state=[
+    { id: 1, value: 'Tamil Nadu' },
+    { id: 2, value: 'Kerala' },
+  ]
+  city=[
+    { id: 1, value: 'Thanjavur' },
+    { id: 2, value: 'Chennai' },
+  ]
+  country = [
+    { id: 1, value: 'India' },
+    { id: 2, value: 'Karanataka' },
+  ]
+  meridia = [
+    { id: 1, value: 'am' },
+    { id: 2, value: 'pm' },
+  ]
   EmployedIn=[
     { id: 1, value: 'Goverment/Pscr' },
     { id: 2, value: 'Private' },
