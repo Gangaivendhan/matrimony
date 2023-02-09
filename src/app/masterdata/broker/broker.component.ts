@@ -36,6 +36,14 @@ export class BrokerComponent {
   datalist:any
   columns:any;
   paramId :any;
+  countryobj: any = {}
+  stateObj: any = {}
+  cityObj: any = {}
+  id: any;
+  cities: any = []
+  state: any = []
+  country: any = []
+  city: any;
   obj:any={};
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
@@ -71,6 +79,8 @@ export class BrokerComponent {
       { name: 'status'}
     ];
 this.get();
+this.getallcountry();
+
   }
   get f(): { [key: string]: AbstractControl } {
     return this.brokerForm.controls;
@@ -80,6 +90,8 @@ this.get();
     console.log(res)
     this.obj = res.data
     console.log(this.obj) 
+    this.getstate(this.getallcountry);
+
   })
   this.modalService.open(content, { size: 'm' });
 }
@@ -127,6 +139,7 @@ get() {
       this.exportCSVData = this.datalist
     })
 }
+
 filterUpdate(event) {
   const val = event.target.value.toLowerCase();
   console.log(val);
@@ -139,6 +152,57 @@ filterUpdate(event) {
     this.datalist = this.datalist;
   }
 }
+getallcountry() {
+
+  this.service.getalldatacountry().subscribe(
+    res => {
+      console.log(res)
+      this.obj = res
+      this.datalist = res.data
+      this.country = this.countryobj.data
+      
+      this.countryobj = res
+      console.log(this.countryobj)
+      this.country = this.countryobj.data
+      console.log(this.country)
+
+
+    })
+ }
+getstate(id: any) {
+  this.service.getcountryiddetails(id).subscribe(
+    res => {
+      console.log(res)
+      this.toastr.success(res.message, 'Fetched successfully!');
+      this.stateObj = res
+      this.state = this.stateObj.data
+      console.log(this.state);
+      
+    })
+}
+
+
+// getcity(id: any) {
+//   this.service.getcityId(id).subscribe(
+//     res => {
+//       console.log(res)
+//       this.cityObj = res
+//       this.cities = this.cityObj.data
+//       console.log(this.cityObj);
+      
+//     })
+// }
+
+// changeCountry(event: any) {
+//   console.log(event.target.value);
+//   this.state = event.target.value;
+//   this.getstate(this.state);
+// }
+// changeState(event: any) {
+//   console.log(event.target.value);
+//   this.city = event.target.value;
+//   this.getcity(this.city);
+// }
 rejected(id:any){
   Swal.fire({
     title: 'Are you sure?',
@@ -163,3 +227,4 @@ rejected(id:any){
   })
 }
 }
+
