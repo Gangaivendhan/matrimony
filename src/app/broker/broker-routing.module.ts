@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddUserComponent } from './add-user/add-user.component';
 import { AddUserlistComponent } from './add-userlist/add-userlist.component';
+import { RequestComponent } from './request/request.component';
 
 const routes: Routes = [
   {
@@ -9,6 +10,9 @@ const routes: Routes = [
   },
   {
     path:'add-userlist',component:AddUserlistComponent
+  },
+  {
+    path:'request',component:RequestComponent
   }
 ];
 

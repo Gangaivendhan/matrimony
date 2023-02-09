@@ -26,13 +26,15 @@ import { BrokerRoutingModule } from './broker-routing.module';
 import { AddUserComponent } from './add-user/add-user.component';
 import { AddUserlistComponent } from './add-userlist/add-userlist.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { RequestComponent } from './request/request.component';
 
 
 @NgModule({
   declarations: [
   
     AddUserComponent,
-       AddUserlistComponent
+       AddUserlistComponent,
+       RequestComponent
   ],
   imports: [
     CommonModule,

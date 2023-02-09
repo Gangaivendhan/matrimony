@@ -9,14 +9,6 @@
     border-radius: 0.428rem;
 }
 
-// .card{
-//     width: 280px;
-//     margin: 20px;
-// }
-/* Give the document some structure. */
-
-
-/* Create a responsive, centered, three-column grid. */
 .card-container {
 	align-items: center;
 	display: grid;
@@ -25,7 +17,6 @@
 	justify-content:space-between;
 }
 
-/* --- Optional styles (to make this pen look nice) --- */
 body {
 	font-family: sans-serif;
 }
@@ -42,24 +33,3 @@ body {
     max-width: 43%;
     height: auto;
 }
-@media (min-width:1440px){
-    .ca{
-        grid-template-columns: repeat(auto-fit, 360px);
-    }
-}
-@media (max-width:425px){
-    .ca{
-        justify-content:center;
-        
-    }
-}
-// @media (min-width:375px){
-//     .ca{
-//         justify-content: center;
-//     }
-// }
-// @media (min-width:320px){
-//     .cas{
-//         justify-content: center;
-//     }
-// }
