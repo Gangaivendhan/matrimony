@@ -12,7 +12,8 @@ const routes: Routes = [
     path:'add-userlist',component:AddUserlistComponent
   },
   {
-    path:'request',component:RequestComponent
+    path:'request',component:RequestComponent,
+    data: { animation: 'pagination' }
   }
 ];
 

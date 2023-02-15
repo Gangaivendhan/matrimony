@@ -1,23 +1,55 @@
-<div class="cards">
+<!-- <div class="cards">
     <div class="col-lg-12">
         <h2 class="mt-1">Top Matches</h2>
     </div>
-</div>
-<div class="row match-height mt-3">
-    <div class="col-md-4 col-sm-6 col-12 " *ngFor="let relatedProduct of relatedProducts">
-        <div class="card ">
-            <div class=" profile-latest-img">
-                <a href="javascript:void(0)">
-                    <img [src]="relatedProduct.image" class="img-fluid rounded mt-2 rounded-circle " alt="avatar img" />
-                </a>
+</div> -->
+<div class="row match-height mt-2">
+  <div class="col-md-4 col-sm-6 col-12 " *ngFor="let relatedProduct of relatedProducts | filter: searchText:'name'
+  | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize
+">
+    <div class="card ">
+      <div class=" profile-latest-img">
+        <a href="javascript:void(0)">
+          <img [src]="relatedProduct.image" class="img-fluid rounded mt-1 rounded-circle " alt="avatar img" />
+        </a>
 
-                <div class="card-body text-center">
-                    <h4 class="text-truncate mx-0 mt-1 "><b>{{ relatedProduct.name }}</b>,</h4>
-                    <small class="text-body mt-1 mb-0"> {{ relatedProduct.MatrimonyId }},</small><br>
-                    <small class="text-body mt-1 mb-0"> {{ relatedProduct.age }},</small><br>
-                    <small class="text-body mt-1 mb-0"> {{ relatedProduct.work }}.</small>
-                </div>
-            </div>
+        <div class="card-body text-center">
+          <h4 class="text-truncate mx-0  "><b>{{ relatedProduct.name }}</b>,</h4>
+          <small class="text-body mt-1 mb-0"> {{ relatedProduct.MatrimonyId }},</small><br>
+          <small class="text-body mt-1 mb-0"> {{ relatedProduct.age }},</small><br>
+          <small class="text-body mt-1 mb-0"> {{ relatedProduct.work }}.</small>
         </div>
+      </div>
     </div>
+  </div>
 </div>
+<section id="ecommerce-pagination">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="d-flex justify-content-end">
+        <ngb-pagination
+          [collectionSize]="(relatedProducts | filter: searchText:'name').length"
+          [(page)]="page"
+          [maxSize]="5"
+          [rotate]="true"
+          [ellipses]="false"
+          [boundaryLinks]="true"
+        >
+          <!-- Custom pagination icons -->
+          <ng-template ngbPaginationPrevious
+            ><span [data-feather]="'chevron-left'" [class]="'font-weight-bolder'" [size]="18"></span>
+          </ng-template>
+          <ng-template ngbPaginationFirst
+            ><span [data-feather]="'chevrons-left'" [class]="'font-weight-bolder'" [size]="18"></span>
+          </ng-template>
+          <ng-template ngbPaginationNext
+            ><span [data-feather]="'chevron-right'" [class]="'font-weight-bolder'" [size]="18"></span
+          ></ng-template>
+          <ng-template ngbPaginationLast
+            ><span [data-feather]="'chevrons-right'" [class]="'font-weight-bolder'" [size]="18"></span>
+          </ng-template>
+        </ngb-pagination>
+      </div>
+    </div>
+  </div>
+</section>

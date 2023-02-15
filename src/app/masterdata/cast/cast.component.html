@@ -72,9 +72,9 @@
         <ngx-datatable [rows]="datalist" [rowHeight]="58" class="bootstrap core-bootstrap text-dark" [limit]="10"
         [columnMode]="ColumnMode.force" [headerHeight]="40" [footerHeight]="50" [scrollbarH]="true"
         [columns]="columns" [selectionType]="SelectionType.checkbox" [limit]="basicSelectedOption">
-        <ngx-datatable-column name="caste Name" prop="casteName" [width]="250"></ngx-datatable-column>
-        <ngx-datatable-column name="status" prop="status" [width]="120"></ngx-datatable-column>
-        <ngx-datatable-column name="description" prop="description" [width]="120"></ngx-datatable-column>
+        <ngx-datatable-column name="caste Name" prop="casteName" [width]="150"></ngx-datatable-column>
+        <ngx-datatable-column name="status" prop="status" [width]="150"></ngx-datatable-column>
+        <ngx-datatable-column name="description" prop="description" [width]="150"></ngx-datatable-column>
 
         <ngx-datatable-column name="Actions" prop="id" [width]="120" [sortable]="false">
             <ng-template ngx-datatable-cell-template let-row="datalist" let-value="row.id">

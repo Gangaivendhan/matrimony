@@ -197,10 +197,10 @@ export const menu: CoreMenu[] = [
       {
         id: 'request',
         title: 'Request',
-        translate: 'MENU.PAGES.SECTION',
+        translate: 'MENU.PAGES.PROFILE',
         type: 'collapsible',
         icon: 'user-plus',
-        url:'/request'
+        url:'broker/request'
       }
      ]
    },

@@ -41,7 +41,7 @@ export class BrokerComponent {
   cityObj: any = {}
   id: any;
   cities: any = []
-  state: any = []
+  state: any ;
   country: any = []
   city: any;
   obj:any={};
@@ -54,7 +54,6 @@ export class BrokerComponent {
 ) { }
   ngOnInit() {
     this.brokerForm = this.fb.group({
-      id: [''],
       firstName: [''],
       lastName: [''],
       mobileNumber:[''],
@@ -64,6 +63,7 @@ export class BrokerComponent {
       country:[''],
       state:[''],
       city:[''],
+      userName:[''],
       status:['']
     })
     this.columns = [
@@ -76,6 +76,7 @@ export class BrokerComponent {
       { name: 'country'},
       { name: 'state'},
       { name: 'city'},
+      { name: 'userName'},
       { name: 'status'}
     ];
 this.get();
@@ -90,7 +91,12 @@ this.getallcountry();
     console.log(res)
     this.obj = res.data
     console.log(this.obj) 
-    this.getstate(this.getallcountry);
+    this.getstate = this.obj.state;
+    this.get = this.obj.country
+    this.getstate(this.get);
+    this.getcity(this.getstate);
+
+
 
   })
   this.modalService.open(content, { size: 'm' });
@@ -157,19 +163,11 @@ getallcountry() {
   this.service.getalldatacountry().subscribe(
     res => {
       console.log(res)
-      this.obj = res
-      this.datalist = res.data
-      this.country = this.countryobj.data
-      
-      this.countryobj = res
-      console.log(this.countryobj)
-      this.country = this.countryobj.data
+      this.country = res.data
       console.log(this.country)
-
-
     })
  }
-getstate(id: any) {
+getstate(id:any) {
   this.service.getcountryiddetails(id).subscribe(
     res => {
       console.log(res)
@@ -182,27 +180,28 @@ getstate(id: any) {
 }
 
 
-// getcity(id: any) {
-//   this.service.getcityId(id).subscribe(
-//     res => {
-//       console.log(res)
-//       this.cityObj = res
-//       this.cities = this.cityObj.data
-//       console.log(this.cityObj);
+getcity(id:any) {
+  this.service.getcityId(id).subscribe(
+    res => {
+      console.log(res)
+      this.cityObj = res
+      this.cities = this.cityObj.data
+      console.log(this.cityObj);
       
-//     })
-// }
+    })
+}
 
-// changeCountry(event: any) {
-//   console.log(event.target.value);
-//   this.state = event.target.value;
-//   this.getstate(this.state);
-// }
-// changeState(event: any) {
-//   console.log(event.target.value);
-//   this.city = event.target.value;
-//   this.getcity(this.city);
-// }
+changeCountry(event: any) {
+  console.log(event.target.value);
+  // this.state = event.target.value;
+  this.getstate(event.target.value);
+}
+changeState(event: any) {
+  console.log(event.target.value);
+  this.city = event.target.value;
+  this.getcity(this.city);
+  
+}
 rejected(id:any){
   Swal.fire({
     title: 'Are you sure?',

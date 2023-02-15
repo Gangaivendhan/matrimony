@@ -56,27 +56,19 @@
                 <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="UDLanguage">Country</label>
-                        <select formControlName="country" [(ngModel)]="obj.country" class="form-control"
-                            [ngClass]="{ 'is-invalid': ReactiveUDFormSubmitted && ReactiveUDForm.language.errors }">
+                        <select formControlName="country" [(ngModel)]="obj.country" (change)="changeCountry($event)" class="form-control">
                             <option *ngFor="let list of country" [value]="list['id']">
                                 {{list['countryName']}}
                             </option>
                         </select>
-                        <!-- <div
-                          *ngIf="ReactiveUDFormSubmitted && ReactiveUDForm.language.errors"
-                          class="invalid-feedback"
-                        >
-                          <div *ngIf="ReactiveUDForm.language.errors.required">language is required</div>
-                        </div> -->
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="UDLanguage">State</label>
-                        <select id="UDLanguage" formControlName="state" [(ngModel)]="obj.state" class="form-control"
-                            [ngClass]="{ 'is-invalid': ReactiveUDFormSubmitted && ReactiveUDForm.language.errors }">
+                        <select id="UDLanguage" formControlName="state" [(ngModel)]="obj.state" (change)="changeState($event)" class="form-control">
                             <option *ngFor="let list of state" [value]="list['id']">
-                                {{list['name']}}
+                                {{list['stateName']}}
                             </option>
                         </select>
                     </div>
@@ -84,12 +76,20 @@
                 <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="UDLanguage">City</label>
-                        <select  formControlName="city" class="form-control" [(ngModel)]="obj.city"
-                            [ngClass]="{ 'is-invalid': ReactiveUDFormSubmitted && ReactiveUDForm.language.errors }">
-                            <option *ngFor="let  city of this.cities" [value]="city.id">
-                                {{ city.name}}
+                        <select  formControlName="city" class="form-control" [(ngModel)]="obj.city">
+                            <option *ngFor="let  city of cities" [value]="city['id']">
+                                {{ city['cityName']}}
                             </option>
                         </select>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="addressline2-floating">UserName</label>
+                            <input type="text" id="country-floating" class="form-control" [(ngModel)]="obj.userName"
+                                formControlName="userName" placeholder="Enter your userName" />
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
@@ -144,17 +144,18 @@
         <ngx-datatable [rows]="datalist" [rowHeight]="58" class="bootstrap core-bootstrap text-dark" [limit]="10"
             [columnMode]="ColumnMode.force" [headerHeight]="40" [footerHeight]="50" [scrollbarH]="true"
             [columns]="columns" [selectionType]="SelectionType.checkbox" [limit]="basicSelectedOption">
-            <ngx-datatable-column name="First Name" prop="firstName" [width]="250"></ngx-datatable-column>
-            <ngx-datatable-column name="Last Name" prop="lastName" [width]="120"></ngx-datatable-column>
-            <ngx-datatable-column name="Mobile" prop="mobileNumber" [width]="120"></ngx-datatable-column>
-            <ngx-datatable-column name="Email" prop="email" [width]="120"></ngx-datatable-column>
-            <ngx-datatable-column name="AddressLine1" prop="addressLine1" [width]="120"></ngx-datatable-column>
-            <ngx-datatable-column name="AddressLine2" prop="addressLine2" [width]="120"></ngx-datatable-column>
-            <ngx-datatable-column name="Country" prop="country" [width]="120"></ngx-datatable-column>
-            <ngx-datatable-column name="State" prop="state" [width]="120"></ngx-datatable-column>
-            <ngx-datatable-column name="City" prop="city" [width]="120"></ngx-datatable-column>
-            <ngx-datatable-column name="Status" prop="status" [width]="120"></ngx-datatable-column>
-            <ngx-datatable-column name="Actions" [width]="120" [sortable]="false">
+            <ngx-datatable-column name="First Name" prop="firstName" [width]="150"></ngx-datatable-column>
+            <ngx-datatable-column name="Last Name" prop="lastName" [width]="150"></ngx-datatable-column>
+            <ngx-datatable-column name="Mobile" prop="mobileNumber" [width]="150"></ngx-datatable-column>
+            <ngx-datatable-column name="Email" prop="email" [width]="170"></ngx-datatable-column>
+            <ngx-datatable-column name="AddressLine1" prop="addressLine1" [width]="150"></ngx-datatable-column>
+            <ngx-datatable-column name="AddressLine2" prop="addressLine2" [width]="150"></ngx-datatable-column>
+            <ngx-datatable-column name="Country" prop="country" [width]="150"></ngx-datatable-column>
+            <ngx-datatable-column name="State" prop="state" [width]="150"></ngx-datatable-column>
+            <ngx-datatable-column name="City" prop="city" [width]="150"></ngx-datatable-column>
+            <ngx-datatable-column name="UserName" prop="userName" [width]="150"></ngx-datatable-column>
+            <ngx-datatable-column name="Status" prop="status" [width]="150"></ngx-datatable-column>
+            <ngx-datatable-column name="Actions" [width]="150" [sortable]="false">
                 <ng-template ngx-datatable-cell-template>
                     <div class="d-flex">
                         <a (click)="editBranch(value,modalVC)">
