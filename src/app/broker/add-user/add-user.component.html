@@ -492,7 +492,7 @@
               <div class=" p-2 text-center">
                 <h6>Please enter the one time password <br> </h6>
                 <div> <span> sent to</span>
-                  <small>+1******4343</small>
+                  <small>+1****4343</small>
                 </div>
                 <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
                   <input class="m-2 text-center form-control rounded" type="text" id="input1" v-on:keyup="inputenter(1)"
@@ -626,7 +626,7 @@
                 </button>
                 <button class="btn btn-primary btn-next"  (click)="horizontalWizardStepperNext(RasistarForm)"
                   rippleEffect>
-                  <span class="align-middle d-sm-inline-block d-none">Sikp</span>
+                  <span class="align-middle d-sm-inline-block d-none">Skip</span>
                   <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
                 </button>
               </div>
@@ -643,20 +643,18 @@
                 <div class="row justify-content-center">
                     <div class="col-6">
                       <div class="form-group ">
-                        <label>Drinking</label>
+                        <label>Star</label>
                         <ng-select placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
-                          <ng-option *ngFor="let Drinking of  drinking "
-                            [value]="Drinking.id">{{ Drinking.value }}</ng-option>
+                          <ng-option *ngFor="let Star of  star " [value]="Star.id">{{ Star.starname }}</ng-option>
                         </ng-select>
                     </div>
                     </div>
                   <div class="col-6">
                     <div class="form-group ">
-                        <label>EatingHabit</label>
-                        <ng-select placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
-                          <ng-option *ngFor="let EatingHabit of  EatingHabit "
-                            [value]=" EatingHabit.id ">{{ EatingHabit.value }}</ng-option>
-                        </ng-select>
+                      <label>Raasi</label>
+                      <ng-select placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
+                        <ng-option *ngFor="let Raasi of  Raasi " [value]=" Raasi.id ">{{ Raasi.Raasiname }}</ng-option>
+                      </ng-select>
                       </div>
                     </div>
                   </div>
@@ -669,37 +667,75 @@
                 </button>
                 <button class="btn btn-primary btn-next"  (click)="horizontalWizardStepperNext(HoroscopeForm)"
                   rippleEffect>
-                  <span class="align-middle d-sm-inline-block d-none">Sikp</span>
+                  <span class="align-middle d-sm-inline-block d-none">Skip</span>
                   <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
                 </button>
               </div>
             </form>
           </div>
-          <div id="Horoscope" class="content">
-            <form #HoroscopeForm="ngForm">
-              <div class="content-header">
-                <h5 class="mb-0">Horoscope Details</h5>
-                <small>Enter Your HoroscopeInfo.</small>
+        <div id="Horoscope" class="content">
+          <form #HoroscopeForm="ngForm">
+            <div class="content-header">
+              <h5 class="mb-0">Horoscope Info</h5>
+              <small>Enter Your Horoscope Info.</small>
+            </div>
+            <div class="form form-horizontal">
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group row">
+                    <div class="col-sm-3 col-form-label">
+                      <label>Date Of Birth</label>
+                    </div>
+                    <div class="col-sm-3">
+                      <input type="text" id="Hours" class="form-control" name="Hours" placeholder="Hours" />
+                    </div>
+                    <div class="col-sm-3">
+                      <input type="text" id="Minutes" class="form-control" name="Minutes" placeholder="Minutes" />
+                    </div>
+                    <div class="col-sm-3">
+                      <ng-select placeholder="" bindLabel="" [loading]="selectBasicLoading">
+                        <ng-option *ngFor="let Meridia of  meridia " [value]="Meridia.id">{{Meridia.value}}</ng-option>
+                      </ng-select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group row">
+                    <div class="col-sm-3 col-form-label">
+                      <label>Place Of Birth</label>
+                    </div>
+                    <div class="col-sm-9">
+                      <ng-select placeholder="Country" bindLabel="country" [loading]="selectBasicLoading">
+                        <ng-option *ngFor="let Country of  country " [value]=" Country.id ">{{Country.value }}</ng-option>
+                      </ng-select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group row">
+                    <div class="col-sm-3 col-form-label">
+                      <label>State</label>
+                    </div>
+                    <div class="col-sm-9">
+                      <ng-select placeholder="state" bindLabel="state" [loading]="selectBasicLoading">
+                        <ng-option *ngFor="let State of state " [value]="State.id">{{State.value}}</ng-option>
+                      </ng-select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group row">
+                    <div class="col-sm-3 col-form-label">
+                      <label>City</label>
+                    </div>
+                    <div class="col-sm-9">
+                      <ng-select placeholder="city" bindLabel="city" [loading]="selectBasicLoading">
+                        <ng-option *ngFor="let City of city " [value]="City.id">{{City.value}}</ng-option>
+                      </ng-select>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="form form-horizontal" >
-                <div class="row justify-content-center">
-                    <div class="col-6">
-                      <div class="form-group ">
-                        <!-- <label>Drinking</label>
-                        <ng-select placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
-                          <ng-option *ngFor="let Drinking of  drinking "
-                            [value]="Drinking.id">{{ Drinking.value }}</ng-option>
-                        </ng-select> -->
-                    </div>
-                    </div>
-                  <div class="col-6">
-                    <div class="form-group ">
-                        <label>EatingHabit</label>
-                        <ng-select placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
-                          <ng-option *ngFor="let EatingHabit of  EatingHabit "
-                            [value]=" EatingHabit.id ">{{ EatingHabit.value }}</ng-option>
-                        </ng-select>
-                      </div>
             </div>
             <div class="d-flex justify-content-between">
               <button type="button" (click)="horizontalWizardStepperPrevious()" class="btn btn-primary btn-prev"
@@ -712,69 +748,26 @@
                 <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
               </button>
             </div>
-                </div>
-              </div>
           </form>
         </div>
-        <div id="RasistarInfo" class="content">
-          <form #RasistarForm="ngForm">
-            <div class="content-header">
-              <h5 class="mb-0">Religion Info</h5>
-              <small>Enter Your Religion Info.</small>
-            </div>
-            <div class="form form-horizontal">
-              <div class="row justify-content-center">
-                <div class="col-6">
-                  <div class="form-group ">
-                    <label>Star</label>
-                    <ng-select placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
-                      <ng-option *ngFor="let Star of  star " [value]="Star.id">{{ Star.starname }}</ng-option>
-                    </ng-select>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group ">
-                    <label>Raasi</label>
-                    <ng-select placeholder="choose" bindLabel="name" [loading]="selectBasicLoading">
-                      <ng-option *ngFor="let Raasi of  Raasi " [value]=" Raasi.id ">{{ Raasi.Raasiname }}</ng-option>
-                    </ng-select>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between">
-              <button type="button" (click)="horizontalWizardStepperPrevious()" class="btn btn-primary btn-prev"
-                rippleEffect>
-                <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
-                <span class="align-middle d-sm-inline-block d-none">Previous</span>
-              </button>
-              <button class="btn btn-primary btn-next" (click)="horizontalWizardStepperNext(HoroscopeForm)"
-                rippleEffect>
-                <span class="align-middle d-sm-inline-block d-none">Skip</span>
-                <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
-              </button>
-            </div>
-          </form>
-        </div>
-        <div id="Horoscope" class="content">
+        <div id="FamilyInfo" class="content">
           <form #HoroscopeForm="ngForm">
             <div class="content-header">
-              <h5 class="mb-0">Horoscope Info</h5>
-              <small>Enter Your Horoscope Info.</small>
+              <h5 class="mb-0">Family Info</h5>
+              <small>Enter Your Family Info.</small>
             </div>
             <div class="form form-horizontal">
               <div class="row">
                 <div class="col-12">
                   <div class="form-group row">
                     <div class="col-sm-3 col-form-label">
-                      <label>Date Of BIrth</label>
+                      <label>Date Of Birth</label>
                     </div>
                     <div class="col-sm-3">
-                      <input type="text" id="Hours" class="form-control" name="about" placeholder="About" />
+                      <input type="text" id="Hours" class="form-control" name="Hours" placeholder="Hours" />
                     </div>
                     <div class="col-sm-3">
-                      <input type="text" id="Minutes" class="form-control" name="about" placeholder="About" />
+                      <input type="text" id="Minutes" class="form-control" name="Minutes" placeholder="Minutes" />
                     </div>
                     <div class="col-sm-3">
                       <ng-select placeholder="" bindLabel="" [loading]="selectBasicLoading">

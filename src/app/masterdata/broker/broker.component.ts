@@ -45,6 +45,7 @@ export class BrokerComponent {
   country: any = []
   city: any;
   obj:any={};
+  getstateid:any=[];
   constructor(private modalService: NgbModal,
     private fb: FormBuilder,
     private service: BrokerserviceService,
@@ -79,25 +80,20 @@ export class BrokerComponent {
       { name: 'userName'},
       { name: 'status'}
     ];
-this.get();
 this.getallcountry();
-
+this.get();  
   }
   get f(): { [key: string]: AbstractControl } {
     return this.brokerForm.controls;
   }
   editBranch(id: any, content: any) { 
   this.service.getId(id).subscribe(res => {
-    console.log(res)
     this.obj = res.data
     console.log(this.obj) 
-    this.getstate = this.obj.state;
+    this.getstateid = this.obj.state;
     this.get = this.obj.country
     this.getstate(this.get);
     this.getcity(this.getstate);
-
-
-
   })
   this.modalService.open(content, { size: 'm' });
 }
